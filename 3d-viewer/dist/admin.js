@@ -1,0 +1,2 @@
+jQuery(document).ready((function(e){e("[name='_bp3dimages_[angle_property][top]']").attr("placeholder","X"),e("[name='_bp3dimages_[angle_property][right]']").attr("placeholder","Y"),e("[name='_bp3dimages_[angle_property][bottom]']").attr("placeholder","Z")})),document.addEventListener("DOMContentLoaded",(function(){const e=document.querySelector(".custom-css .csf-subtitle-text");e&&(e.innerText=`#bp_model_id_${parseInt(window.post_ID?.value)}`)}));
+//# sourceMappingURL=admin.js.map

@@ -1,0 +1,158 @@
+{
+  "apiVersion": "1",
+  "name": "b3dviewer/modelviewer",
+  "title": "Model Viewer",
+  "description": "",
+  "category": "design",
+  "icon": "visibility",
+  "keywords": ["3D Viewer", "3D Embedder", "3D Model Viewer"],
+  "textdomain": "model-viewer",
+  "attributes": {
+    "uniqueId": { "type": "string", "default": "uniqueId" },
+    "multiple": { "type": "boolean", "default": false },
+    "model": { "type": "object", "default": {} },
+    "models": { "type": "array", "default": [{ "`modelUrl`": "", "poster": "", "useDecoder": "none" }] },
+    "currentViewer": { "type": "string", "default": "modelViewer" },
+    "O3DVSettings": {
+      "type": "object",
+      "default": {
+        "isFullscreen": true,
+        "isPagination": false,
+        "isNavigation": false,
+        "camera": null, 
+        "mouseControl": true
+      }
+    },
+    "lazyLoad": {
+      "type": "boolean",
+      "default": true
+    },
+    "preload": {
+      "type": "string",
+      "default": "auto"
+    },
+    "autoplay": {
+      "type": "boolean",
+      "default": true
+    },
+    "shadow": {
+      "type": "boolean",
+      "default": true
+    },
+    "rotate": {
+      "type": "boolean",
+      "default": false
+    },
+    "autoRotate": {
+      "type": "boolean",
+      "default": false
+    },
+    "zoom": {
+      "type": "boolean",
+      "default": true
+    },
+    "isPagination": {
+      "type": "boolean",
+      "default": false
+    },
+    "isNavigation": {
+      "type": "boolean",
+      "default": true
+    },
+    "rotationPerSecond": {
+      "type": "number",
+      "default": 20
+    },
+    "mouseControl": {
+      "type": "boolean",
+      "default": true
+    },
+    "fullscreen": {
+      "type": "boolean",
+      "default": true
+    },
+    "variant": {
+      "type": "boolean",
+      "default": false
+    },
+    "loadingPercentage": {
+      "type": "boolean",
+      "default": false
+    },
+    "progressBar": {
+      "type": "boolean",
+      "default": true
+    },
+    "rotateAlongX": {
+      "type": "number",
+      "default": "0"
+    },
+    "rotateAlongY": {
+      "type": "number",
+      "default": 75
+    },
+    "exposure": {
+      "type": "number",
+      "default": 1
+    },
+    "environmentImage": {
+      "type": "string",
+      "default": ""
+    },
+    "zoomLevel": {
+      "type": "number",
+      "default": 1
+    },
+    "appliedTextures": {
+      "type": "object",
+      "default": {
+        "name": true
+      }
+    },
+    "styles": {
+      "type": "object",
+      "default": {
+        "width": "100%",
+        "height": "300px",
+        "bgColor": "#ffffff",
+        "progressBarColor": "#666",
+        "thumbSize": "90px"
+      }
+    },
+    "stylesheet": {
+      "type": "string"
+    },
+    "additional": {
+      "type": "object",
+      "default": {
+        "ID": "",
+        "Class": "",
+        "CSS": ""
+      }
+    },
+    "animation": {
+      "type": "boolean",
+      "default": false
+    },
+    "woo": {
+      "type": "boolean",
+      "default": false
+    },
+    "selectedAnimation": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "supports": {
+    "html": false,
+    "lock": false,
+    "align": ["left", "right", "center"]
+  },
+  "example": {
+    "attributes": {
+      "preview": true
+    }
+  },
+  "style": ["file:./../../dist/3d-viewer-frontend.css"],
+  "viewScript": ["file:./../../dist/3d-viewer-frontend.js"]
+}
