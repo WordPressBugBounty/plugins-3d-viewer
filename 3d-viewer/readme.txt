@@ -30,8 +30,6 @@ The plugin includes an intuitive shortcode generator that simplifies the process
 Overall, 3D Viewer is a versatile and powerful plugin that can help you showcase 3D content on your WordPress website with ease. Try it out today and bring your 3D models to life!
 
 
-
-
 ### 3D Viewer Features 
 
 3D Viewer Plugin for WordPress offers you a complete solution for displaying any 3D objects that will amaze your visitors.
