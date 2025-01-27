@@ -2,14 +2,14 @@
 Contributors: bplugins, abuhayat, freemius, shehabulislam
 Tags: 3d, 3D model viewer, threejs, widget, model viewer
 Requires at least: 5.7
-Tested up to: 6.6.2
-Stable tag: 1.5.0
+Tested up to: 6.7.1
+Stable tag: 1.5.1
 Requires PHP: 7.1
 Donate link: https://www.buymeacoffee.com/abuhayat
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-3D Viewer is a WordPress 3D Model Embedder Plugin showcases your 3D models elegantly. Supports .glb, .gltf, fbx, stl, obj, dae, bim, & more
+3D Viewer is a WordPress 3D Model Embedder Plugin showcases your 3D models elegantly. Supports .glb, .gltf, fbx, .stl, obj, dae, bim, & more
 
 == Description ==
 
@@ -159,6 +159,9 @@ No, This plugin only support .glb and .glTF files. Please convert your file to a
 
 
 == Changelog ==
+
+= 1.5.1 - 27 Jan, 2025 =
+* Update: Update Freemius WordPres SDK
 
 = 1.5.0 - 03 Sep, 2024 =
 * Improved: code

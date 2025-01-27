@@ -4,7 +4,7 @@
  * Plugin Name: 3D Viewer
  * Plugin URI:  https://bplugins.com/
  * Description: Easily display interactive 3D models on the web. Supported File type .glb, .gltf,obj 3ds stl ply off 3dm fbx dae wrl 3mf amf ifc brep step iges fcstd bim
- * Version: 1.5.0
+ * Version: 1.5.1
  * Author: bPlugins
  * Author URI: http://bplugins.com
  * License: GPLv3
@@ -33,7 +33,7 @@ if ( function_exists( 'bp3dv_fs' ) ) {
     if ( isset( $_SERVER['HTTP_HOST'] ) && $_SERVER['HTTP_HOST'] === 'localhost' ) {
         define( 'BP3D_VERSION', time() );
     } else {
-        define( 'BP3D_VERSION', '1.5.0' );
+        define( 'BP3D_VERSION', '1.5.1' );
     }
     defined( 'BP3D_DIR' ) or define( 'BP3D_DIR', plugin_dir_url( __FILE__ ) );
     defined( 'BP3D_PATH' ) or define( 'BP3D_PATH', plugin_dir_path( __FILE__ ) );
