@@ -4,7 +4,7 @@
  * Plugin Name: 3D Viewer
  * Plugin URI:  https://bplugins.com/
  * Description: Easily display interactive 3D models on the web. Supported File type .glb, .gltf,obj 3ds stl ply off 3dm fbx dae wrl 3mf amf ifc brep step iges fcstd bim
- * Version: 1.5.1
+ * Version: 1.6.3
  * Author: bPlugins
  * Author URI: http://bplugins.com
  * License: GPLv3
@@ -33,7 +33,7 @@ if ( function_exists( 'bp3dv_fs' ) ) {
     if ( isset( $_SERVER['HTTP_HOST'] ) && $_SERVER['HTTP_HOST'] === 'localhost' ) {
         define( 'BP3D_VERSION', time() );
     } else {
-        define( 'BP3D_VERSION', '1.5.1' );
+        define( 'BP3D_VERSION', '1.6.3' );
     }
     defined( 'BP3D_DIR' ) or define( 'BP3D_DIR', plugin_dir_url( __FILE__ ) );
     defined( 'BP3D_PATH' ) or define( 'BP3D_PATH', plugin_dir_path( __FILE__ ) );
@@ -46,7 +46,7 @@ if ( function_exists( 'bp3dv_fs' ) ) {
             global $bp3dv_fs;
             if ( !isset( $bp3dv_fs ) ) {
                 // Include Freemius SDK.
-                require_once dirname( __FILE__ ) . '/freemius/start.php';
+                // SDK is auto-loaded through composer
                 $bp3dv_fs = fs_dynamic_init( array(
                     'id'              => '8795',
                     'slug'            => '3d-viewer',
@@ -62,8 +62,8 @@ if ( function_exists( 'bp3dv_fs' ) ) {
                     ),
                     'has_affiliation' => 'selected',
                     'menu'            => array(
-                        'contact' => false,
                         'slug'    => 'edit.php?post_type=bp3d-model-viewer',
+                        'contact' => false,
                     ),
                     'is_live'         => true,
                 ) );
@@ -100,15 +100,20 @@ if ( function_exists( 'bp3dv_fs' ) ) {
             public function __construct() {
                 $init_file = BP3D_PATH . 'inc/Init.php';
                 require_once BP3D_PATH . '3d-viewer-block/inc/block.php';
+                // wasek bellah 3d viewer block
                 if ( file_exists( $init_file ) ) {
                     require_once $init_file;
                 }
                 if ( class_exists( 'BP3D\\Init' ) ) {
-                    \BP3D\Init::instance();
+                    \BP3D\Init::instance()->init();
                 }
+                add_action( 'plugins_loaded', array($this, 'plugins_loaded') );
             }
 
             function plugins_loaded() {
+                if ( class_exists( 'BP3D\\Init' ) ) {
+                    \BP3D\Init::register_post_type();
+                }
             }
 
         }

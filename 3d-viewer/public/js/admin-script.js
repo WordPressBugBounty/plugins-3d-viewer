@@ -5,7 +5,3 @@ jQuery(document).ready(function ($) {
   $("[name='_bp3dimages_[angle_property][bottom]']").attr("placeholder", "Z");
   // $("[name='btss_meta[bts_column][left]']").attr('placeholder', 'Mobile')
 });
-
-document.addEventListener("DOMContentLoaded", function () {
-  console.log("loaded");
-});

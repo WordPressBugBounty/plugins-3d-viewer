@@ -9,7 +9,7 @@
  */
 if ( ! class_exists( 'CSF_Fields' ) ) {
   abstract class CSF_Fields extends CSF_Abstract {
-    
+
     public $field = null;
     public $value = null;
     public $unique = null;

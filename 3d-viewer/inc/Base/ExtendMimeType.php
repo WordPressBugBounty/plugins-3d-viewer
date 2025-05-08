@@ -57,6 +57,7 @@ class ExtendMimeType {
             '3mf' => 'application/vnd.ms-3mfdocument',
             'bin' => 'application/octet-stream', 
             'hdr' => 'image/vnd.radiance', 
+            'usdz' => 'model/vnd.pixar.usd',
         ];
 
         return $mimes;

@@ -82,7 +82,7 @@ class PostTypeModelViewer{
 
     public function addShortcodeColumn($column_name, $post_ID){
         if ($column_name === 'shortcode') {
-            echo "<div onclick='this.select()' class='b3dviewer_front_shortcode'><input value='[3d_viewer id=$post_ID]' ><span class='htooltip'>". esc_html__("Copy To Clipboard", "model-viewer")."</span></div>";
+            echo "<div onclick='this.select()' class='b3dviewer_front_shortcode'><input value='[3d_viewer id=".esc_attr($post_ID)."]' ><span class='htooltip'>". esc_html__("Copy To Clipboard", "model-viewer")."</span></div>";
         }
     }
 
@@ -155,7 +155,7 @@ class PostTypeModelViewer{
            <div class="bp3d_shortcode">
                <div class="shortcode-heading">
                    <div class="icon"><span class="dashicons dashicons-shortcode"></span> <?php 
-               _e( "SHORTCODE", "model-viewer" ); ?></div>
+               echo esc_html(__( "SHORTCODE", "model-viewer" )); ?></div>
                    <div class="text"> <a href="https://bplugins.com/support/" target="_blank"><?php 
                _e( "Supports", "model-viewer" ); ?></a></div>
                </div>

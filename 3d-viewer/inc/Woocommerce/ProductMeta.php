@@ -64,7 +64,7 @@ class ProductMeta{
                   'bottom' => esc_html__('Bottom of the product image','model-viewer'),
                   'replace' => esc_html__('Replace Product Image with 3D', 'model-viewer')
                 ),
-                'default'    => 'top',
+                'default'    => 'none',
                 'desc' => __("Select the position of the viewer", 'model-viewer')
               ),
               array(

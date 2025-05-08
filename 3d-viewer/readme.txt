@@ -1,15 +1,14 @@
 === 3D Viewer - 3D Model Viewer Plugin ===
 Contributors: bplugins, abuhayat, freemius, shehabulislam
 Tags: 3d, 3D model viewer, threejs, widget, model viewer
-Requires at least: 5.7
-Tested up to: 6.7.1
-Stable tag: 1.5.1
+Tested up to: 6.8
+Stable tag: 1.6.3
 Requires PHP: 7.1
 Donate link: https://www.buymeacoffee.com/abuhayat
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-3D Viewer is a WordPress 3D Model Embedder Plugin showcases your 3D models elegantly. Supports .glb, .gltf, fbx, .stl, obj, dae, bim, & more
+3D Viewer is a WordPress 3D Model Embedder Plugin showcases your 3D models elegantly. Supports .glb, .gltf, fbx, stl, obj, dae, bim, & more
 
 == Description ==
 
@@ -18,6 +17,8 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 The plugin is very easy to use and anyone can use the plugin easily without any technical knowledge.
 
 Embed any 3D files in Posts, Page and Widget areas, and WooCommerce product page. It comes with everything you need to make the most of your 3D models.
+
+https://youtu.be/_9vKv5pEClM
 
 3D Viewer is a powerful and user-friendly plugin that lets you display 3D models on your WordPress website. Whether you're a designer, or developer, or simply want to showcase 3D content, this plugin makes it easy to embed interactive 3D models in your posts, pages, and products.
 
@@ -28,6 +29,8 @@ The plugin includes an intuitive shortcode generator that simplifies the process
 3D Viewer is optimized for mobile devices and supports touch controls, making it easy for your users to interact with your 3D content on their smartphones and tablets. The plugin is also compatible with WooCommerce, allowing you to showcase 3D models of your products stunningly and engagingly.
 
 Overall, 3D Viewer is a versatile and powerful plugin that can help you showcase 3D content on your WordPress website with ease. Try it out today and bring your 3D models to life!
+
+
 
 
 ### 3D Viewer Features 
@@ -67,7 +70,7 @@ Overall, 3D Viewer is a versatile and powerful plugin that can help you showcase
 
 Here is a quick Video tutorial.
 
-https://www.youtube.com/watch?v=PSXtvy1rF88
+https://www.youtube.com/watch?v=ofC8XbdAuVE&t=44s
 
 ### User Feedback
 
@@ -160,8 +163,34 @@ No, This plugin only support .glb and .glTF files. Please convert your file to a
 
 == Changelog ==
 
-= 1.5.1 - 27 Jan, 2025 =
-* Update: Update Freemius WordPres SDK
+= 1.6.3 - 7 May, 2025  =
+* Fixed: _load_textdomain_just_in_time was called incorrectly
+
+= 1.6.2 - 12 Feb, 2025 (Pro) =
+* Feature: Option to Show Edge and Customize the color (Advanced Viewer, Premium)
+* Option: Enable/Disable Zoom (Advanced Viewer)
+* Option: Enable/Disable Zoom (Woocommerce)
+
+= 1.6.1 - 12 Feb, 2025 (Pro) =
+* Fixed: can't read properties of undefined percentageWrapper
+
+= 1.6.0 - 5 Feb, 2025 (Pro) =
+* Option: Add HDR skybox image (Premium)
+* Option: Tone Mapping (only available on Gutenberg) (Premium)
+* Feature: Apply Factor and Texture to a model (only available on Gutenberg) (Premium)
+* Feature: Modify Material using Texture option (only available on Gutenberg) (Premium)
+
+
+= 1.5.1 - 1 Feb, 2025 =
+* Update: WordPress SDK
+
+= 1.5.0 - 03 Sep, 2024 =
+* Feature: Show 3D Model after product description // ekhono hoynai
+* Feature: Show 3D Model after product summery // ekhono hoynai
+* Feature: Set Skybox Image to the model
+* Feature: AR Feature 
+* Fixed: Rotation delay
+
 
 = 1.5.0 - 03 Sep, 2024 =
 * Improved: code

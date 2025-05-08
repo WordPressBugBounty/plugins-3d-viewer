@@ -13,11 +13,11 @@ if ( ! class_exists( 'CSF_Metabox' ) ) {
     // constans
     public $unique         = '';
     public $abstract       = 'metabox';
-    public $pre_fields     = array();
     public $sections       = array();
+    public $pre_fields     = array();
     public $post_type      = array();
-    public $post_formats   = array();
-    public $page_templates = array();
+    public $post_formats      = array();
+    public $page_templates      = array();
     public $args           = array(
       'title'              => '',
       'post_type'          => 'post',
@@ -67,22 +67,6 @@ if ( ! class_exists( 'CSF_Metabox' ) ) {
     // instance
     public static function instance( $key, $params = array() ) {
       return new self( $key, $params );
-    }
-
-    public function pre_fields( $sections ) {
-
-      $result  = array();
-
-      foreach ( $sections as $key => $section ) {
-        if ( ! empty( $section['fields'] ) ) {
-          foreach ( $section['fields'] as $field ) {
-            $result[] = $field;
-          }
-        }
-      }
-
-      return $result;
-
     }
 
     public function add_metabox_classes( $classes ) {
@@ -395,8 +379,10 @@ if ( ! class_exists( 'CSF_Metabox' ) ) {
       if ( empty( $data ) || ! empty( $request['_reset'] ) ) {
 
         if ( $this->args['data_type'] !== 'serialize' ) {
-          foreach ( $data as $key => $value ) {
-            delete_post_meta( $post_id, $key );
+          foreach ( $this->pre_fields as $field ) {
+            if ( ! empty( $field['id'] ) ) {
+              delete_post_meta( $post_id, $field['id'] );
+            }
           }
         } else {
           delete_post_meta( $post_id, $this->unique );

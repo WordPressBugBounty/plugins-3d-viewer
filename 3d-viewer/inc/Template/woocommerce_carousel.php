@@ -2,7 +2,7 @@
     <?php foreach( $models as $carousel_model ): ?>
     <div class="bp3dmodel-item">
     <div class="bp_model_gallery">
-        <model-viewer class="model" id="bp_model_id_<?php echo esc_attr($id); ?>" <?php echo esc_attr($model_autoplay); ?> ar shadow-intensity="<?php echo esc_attr($model_Shadow); ?>" src="<?php echo esc_url($carousel_model['model_src']); ?>" alt="<?php echo esc_attr($alt); ?>" <?php echo esc_attr($camera_controls); ?> <?php echo $camera_orbit; ?> <?php echo esc_attr($zooming_3d); ?> loading="<?php  echo esc_attr($loading); ?>" <?php echo esc_attr($auto_rotate); ?> <?php echo esc_attr($rotation_speed); ?> <?php echo esc_attr($rotation_delay); ?> 
+        <model-viewer class="model" id="bp_model_id_<?php echo esc_attr($id); ?>" <?php echo esc_attr($model_autoplay); ?> ar shadow-intensity="<?php echo esc_attr($model_Shadow); ?>" src="<?php echo esc_url($carousel_model['model_src']); ?>" alt="<?php echo esc_attr($alt); ?>" <?php echo esc_attr($camera_controls); ?> <?php echo esc_attr($camera_orbit); ?> <?php echo esc_attr($zooming_3d); ?> loading="<?php  echo esc_attr($loading); ?>" <?php echo esc_attr($auto_rotate); ?> <?php echo esc_attr($rotation_speed); ?> <?php echo esc_attr($rotation_delay); ?> 
         <?php 
         if(is_array($attribute)){
             foreach($attribute as $key => $value){ 
