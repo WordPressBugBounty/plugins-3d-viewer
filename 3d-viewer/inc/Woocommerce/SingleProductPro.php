@@ -13,9 +13,10 @@ class SingleProductPro
     {
         $this->theme_name = wp_get_theme()->name;
         add_action('woocommerce_loaded', [$this, 'woocommerce_loaded']);
+        add_action('wp_footer', [$this, 'wp_footer']);
+
         add_action('bp3d_product_model_before', [$this, 'model']);
         add_action('bp3d_product_model_after', [$this, 'model']);
-        add_action('wp_footer', [$this, 'wp_footer']);
     }
 
 
@@ -143,6 +144,7 @@ class SingleProductPro
             return;
         }
 
+
         // Meta data of 3D Viewer
         $modeview_3d = get_post_meta(get_the_ID(), '_bp3d_product_', true);
         $viewer_position = isset($modeview_3d['viewer_position']) ? $modeview_3d['viewer_position'] : 'none';
@@ -165,13 +167,10 @@ class SingleProductPro
             return;
         }
 
-
-
         if ((isset($modeview_3d['bp3d_models']) && !is_array($modeview_3d['bp3d_models'])) || $viewer_position === 'none' || $viewer_position === 'custom_selector' || sizeof($models) < 1 || $is_custom_selector === '1' || $force_to_change_position === '1') {
             add_action('woocommerce_before_single_product_summary', 'woocommerce_show_product_images', 30);
             return;
         }
-
 
         global $product;
         wp_enqueue_style('bp3d-custom-style');
@@ -268,11 +267,14 @@ class SingleProductPro
         global $product;
         $options = get_option('_bp3d_settings_');
         $models = [];
-        $variations =  $product->get_available_variations();
-        if ($variations) {
-            $list = wp_list_pluck($variations, 'attributes');
-            if ($list) {
-                $variant_keys = array_keys(is_array($list[0]) ? $list[0] : []);
+        $variant_keys = [];
+        if ($product && method_exists($product, 'get_available_variations')) {
+            $variations =  $product->get_available_variations();
+            if ($variations) {
+                $list = wp_list_pluck($variations, 'attributes');
+                if ($list) {
+                    $variant_keys = array_keys(is_array($list[0]) ? $list[0] : []);
+                }
             }
         }
         if (is_array($modelData['bp3d_models']) && count($modelData['bp3d_models']) > 0) {

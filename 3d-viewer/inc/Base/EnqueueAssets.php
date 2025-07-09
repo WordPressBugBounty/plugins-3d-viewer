@@ -36,7 +36,7 @@ class EnqueueAssets
     public function enqueueBackendFiles($hook_suffix)
     {
         global $post;
-        $post_type = isset($post->post_type) ? $post->post_type : (isset($_GET['post_type']) ? $_GET['post_type'] : null);
+        $post_type = isset($post->post_type) ? $post->post_type : (isset($_GET['post_type']) ? sanitize_text_field(wp_unslash($_GET['post_type'])) : null);
         $woo_enabled = get_option('b3dviewer_enable_woocommerce', true);
 
         //script

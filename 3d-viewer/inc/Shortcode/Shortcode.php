@@ -220,13 +220,13 @@ class Shortcode
             'bp_3d_src_type' => 'upload',  // done
             "currentViewer" => 'modelViewer',
             'bp_3d_src' => array(
-                'url' => 'http://localhost/freemius/wp-content/uploads/2022/04/PEP-3D-Model_2.glb',
+                'url' => '',
                 'title' => ''
             ), // done
             'bp_3d_src_link' => 'i-do-not-exist.glb', // done
             'bp_3d_models' => array(
                 array(
-                    'model_link' => 'http://localhost/freemius/wp-content/uploads/2022/08/RobotExpressive.glb',
+                    'model_link' => '',
                 ),
             ), // done
             'bp_model_anim_du' => 5000,

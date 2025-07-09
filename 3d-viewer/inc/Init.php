@@ -33,7 +33,6 @@ class Init
         return [
             Base\Activate::class,
             Base\EnqueueAssets::class,
-            // Base\PostTypeModelViewer::class,
             Base\MenuOrder::class,
             Base\Import::class,
             Shortcode\Shortcode::class,

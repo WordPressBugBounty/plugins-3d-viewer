@@ -2,26 +2,23 @@
 # This file is distributed under the GPLv3.
 msgid ""
 msgstr ""
-"Project-Id-Version: 3D Viewer 1.6.3\n"
+"Project-Id-Version: 3D Viewer 1.7.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/3d-viewer\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-05-08T04:55:25+00:00\n"
+"POT-Creation-Date: 2025-07-09T10:59:31+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: model-viewer\n"
 
 #. Plugin Name of the plugin
 #: 3d-viewer.php
-#: bundled/3d-viewer/inc/Base/PostTypeModelViewer.php:93
-#: bundled/3d-viewer/inc/Base/PostTypeModelViewer.php:94
-#: bundled/3d-viewer/inc/Base/PostTypeModelViewer.php:95
-#: inc/Base/PostTypeModelViewer.php:93
-#: inc/Base/PostTypeModelViewer.php:94
-#: inc/Base/PostTypeModelViewer.php:95
+#: inc/Base/PostTypeModelViewer.php:102
+#: inc/Base/PostTypeModelViewer.php:103
+#: inc/Base/PostTypeModelViewer.php:104
 msgid "3D Viewer"
 msgstr ""
 
@@ -46,42 +43,28 @@ msgid "http://bplugins.com"
 msgstr ""
 
 #: admin/ads/submenu.php:47
-#: bundled/3d-viewer/admin/ads/submenu.php:47
 msgid "Thanks for Installing 3D Viewer Plugin."
 msgstr ""
 
 #: admin/ads/submenu.php:48
-#: bundled/3d-viewer/admin/ads/submenu.php:48
 msgid "Please follow the links below to get some helpful resources."
 msgstr ""
 
-#: bundled/3d-viewer/inc/Addons/BP3DProductModel.php:19
 #: inc/Addons/BP3DProductModel.php:19
 msgid "Product Model"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Addons/BP3DProductModel.php:57
-#: bundled/3d-viewer/inc/Addons/ModelViewer.php:15
-#: bundled/3d-viewer/inc/Addons/ModelViewer.php:47
 #: inc/Addons/BP3DProductModel.php:57
 #: inc/Addons/ModelViewer.php:19
 #: inc/Addons/ModelViewer.php:57
 msgid "Model Viewer"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Addons/BP3DProductModel.php:79
-#: bundled/3d-viewer/inc/Addons/ModelViewer.php:444
 #: inc/Addons/BP3DProductModel.php:79
 #: inc/Addons/ModelViewer.php:454
 msgid "Model"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Addons/BP3DProductModel.php:88
-#: bundled/3d-viewer/inc/Addons/ModelViewer.php:453
-#: bundled/3d-viewer/inc/Field/Settings.php:43
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:40
-#: bundled/3d-viewer/inc/Field/Viewer.php:112
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:417
 #: inc/Addons/BP3DProductModel.php:88
 #: inc/Addons/ModelViewer.php:463
 #: inc/Field/Settings.php:43
@@ -91,13 +74,6 @@ msgstr ""
 msgid "Width"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Addons/BP3DProductModel.php:120
-#: bundled/3d-viewer/inc/Addons/ModelViewer.php:485
-#: bundled/3d-viewer/inc/Field/Settings.php:54
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:51
-#: bundled/3d-viewer/inc/Field/Viewer.php:123
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:428
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:145
 #: inc/Addons/BP3DProductModel.php:120
 #: inc/Addons/ModelViewer.php:495
 #: inc/Field/Settings.php:54
@@ -108,178 +84,132 @@ msgstr ""
 msgid "Height"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Addons/ModelViewer.php:55
 #: inc/Addons/ModelViewer.php:65
 msgid "Viewer"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Addons/ModelViewer.php:59
 #: inc/Addons/ModelViewer.php:69
 msgid "Lite"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Addons/ModelViewer.php:60
 #: inc/Addons/ModelViewer.php:70
 msgid "Advanced"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Addons/ModelViewer.php:69
 #: inc/Addons/ModelViewer.php:79
 msgid "Use Multiple Model?"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Addons/ModelViewer.php:80
-#: bundled/3d-viewer/inc/Addons/ModelViewer.php:142
 #: inc/Addons/ModelViewer.php:90
 #: inc/Addons/ModelViewer.php:152
 msgid "Select Model"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Addons/ModelViewer.php:83
-#: bundled/3d-viewer/inc/Addons/ModelViewer.php:145
 #: inc/Addons/ModelViewer.php:93
 #: inc/Addons/ModelViewer.php:155
 msgid "Paste Model URL"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Addons/ModelViewer.php:93
-#: bundled/3d-viewer/inc/Addons/ModelViewer.php:152
 #: inc/Addons/ModelViewer.php:103
 #: inc/Addons/ModelViewer.php:162
 msgid "Use Decoder"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Addons/ModelViewer.php:97
-#: bundled/3d-viewer/inc/Addons/ModelViewer.php:156
-#: bundled/3d-viewer/inc/Woocommerce/ProductMeta.php:62
 #: inc/Addons/ModelViewer.php:107
 #: inc/Addons/ModelViewer.php:166
 #: inc/Woocommerce/ProductMeta.php:62
 msgid "None"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Addons/ModelViewer.php:98
-#: bundled/3d-viewer/inc/Addons/ModelViewer.php:157
 #: inc/Addons/ModelViewer.php:108
 #: inc/Addons/ModelViewer.php:167
 msgid "Draco"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Addons/ModelViewer.php:110
-#: bundled/3d-viewer/inc/Addons/ModelViewer.php:168
 #: inc/Addons/ModelViewer.php:120
 #: inc/Addons/ModelViewer.php:178
 msgid "Upload bin file"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Addons/ModelViewer.php:113
-#: bundled/3d-viewer/inc/Addons/ModelViewer.php:171
 #: inc/Addons/ModelViewer.php:123
 #: inc/Addons/ModelViewer.php:181
 msgid "Paste bin file URL"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Addons/ModelViewer.php:125
-#: bundled/3d-viewer/inc/Addons/ModelViewer.php:182
 #: inc/Addons/ModelViewer.php:135
 #: inc/Addons/ModelViewer.php:192
 msgid "Select Poster"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Addons/ModelViewer.php:128
-#: bundled/3d-viewer/inc/Addons/ModelViewer.php:185
 #: inc/Addons/ModelViewer.php:138
 #: inc/Addons/ModelViewer.php:195
 msgid "Paste Poster URL"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Addons/ModelViewer.php:195
 #: inc/Addons/ModelViewer.php:205
 msgid "Models"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Addons/ModelViewer.php:223
 #: inc/Addons/ModelViewer.php:233
 msgid "Rotate"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Addons/ModelViewer.php:235
 #: inc/Addons/ModelViewer.php:245
 msgid "Rotate Along X (degree)"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Addons/ModelViewer.php:256
 #: inc/Addons/ModelViewer.php:266
 msgid "Rotate Along Y (degree)"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Addons/ModelViewer.php:294
 #: inc/Addons/ModelViewer.php:304
 msgid "Fullscreen Button"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Addons/ModelViewer.php:305
 #: inc/Addons/ModelViewer.php:315
 msgid "Mouse Control"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Addons/ModelViewer.php:307
-#: bundled/3d-viewer/inc/Addons/ModelViewer.php:320
-#: bundled/3d-viewer/inc/Addons/ModelViewer.php:336
 #: inc/Addons/ModelViewer.php:317
 #: inc/Addons/ModelViewer.php:330
 #: inc/Addons/ModelViewer.php:346
 msgid "Enable"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Addons/ModelViewer.php:308
-#: bundled/3d-viewer/inc/Addons/ModelViewer.php:321
-#: bundled/3d-viewer/inc/Addons/ModelViewer.php:337
 #: inc/Addons/ModelViewer.php:318
 #: inc/Addons/ModelViewer.php:331
 #: inc/Addons/ModelViewer.php:347
 msgid "Disable"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Addons/ModelViewer.php:318
 #: inc/Addons/ModelViewer.php:328
 msgid "Lazy Load"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Addons/ModelViewer.php:334
 #: inc/Addons/ModelViewer.php:344
 msgid "Enable Shadow"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Addons/ModelViewer.php:350
 #: inc/Addons/ModelViewer.php:360
 msgid "Autoplay ( if animated )"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Addons/ModelViewer.php:364
 #: inc/Addons/ModelViewer.php:374
 msgid "Enable Variant Selector"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Addons/ModelViewer.php:377
 #: inc/Addons/ModelViewer.php:387
 msgid "Enable Animation Selector"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Addons/ModelViewer.php:390
 #: inc/Addons/ModelViewer.php:400
 msgid "show loading percentage"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Addons/ModelViewer.php:404
 #: inc/Addons/ModelViewer.php:414
 msgid "show progressbar"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Addons/ModelViewer.php:417
-#: bundled/3d-viewer/inc/Field/Viewer.php:245
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:407
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:409
 #: inc/Addons/ModelViewer.php:427
 #: inc/Field/Viewer.php:245
 #: inc/Field/ViewerPro.php:407
@@ -287,11 +217,6 @@ msgstr ""
 msgid "Exposure"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Addons/ModelViewer.php:514
-#: bundled/3d-viewer/inc/Field/Settings.php:66
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:63
-#: bundled/3d-viewer/inc/Field/Viewer.php:135
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:452
 #: inc/Addons/ModelViewer.php:524
 #: inc/Field/Settings.php:66
 #: inc/Field/SettingsPro.php:65
@@ -300,98 +225,75 @@ msgstr ""
 msgid "Background Color"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Addons/ModelViewer.php:526
 #: inc/Addons/ModelViewer.php:536
 msgid "Choose Background Image"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Base/Activate.php:14
-#: inc/Base/Activate.php:14
-msgid "If you like <strong> 3D Viewer </strong> please leave us a <a href=\"%s\" target=\"_blank\">&#9733;&#9733;&#9733;&#9733;&#9733;</a> rating. Your Review is very important to us as it helps us to grow more. "
-msgstr ""
-
-#: bundled/3d-viewer/inc/Base/PostTypeModelViewer.php:72
-#: inc/Base/PostTypeModelViewer.php:72
+#: inc/Base/PostTypeModelViewer.php:77
 msgid "Model Updated"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Base/PostTypeModelViewer.php:85
-#: inc/Base/PostTypeModelViewer.php:85
+#: inc/Base/PostTypeModelViewer.php:92
 msgid "Copy To Clipboard"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Base/PostTypeModelViewer.php:96
-#: inc/Base/PostTypeModelViewer.php:96
+#: inc/Base/PostTypeModelViewer.php:105
 msgid "Add New"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Base/PostTypeModelViewer.php:97
-#: inc/Base/PostTypeModelViewer.php:97
+#: inc/Base/PostTypeModelViewer.php:106
 msgid "Add New "
 msgstr ""
 
-#: bundled/3d-viewer/inc/Base/PostTypeModelViewer.php:98
-#: inc/Base/PostTypeModelViewer.php:98
+#: inc/Base/PostTypeModelViewer.php:107
 msgid "New 3D Viewer "
 msgstr ""
 
-#: bundled/3d-viewer/inc/Base/PostTypeModelViewer.php:99
-#: inc/Base/PostTypeModelViewer.php:99
+#: inc/Base/PostTypeModelViewer.php:108
 msgid "Edit 3D Viewer "
 msgstr ""
 
-#: bundled/3d-viewer/inc/Base/PostTypeModelViewer.php:100
-#: inc/Base/PostTypeModelViewer.php:100
+#: inc/Base/PostTypeModelViewer.php:109
 msgid "View 3D Viewer "
 msgstr ""
 
-#: bundled/3d-viewer/inc/Base/PostTypeModelViewer.php:101
-#: inc/Base/PostTypeModelViewer.php:101
+#: inc/Base/PostTypeModelViewer.php:110
 msgid "All 3D Viewers"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Base/PostTypeModelViewer.php:104
-#: inc/Base/PostTypeModelViewer.php:104
+#: inc/Base/PostTypeModelViewer.php:111
+msgid "Sorry, we couldn't find the Feed you are looking for."
+msgstr ""
+
+#: inc/Base/PostTypeModelViewer.php:113
 msgid "3D Viewer Options."
 msgstr ""
 
-#: bundled/3d-viewer/inc/Base/PostTypeModelViewer.php:158
-#: inc/Base/PostTypeModelViewer.php:158
+#: inc/Base/PostTypeModelViewer.php:169
 msgid "SHORTCODE"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Base/PostTypeModelViewer.php:160
-#: inc/Base/PostTypeModelViewer.php:160
+#: inc/Base/PostTypeModelViewer.php:171
 msgid "Supports"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Base/PostTypeModelViewer.php:163
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:280
-#: inc/Base/PostTypeModelViewer.php:163
+#: inc/Base/PostTypeModelViewer.php:174
 #: inc/Woocommerce/ProductMetaPro.php:280
 msgid "Shortcode"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Base/PostTypeModelViewer.php:164
-#: inc/Base/PostTypeModelViewer.php:164
+#: inc/Base/PostTypeModelViewer.php:175
 msgid "Copy and paste this shortcode into your posts, pages and widget:"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Base/PostTypeModelViewer.php:168
-#: inc/Base/PostTypeModelViewer.php:168
+#: inc/Base/PostTypeModelViewer.php:179
 msgid "Template Include"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Base/PostTypeModelViewer.php:169
-#: inc/Base/PostTypeModelViewer.php:169
+#: inc/Base/PostTypeModelViewer.php:180
 msgid "Copy and paste the PHP code into your template file:"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:28
-#: bundled/3d-viewer/inc/Field/Viewer.php:22
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:21
-#: bundled/3d-viewer/inc/Woocommerce/ProductMeta.php:15
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:26
 #: inc/Field/Settings.php:28
 #: inc/Field/Viewer.php:22
 #: inc/Field/ViewerPro.php:21
@@ -400,15 +302,10 @@ msgstr ""
 msgid "3D Viewer Settings"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:37
 #: inc/Field/Settings.php:37
 msgid "Preset"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:44
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:41
-#: bundled/3d-viewer/inc/Field/Viewer.php:113
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:418
 #: inc/Field/Settings.php:44
 #: inc/Field/SettingsPro.php:43
 #: inc/Field/Viewer.php:113
@@ -416,11 +313,6 @@ msgstr ""
 msgid "3D Viewer Width"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:55
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:52
-#: bundled/3d-viewer/inc/Field/Viewer.php:124
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:429
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:146
 #: inc/Field/Settings.php:55
 #: inc/Field/SettingsPro.php:54
 #: inc/Field/Viewer.php:124
@@ -429,10 +321,6 @@ msgstr ""
 msgid "3D Viewer height"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:67
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:64
-#: bundled/3d-viewer/inc/Field/Viewer.php:136
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:453
 #: inc/Field/Settings.php:67
 #: inc/Field/SettingsPro.php:66
 #: inc/Field/Viewer.php:136
@@ -440,10 +328,6 @@ msgstr ""
 msgid "Set Background Color For 3d Model.If You don't need just leave blank. Default : 'transparent color'"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:68
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:65
-#: bundled/3d-viewer/inc/Field/Viewer.php:137
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:454
 #: inc/Field/Settings.php:68
 #: inc/Field/SettingsPro.php:67
 #: inc/Field/Viewer.php:137
@@ -451,12 +335,6 @@ msgstr ""
 msgid "Choose Your Background Color For Model."
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:74
-#: bundled/3d-viewer/inc/Field/Settings.php:312
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:71
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:320
-#: bundled/3d-viewer/inc/Field/Viewer.php:221
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:208
 #: inc/Field/Settings.php:74
 #: inc/Field/Settings.php:312
 #: inc/Field/SettingsPro.php:73
@@ -466,12 +344,6 @@ msgstr ""
 msgid "Autoplay"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:75
-#: bundled/3d-viewer/inc/Field/Settings.php:313
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:72
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:321
-#: bundled/3d-viewer/inc/Field/Viewer.php:222
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:209
 #: inc/Field/Settings.php:75
 #: inc/Field/Settings.php:313
 #: inc/Field/SettingsPro.php:74
@@ -481,12 +353,6 @@ msgstr ""
 msgid "Enable or Disable AutoPlay"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:76
-#: bundled/3d-viewer/inc/Field/Settings.php:314
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:73
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:322
-#: bundled/3d-viewer/inc/Field/Viewer.php:223
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:210
 #: inc/Field/Settings.php:76
 #: inc/Field/Settings.php:314
 #: inc/Field/SettingsPro.php:75
@@ -496,27 +362,6 @@ msgstr ""
 msgid "Autoplay Feature is for Autoplay Supported Model."
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:77
-#: bundled/3d-viewer/inc/Field/Settings.php:97
-#: bundled/3d-viewer/inc/Field/Settings.php:107
-#: bundled/3d-viewer/inc/Field/Settings.php:118
-#: bundled/3d-viewer/inc/Field/Settings.php:129
-#: bundled/3d-viewer/inc/Field/Settings.php:153
-#: bundled/3d-viewer/inc/Field/Settings.php:184
-#: bundled/3d-viewer/inc/Field/Settings.php:237
-#: bundled/3d-viewer/inc/Field/Settings.php:247
-#: bundled/3d-viewer/inc/Field/Settings.php:258
-#: bundled/3d-viewer/inc/Field/Settings.php:282
-#: bundled/3d-viewer/inc/Field/Settings.php:315
-#: bundled/3d-viewer/inc/Field/Settings.php:326
-#: bundled/3d-viewer/inc/Field/Viewer.php:156
-#: bundled/3d-viewer/inc/Field/Viewer.php:194
-#: bundled/3d-viewer/inc/Field/Viewer.php:224
-#: bundled/3d-viewer/inc/Field/Viewer.php:311
-#: bundled/3d-viewer/inc/Field/Viewer.php:324
-#: bundled/3d-viewer/inc/Field/Viewer.php:345
-#: bundled/3d-viewer/inc/Field/Viewer.php:379
-#: bundled/3d-viewer/inc/Woocommerce/ProductMeta.php:85
 #: inc/Field/Settings.php:77
 #: inc/Field/Settings.php:97
 #: inc/Field/Settings.php:107
@@ -541,21 +386,6 @@ msgstr ""
 msgid "Yes"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:78
-#: bundled/3d-viewer/inc/Field/Settings.php:108
-#: bundled/3d-viewer/inc/Field/Settings.php:119
-#: bundled/3d-viewer/inc/Field/Settings.php:130
-#: bundled/3d-viewer/inc/Field/Settings.php:154
-#: bundled/3d-viewer/inc/Field/Settings.php:185
-#: bundled/3d-viewer/inc/Field/Settings.php:238
-#: bundled/3d-viewer/inc/Field/Settings.php:248
-#: bundled/3d-viewer/inc/Field/Settings.php:259
-#: bundled/3d-viewer/inc/Field/Settings.php:283
-#: bundled/3d-viewer/inc/Field/Settings.php:316
-#: bundled/3d-viewer/inc/Field/Settings.php:327
-#: bundled/3d-viewer/inc/Field/Viewer.php:225
-#: bundled/3d-viewer/inc/Field/Viewer.php:346
-#: bundled/3d-viewer/inc/Field/Viewer.php:380
 #: inc/Field/Settings.php:78
 #: inc/Field/Settings.php:108
 #: inc/Field/Settings.php:119
@@ -574,10 +404,6 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:84
-#: bundled/3d-viewer/inc/Field/Settings.php:226
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:81
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:239
 #: inc/Field/Settings.php:84
 #: inc/Field/Settings.php:226
 #: inc/Field/SettingsPro.php:83
@@ -585,12 +411,6 @@ msgstr ""
 msgid "Shadow Intensity"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:85
-#: bundled/3d-viewer/inc/Field/Settings.php:227
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:82
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:240
-#: bundled/3d-viewer/inc/Field/Viewer.php:234
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:395
 #: inc/Field/Settings.php:85
 #: inc/Field/Settings.php:227
 #: inc/Field/SettingsPro.php:84
@@ -600,12 +420,6 @@ msgstr ""
 msgid "Shadow Intensity for Model"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:86
-#: bundled/3d-viewer/inc/Field/Settings.php:228
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:83
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:241
-#: bundled/3d-viewer/inc/Field/Viewer.php:235
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:396
 #: inc/Field/Settings.php:86
 #: inc/Field/Settings.php:228
 #: inc/Field/SettingsPro.php:85
@@ -615,17 +429,11 @@ msgstr ""
 msgid "Use Shadow Intensity Limit for Model. \"1\" for Default."
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:94
-#: bundled/3d-viewer/inc/Field/Viewer.php:308
 #: inc/Field/Settings.php:94
 #: inc/Field/Viewer.php:308
 msgid "Preload"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:95
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:91
-#: bundled/3d-viewer/inc/Field/Viewer.php:309
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:220
 #: inc/Field/Settings.php:95
 #: inc/Field/SettingsPro.php:93
 #: inc/Field/Viewer.php:309
@@ -633,10 +441,6 @@ msgstr ""
 msgid "Preload with poster and show model on interaction"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:96
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:92
-#: bundled/3d-viewer/inc/Field/Viewer.php:310
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:221
 #: inc/Field/Settings.php:96
 #: inc/Field/SettingsPro.php:94
 #: inc/Field/Viewer.php:310
@@ -644,12 +448,6 @@ msgstr ""
 msgid "Choose \"Yes\" if you want to use preload with poster image."
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:98
-#: bundled/3d-viewer/inc/Field/Viewer.php:157
-#: bundled/3d-viewer/inc/Field/Viewer.php:195
-#: bundled/3d-viewer/inc/Field/Viewer.php:312
-#: bundled/3d-viewer/inc/Field/Viewer.php:325
-#: bundled/3d-viewer/inc/Woocommerce/ProductMeta.php:86
 #: inc/Field/Settings.php:98
 #: inc/Field/Viewer.php:157
 #: inc/Field/Viewer.php:195
@@ -659,12 +457,6 @@ msgstr ""
 msgid "NO"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:105
-#: bundled/3d-viewer/inc/Field/Settings.php:235
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:102
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:247
-#: bundled/3d-viewer/inc/Field/Viewer.php:143
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:232
 #: inc/Field/Settings.php:105
 #: inc/Field/Settings.php:235
 #: inc/Field/SettingsPro.php:104
@@ -674,12 +466,6 @@ msgstr ""
 msgid "Moving Controls"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:106
-#: bundled/3d-viewer/inc/Field/Settings.php:236
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:103
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:248
-#: bundled/3d-viewer/inc/Field/Viewer.php:144
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:233
 #: inc/Field/Settings.php:106
 #: inc/Field/Settings.php:236
 #: inc/Field/SettingsPro.php:105
@@ -689,12 +475,6 @@ msgstr ""
 msgid "Use The Moving controls to enable user interaction"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:116
-#: bundled/3d-viewer/inc/Field/Settings.php:245
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:113
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:257
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:243
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:125
 #: inc/Field/Settings.php:116
 #: inc/Field/Settings.php:245
 #: inc/Field/SettingsPro.php:115
@@ -704,12 +484,6 @@ msgstr ""
 msgid "Enable or Disable Zoom Behaviour"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:117
-#: bundled/3d-viewer/inc/Field/Settings.php:246
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:114
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:258
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:244
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:126
 #: inc/Field/Settings.php:117
 #: inc/Field/Settings.php:246
 #: inc/Field/SettingsPro.php:116
@@ -719,21 +493,12 @@ msgstr ""
 msgid "If you wish to disable zooming behaviour please choose No."
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:126
-#: bundled/3d-viewer/inc/Field/Settings.php:255
-#: bundled/3d-viewer/inc/Field/Viewer.php:321
 #: inc/Field/Settings.php:126
 #: inc/Field/Settings.php:255
 #: inc/Field/Viewer.php:321
 msgid "Progressbar"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:127
-#: bundled/3d-viewer/inc/Field/Settings.php:256
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:124
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:268
-#: bundled/3d-viewer/inc/Field/Viewer.php:322
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:376
 #: inc/Field/Settings.php:127
 #: inc/Field/Settings.php:256
 #: inc/Field/SettingsPro.php:126
@@ -743,12 +508,6 @@ msgstr ""
 msgid "Enable or Disable Progressbar"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:128
-#: bundled/3d-viewer/inc/Field/Settings.php:257
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:125
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:269
-#: bundled/3d-viewer/inc/Field/Viewer.php:323
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:377
 #: inc/Field/Settings.php:128
 #: inc/Field/Settings.php:257
 #: inc/Field/SettingsPro.php:127
@@ -758,12 +517,6 @@ msgstr ""
 msgid "If you wish to disable Progressbar please choose No."
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:137
-#: bundled/3d-viewer/inc/Field/Settings.php:267
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:134
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:278
-#: bundled/3d-viewer/inc/Field/Viewer.php:166
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:255
 #: inc/Field/Settings.php:137
 #: inc/Field/Settings.php:267
 #: inc/Field/SettingsPro.php:136
@@ -773,12 +526,6 @@ msgstr ""
 msgid "Loading Type"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:138
-#: bundled/3d-viewer/inc/Field/Settings.php:268
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:135
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:279
-#: bundled/3d-viewer/inc/Field/Viewer.php:167
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:256
 #: inc/Field/Settings.php:138
 #: inc/Field/Settings.php:268
 #: inc/Field/SettingsPro.php:137
@@ -788,51 +535,30 @@ msgstr ""
 msgid "Choose Loading type, default:  'Auto' "
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:140
-#: bundled/3d-viewer/inc/Field/Settings.php:270
-#: bundled/3d-viewer/inc/Field/Viewer.php:169
 #: inc/Field/Settings.php:140
 #: inc/Field/Settings.php:270
 #: inc/Field/Viewer.php:169
 #: 3d-viewer-block/dist/editor.js:1
-#: bundled/3d-viewer/3d-viewer-block/dist/editor.js:1
 #: 3d-viewer-block/dist/editor.js:656
-#: bundled/3d-viewer/3d-viewer-block/dist/editor.js:656
 msgid "Auto"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:141
-#: bundled/3d-viewer/inc/Field/Settings.php:271
-#: bundled/3d-viewer/inc/Field/Viewer.php:170
 #: inc/Field/Settings.php:141
 #: inc/Field/Settings.php:271
 #: inc/Field/Viewer.php:170
 #: 3d-viewer-block/dist/editor.js:1
-#: bundled/3d-viewer/3d-viewer-block/dist/editor.js:1
 #: 3d-viewer-block/dist/editor.js:657
-#: bundled/3d-viewer/3d-viewer-block/dist/editor.js:657
 msgid "Lazy"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:142
-#: bundled/3d-viewer/inc/Field/Settings.php:272
-#: bundled/3d-viewer/inc/Field/Viewer.php:171
 #: inc/Field/Settings.php:142
 #: inc/Field/Settings.php:272
 #: inc/Field/Viewer.php:171
 #: 3d-viewer-block/dist/editor.js:1
-#: bundled/3d-viewer/3d-viewer-block/dist/editor.js:1
 #: 3d-viewer-block/dist/editor.js:658
-#: bundled/3d-viewer/3d-viewer-block/dist/editor.js:658
 msgid "Eager"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:150
-#: bundled/3d-viewer/inc/Field/Settings.php:279
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:147
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:290
-#: bundled/3d-viewer/inc/Field/Viewer.php:342
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:292
 #: inc/Field/Settings.php:150
 #: inc/Field/Settings.php:279
 #: inc/Field/SettingsPro.php:149
@@ -842,12 +568,6 @@ msgstr ""
 msgid "Auto Rotate"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:151
-#: bundled/3d-viewer/inc/Field/Settings.php:280
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:148
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:291
-#: bundled/3d-viewer/inc/Field/Viewer.php:343
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:293
 #: inc/Field/Settings.php:151
 #: inc/Field/Settings.php:280
 #: inc/Field/SettingsPro.php:150
@@ -857,12 +577,6 @@ msgstr ""
 msgid "Enable or Disable Auto Rotation"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:152
-#: bundled/3d-viewer/inc/Field/Settings.php:281
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:149
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:292
-#: bundled/3d-viewer/inc/Field/Viewer.php:344
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:294
 #: inc/Field/Settings.php:152
 #: inc/Field/Settings.php:281
 #: inc/Field/SettingsPro.php:151
@@ -872,12 +586,6 @@ msgstr ""
 msgid "Enables the auto-rotation of the model."
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:161
-#: bundled/3d-viewer/inc/Field/Settings.php:290
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:157
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:300
-#: bundled/3d-viewer/inc/Field/Viewer.php:354
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:303
 #: inc/Field/Settings.php:161
 #: inc/Field/Settings.php:290
 #: inc/Field/SettingsPro.php:159
@@ -887,12 +595,6 @@ msgstr ""
 msgid "Auto Rotate Speed"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:162
-#: bundled/3d-viewer/inc/Field/Settings.php:291
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:158
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:301
-#: bundled/3d-viewer/inc/Field/Viewer.php:355
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:304
 #: inc/Field/Settings.php:162
 #: inc/Field/Settings.php:291
 #: inc/Field/SettingsPro.php:160
@@ -902,12 +604,6 @@ msgstr ""
 msgid "Auto Rotation Speed Per Seconds"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:163
-#: bundled/3d-viewer/inc/Field/Settings.php:292
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:159
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:302
-#: bundled/3d-viewer/inc/Field/Viewer.php:356
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:305
 #: inc/Field/Settings.php:163
 #: inc/Field/Settings.php:292
 #: inc/Field/SettingsPro.php:161
@@ -917,12 +613,6 @@ msgstr ""
 msgid "Use Negative Number for Reverse Action. \"30\" for Default Behaviour."
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:172
-#: bundled/3d-viewer/inc/Field/Settings.php:302
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:168
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:311
-#: bundled/3d-viewer/inc/Field/Viewer.php:366
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:314
 #: inc/Field/Settings.php:172
 #: inc/Field/Settings.php:302
 #: inc/Field/SettingsPro.php:170
@@ -932,12 +622,6 @@ msgstr ""
 msgid "Auto Rotation Delay"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:173
-#: bundled/3d-viewer/inc/Field/Settings.php:303
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:169
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:312
-#: bundled/3d-viewer/inc/Field/Viewer.php:367
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:315
 #: inc/Field/Settings.php:173
 #: inc/Field/Settings.php:303
 #: inc/Field/SettingsPro.php:171
@@ -947,12 +631,6 @@ msgstr ""
 msgid "After a period of time auto rotation will start"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:174
-#: bundled/3d-viewer/inc/Field/Settings.php:304
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:170
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:313
-#: bundled/3d-viewer/inc/Field/Viewer.php:368
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:316
 #: inc/Field/Settings.php:174
 #: inc/Field/Settings.php:304
 #: inc/Field/SettingsPro.php:172
@@ -962,12 +640,6 @@ msgstr ""
 msgid "Sets the delay before auto-rotation begins. The format of the value is a number in milliseconds.(1000ms = 1s)"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:181
-#: bundled/3d-viewer/inc/Field/Settings.php:323
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:177
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:330
-#: bundled/3d-viewer/inc/Field/Viewer.php:376
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:364
 #: inc/Field/Settings.php:181
 #: inc/Field/Settings.php:323
 #: inc/Field/SettingsPro.php:179
@@ -977,12 +649,6 @@ msgstr ""
 msgid "Fullscreen"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:182
-#: bundled/3d-viewer/inc/Field/Settings.php:324
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:178
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:331
-#: bundled/3d-viewer/inc/Field/Viewer.php:377
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:365
 #: inc/Field/Settings.php:182
 #: inc/Field/Settings.php:324
 #: inc/Field/SettingsPro.php:180
@@ -992,12 +658,6 @@ msgstr ""
 msgid "Enable or Disable Fullscreen Mode"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:183
-#: bundled/3d-viewer/inc/Field/Settings.php:325
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:179
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:332
-#: bundled/3d-viewer/inc/Field/Viewer.php:378
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:366
 #: inc/Field/Settings.php:183
 #: inc/Field/Settings.php:325
 #: inc/Field/SettingsPro.php:181
@@ -1007,97 +667,69 @@ msgstr ""
 msgid "Default: \"Yes / Enable\""
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:197
 #: inc/Field/Settings.php:197
 msgid "Woocommerce Settings"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:203
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:200
 #: inc/Field/Settings.php:203
 #: inc/Field/SettingsPro.php:202
 msgid "Woocommerce"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:204
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:201
 #: inc/Field/Settings.php:204
 #: inc/Field/SettingsPro.php:203
 msgid "Enable / Disable Woocommerce Feature for 3D Viewer."
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:205
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:202
 #: inc/Field/Settings.php:205
 #: inc/Field/SettingsPro.php:204
 msgid "Enable / Disable. Default is Enable."
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:211
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:224
 #: inc/Field/Settings.php:211
 #: inc/Field/SettingsPro.php:226
 msgid "3D Viewer is not Compatible with this Theme"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:212
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:225
 #: inc/Field/Settings.php:212
 #: inc/Field/SettingsPro.php:227
 msgid "Enable if 3D Viewer is not compatible with this theme"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:218
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:231
 #: inc/Field/Settings.php:218
 #: inc/Field/SettingsPro.php:233
 msgid "Product Gallery Class or ID or Valid CSS Selector"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:219
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:232
 #: inc/Field/Settings.php:219
 #: inc/Field/SettingsPro.php:234
 msgid "Write here the product gallery class or id or any valid CSS selector"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:244
-#: bundled/3d-viewer/inc/Field/Viewer.php:153
 #: inc/Field/Settings.php:244
 #: inc/Field/Viewer.php:153
 msgid "Enable Zoom"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:338
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:347
 #: inc/Field/Settings.php:338
 #: inc/Field/SettingsPro.php:349
 msgid "Shortcode Generator"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:344
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:353
 #: inc/Field/Settings.php:344
 #: inc/Field/SettingsPro.php:355
 msgid "Enable Gutenberg"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Settings.php:345
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:354
 #: inc/Field/Settings.php:345
 #: inc/Field/SettingsPro.php:356
 msgid "Enable / Disable Gutenberg Shortcode Generator."
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/SettingsPro.php:208
 #: inc/Field/SettingsPro.php:210
 msgid "Show Model Instead Product Thumbs"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:33
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:34
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:43
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:202
 #: inc/Field/Viewer.php:33
 #: inc/Field/ViewerPro.php:34
 #: inc/Woocommerce/ProductMetaPro.php:43
@@ -1105,10 +737,6 @@ msgstr ""
 msgid "Viewer."
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:34
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:35
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:44
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:203
 #: inc/Field/Viewer.php:34
 #: inc/Field/ViewerPro.php:35
 #: inc/Woocommerce/ProductMetaPro.php:44
@@ -1116,10 +744,6 @@ msgstr ""
 msgid "Choose Viewer"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:35
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:36
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:45
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:204
 #: inc/Field/Viewer.php:35
 #: inc/Field/ViewerPro.php:36
 #: inc/Woocommerce/ProductMetaPro.php:45
@@ -1127,92 +751,62 @@ msgstr ""
 msgid "The Lite Viewer prioritizes .glb and .glTF files with robust features, while the Advanced Viewer, supporting .obj, .3ds, .stl, .ply, .gltf, .off, .3dm, .fbx, .dae, .wrl, .3mf, amf, ifc, .brep, .step, .iges, .fcstd, .bim  file types, has a more streamlined functionality."
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:46
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:48
 #: inc/Field/Viewer.php:46
 #: inc/Field/ViewerPro.php:48
 msgid "Model Type."
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:47
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:49
 #: inc/Field/Viewer.php:47
 #: inc/Field/ViewerPro.php:49
 msgid "Choose Model Type"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:48
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:50
 #: inc/Field/Viewer.php:48
 #: inc/Field/ViewerPro.php:50
 msgid "Select Model Type, Default- Simple."
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:51
 #: inc/Field/Viewer.php:51
 msgid "Simple"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:52
-#: bundled/3d-viewer/inc/Field/Viewer.php:273
 #: inc/Field/Viewer.php:52
 #: inc/Field/Viewer.php:273
 msgid "Cycle"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:59
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:61
 #: inc/Field/Viewer.php:59
 #: inc/Field/ViewerPro.php:61
 msgid "Model Source Type."
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:60
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:62
 #: inc/Field/Viewer.php:60
 #: inc/Field/ViewerPro.php:62
 msgid "Choose Model Source"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:61
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:63
 #: inc/Field/Viewer.php:61
 #: inc/Field/ViewerPro.php:63
 msgid "Select Model Source, Default- Upload."
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:64
 #: inc/Field/Viewer.php:64
 #: 3d-viewer-block/dist/editor.js:1
-#: bundled/3d-viewer/3d-viewer-block/dist/editor.js:1
 #: 3d-viewer-block/dist/editor.js:651
-#: bundled/3d-viewer/3d-viewer-block/dist/editor.js:651
 msgid "Upload"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:65
 #: inc/Field/Viewer.php:65
 #: 3d-viewer-block/dist/editor.js:1
-#: bundled/3d-viewer/3d-viewer-block/dist/editor.js:1
 #: 3d-viewer-block/dist/editor.js:652
-#: bundled/3d-viewer/3d-viewer-block/dist/editor.js:652
 msgid "Link"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:73
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:75
 #: inc/Field/Viewer.php:73
 #: inc/Field/ViewerPro.php:75
 msgid "Upload Source"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:74
-#: bundled/3d-viewer/inc/Field/Viewer.php:83
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:76
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:85
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:102
-#: bundled/3d-viewer/inc/Woocommerce/ProductMeta.php:40
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:373
 #: inc/Field/Viewer.php:74
 #: inc/Field/Viewer.php:83
 #: inc/Field/ViewerPro.php:76
@@ -1223,58 +817,40 @@ msgstr ""
 msgid "3D Source"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:75
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:77
 #: inc/Field/Viewer.php:75
 #: inc/Field/ViewerPro.php:77
 msgid "Choose 3D Model"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:76
-#: bundled/3d-viewer/inc/Field/Viewer.php:103
 #: inc/Field/Viewer.php:76
 #: inc/Field/Viewer.php:103
 msgid "Upload or Select 3d object files. Supported file type: glb, glTF"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:82
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:84
 #: inc/Field/Viewer.php:82
 #: inc/Field/ViewerPro.php:84
 msgid "Paste Source"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:84
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:86
 #: inc/Field/Viewer.php:84
 #: inc/Field/ViewerPro.php:86
 msgid "Input Model Valid url"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:85
 #: inc/Field/Viewer.php:85
 msgid "Input / Paste Model url. Supported file type: glb, glTF"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:93
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:94
 #: inc/Field/Viewer.php:93
 #: inc/Field/ViewerPro.php:94
 msgid "3D Cycle Models"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:94
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:95
 #: inc/Field/Viewer.php:94
 #: inc/Field/ViewerPro.php:95
 msgid "Cycling between 3D Models"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:95
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:96
-#: bundled/3d-viewer/inc/Woocommerce/ProductMeta.php:34
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:58
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:190
 #: inc/Field/Viewer.php:95
 #: inc/Field/ViewerPro.php:96
 #: inc/Woocommerce/ProductMeta.php:34
@@ -1283,54 +859,40 @@ msgstr ""
 msgid "Add New Model"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:96
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:97
 #: inc/Field/Viewer.php:96
 #: inc/Field/ViewerPro.php:97
 msgid "Use Multiple Model in a row."
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:102
 #: inc/Field/Viewer.php:102
 msgid "Model Source"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:154
 #: inc/Field/Viewer.php:154
 msgid "Enable or Disable Zooming Behaviour"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:155
 #: inc/Field/Viewer.php:155
 msgid "If you wish to disable zooming behavior please choose No."
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:178
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:440
 #: inc/Field/Viewer.php:178
 #: inc/Field/ViewerPro.php:440
 msgid "Align"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:181
 #: inc/Field/Viewer.php:181
 msgid "Left"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:182
 #: inc/Field/Viewer.php:182
 msgid "Center"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:183
 #: inc/Field/Viewer.php:183
 msgid "Right"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:191
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:334
-#: bundled/3d-viewer/inc/Woocommerce/ProductMeta.php:83
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:158
 #: inc/Field/Viewer.php:191
 #: inc/Field/ViewerPro.php:334
 #: inc/Woocommerce/ProductMeta.php:83
@@ -1338,10 +900,6 @@ msgstr ""
 msgid "Specified Custom Angle of Model in Initial Load."
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:192
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:335
-#: bundled/3d-viewer/inc/Woocommerce/ProductMeta.php:84
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:159
 #: inc/Field/Viewer.php:192
 #: inc/Field/ViewerPro.php:335
 #: inc/Woocommerce/ProductMeta.php:84
@@ -1349,17 +907,11 @@ msgstr ""
 msgid "Enable or Disable Custom Angle Option."
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:203
-#: bundled/3d-viewer/inc/Woocommerce/ProductMeta.php:94
 #: inc/Field/Viewer.php:203
 #: inc/Woocommerce/ProductMeta.php:94
 msgid "Custom Angle Values"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:204
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:346
-#: bundled/3d-viewer/inc/Woocommerce/ProductMeta.php:95
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:169
 #: inc/Field/Viewer.php:204
 #: inc/Field/ViewerPro.php:346
 #: inc/Woocommerce/ProductMeta.php:95
@@ -1367,10 +919,6 @@ msgstr ""
 msgid "Set The Custom values for Model. Default Values are (\"X=0deg Y=75deg Z=105%\")"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:205
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:347
-#: bundled/3d-viewer/inc/Woocommerce/ProductMeta.php:96
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:170
 #: inc/Field/Viewer.php:205
 #: inc/Field/ViewerPro.php:347
 #: inc/Woocommerce/ProductMeta.php:96
@@ -1378,143 +926,104 @@ msgstr ""
 msgid "Set Your Desire Values. (X= Horizontal Position, Y= Vertical Position, Z= Zoom Level/Position) "
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:233
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:394
 #: inc/Field/Viewer.php:233
 #: inc/Field/ViewerPro.php:394
 msgid "shadow Intensity"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:246
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:408
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:410
 #: inc/Field/Viewer.php:246
 #: inc/Field/ViewerPro.php:408
 #: inc/Woocommerce/ProductMetaPro.php:410
 msgid "Brightness for Model"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:247
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:409
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:411
 #: inc/Field/Viewer.php:247
 #: inc/Field/ViewerPro.php:409
 #: inc/Woocommerce/ProductMetaPro.php:411
 msgid "Use exposure to to increase/decrease brightness of Model. \"1\" for Default."
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:255
 #: inc/Field/Viewer.php:255
 msgid "Cycle Animation Duration"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:256
 #: inc/Field/Viewer.php:256
 msgid "Animation Duration Time at Seconds : 1000ms = 1sec"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:257
 #: inc/Field/Viewer.php:257
 msgid "Input Model Animation Duration Time (default: '5') Seconds"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:266
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:131
 #: inc/Field/Viewer.php:266
 #: inc/Field/ViewerPro.php:131
 msgid "Poster Type."
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:267
 #: inc/Field/Viewer.php:267
 msgid "Choose Poster Type"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:268
 #: inc/Field/Viewer.php:268
 msgid "Select Poster Type, Default- Simple."
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:272
 #: inc/Field/Viewer.php:272
 msgid "simple"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:280
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:144
 #: inc/Field/Viewer.php:280
 #: inc/Field/ViewerPro.php:144
 msgid "Upload Poster"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:281
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:145
 #: inc/Field/Viewer.php:281
 #: inc/Field/ViewerPro.php:145
 msgid "3D Poster Image"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:282
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:146
 #: inc/Field/Viewer.php:282
 #: inc/Field/ViewerPro.php:146
 msgid "Display a poster until loaded"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:283
 #: inc/Field/Viewer.php:283
 msgid "Upload or Select 3d Poster Image.  if you don't want to use just leave it empty"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:290
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:153
 #: inc/Field/Viewer.php:290
 #: inc/Field/ViewerPro.php:153
 msgid "Poster Images"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:291
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:154
 #: inc/Field/Viewer.php:291
 #: inc/Field/ViewerPro.php:154
 msgid "Cycling between posters"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:292
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:155
 #: inc/Field/Viewer.php:292
 #: inc/Field/ViewerPro.php:155
 msgid "Add New Poster Images"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:293
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:156
 #: inc/Field/Viewer.php:293
 #: inc/Field/ViewerPro.php:156
 msgid "Use multiple images for poster image.if you don't want to use just leave it empty"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/Viewer.php:334
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:387
 #: inc/Field/Viewer.php:334
 #: inc/Field/ViewerPro.php:387
 msgid "Show Progress Percent"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:78
 #: inc/Field/ViewerPro.php:78
 msgid "Upload or Select 3d object files."
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:87
 #: inc/Field/ViewerPro.php:87
 msgid "Input / Paste Model url."
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:103
-#: bundled/3d-viewer/inc/Woocommerce/ProductMeta.php:41
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:223
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:374
 #: inc/Field/ViewerPro.php:103
 #: inc/Woocommerce/ProductMeta.php:41
 #: inc/Woocommerce/ProductMetaPro.php:223
@@ -1522,10 +1031,6 @@ msgstr ""
 msgid "Upload Model Or Input Valid Model url"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:104
-#: bundled/3d-viewer/inc/Woocommerce/ProductMeta.php:42
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:224
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:375
 #: inc/Field/ViewerPro.php:104
 #: inc/Woocommerce/ProductMeta.php:42
 #: inc/Woocommerce/ProductMetaPro.php:224
@@ -1533,15 +1038,10 @@ msgstr ""
 msgid "Upload / Paste Model url. Supported file type: glb, glTF"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:147
 #: inc/Field/ViewerPro.php:147
 msgid "Upload or Select 3d Poster Image. if you don't want to use just leave it empty"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:171
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:172
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:230
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:390
 #: inc/Field/ViewerPro.php:171
 #: inc/Field/ViewerPro.php:172
 #: inc/Woocommerce/ProductMetaPro.php:230
@@ -1549,127 +1049,87 @@ msgstr ""
 msgid "Environment Image"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:179
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:180
 #: inc/Field/ViewerPro.php:179
 #: inc/Field/ViewerPro.php:180
 msgid "HDR Skybox Image"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:189
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:115
 #: inc/Field/ViewerPro.php:189
 #: inc/Woocommerce/ProductMetaPro.php:115
 msgid "Show Thumbnail List"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:198
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:136
 #: inc/Field/ViewerPro.php:198
 #: inc/Woocommerce/ProductMetaPro.php:136
 msgid "Show Arrows"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:323
 #: inc/Field/ViewerPro.php:323
 msgid "Zoom Level"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:460
 #: inc/Field/ViewerPro.php:460
 msgid "Progressbar Color"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:461
 #: inc/Field/ViewerPro.php:461
 msgid "Set Progressbar Color For 3d Model."
 msgstr ""
 
-#: bundled/3d-viewer/inc/Field/ViewerPro.php:462
 #: inc/Field/ViewerPro.php:462
 msgid "Choose Progressbar Color For Model."
 msgstr ""
 
-#: bundled/3d-viewer/inc/Template/ModelViewer.php:60
 #: inc/Template/ModelViewer.php:60
 msgid "A 3D model"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Template/ModelViewer.php:72
 #: inc/Template/ModelViewer.php:72
-#: build/blocks/3d-viewer/view.js:1693
-#: build/frontend.js:1728
-#: build/public.js:1740
-#: bundled/3d-viewer/build/blocks/3d-viewer/view.js:1696
-#: bundled/3d-viewer/build/frontend.js:1731
-#: bundled/3d-viewer/build/public.js:1743
 msgid "Variant"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Template/ModelViewer.php:78
 #: inc/Template/ModelViewer.php:78
-#: build/blocks/3d-viewer/view.js:1696
-#: build/frontend.js:1731
-#: build/public.js:1743
-#: bundled/3d-viewer/build/blocks/3d-viewer/view.js:1699
-#: bundled/3d-viewer/build/frontend.js:1734
-#: bundled/3d-viewer/build/public.js:1746
 msgid "Animations"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Woocommerce/ProductMeta.php:32
 #: inc/Woocommerce/ProductMeta.php:32
 msgid "Product 3D Models"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Woocommerce/ProductMeta.php:43
 #: inc/Woocommerce/ProductMeta.php:43
 msgid "You Can Paste here Model url"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Woocommerce/ProductMeta.php:48
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:215
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:382
 #: inc/Woocommerce/ProductMeta.php:48
 #: inc/Woocommerce/ProductMetaPro.php:215
 #: inc/Woocommerce/ProductMetaPro.php:382
 msgid "3D Poster"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Woocommerce/ProductMeta.php:49
 #: inc/Woocommerce/ProductMeta.php:49
 msgid "Upload Poster Or Input Valid poster/image url"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Woocommerce/ProductMeta.php:51
 #: inc/Woocommerce/ProductMeta.php:51
 msgid "This image will display until the model is either loaded or fails to load."
 msgstr ""
 
-#: bundled/3d-viewer/inc/Woocommerce/ProductMeta.php:60
 #: inc/Woocommerce/ProductMeta.php:60
 msgid "3D Viewer Position"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Woocommerce/ProductMeta.php:63
 #: inc/Woocommerce/ProductMeta.php:63
 msgid "Top of the product image"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Woocommerce/ProductMeta.php:64
 #: inc/Woocommerce/ProductMeta.php:64
 msgid "Bottom of the product image"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Woocommerce/ProductMeta.php:65
 #: inc/Woocommerce/ProductMeta.php:65
 msgid "Replace Product Image with 3D"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Woocommerce/ProductMeta.php:68
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:67
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:75
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:100
 #: inc/Woocommerce/ProductMeta.php:68
 #: inc/Woocommerce/ProductMetaPro.php:67
 #: inc/Woocommerce/ProductMetaPro.php:75
@@ -1677,304 +1137,206 @@ msgstr ""
 msgid "Select the position of the viewer"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Woocommerce/ProductMeta.php:73
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:106
 #: inc/Woocommerce/ProductMeta.php:73
 #: inc/Woocommerce/ProductMetaPro.php:106
 msgid "Force To Change Position"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:81
 #: inc/Woocommerce/ProductMetaPro.php:81
 msgid "Custom Selector"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:84
 #: inc/Woocommerce/ProductMetaPro.php:84
 msgid "Paste css selector of a wrapper. Eg: .my_css_class   or #my_id_selector"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:195
 #: inc/Woocommerce/ProductMetaPro.php:195
 msgid "Selector"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:196
 #: inc/Woocommerce/ProductMetaPro.php:196
 msgid "Selector can be an image url or CSS selector like class,id"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:197
 #: inc/Woocommerce/ProductMetaPro.php:197
 msgid "Class, ID, Image SRC"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:216
 #: inc/Woocommerce/ProductMetaPro.php:216
 msgid "Upload Poster Or Input Valid poster/image URL (Lite Viewer)"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:222
 #: inc/Woocommerce/ProductMetaPro.php:222
 msgid "3D Model Source"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:231
 #: inc/Woocommerce/ProductMetaPro.php:231
 msgid "Upload Image Or Input Valid Image URL (Lite Viewer)"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:238
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:398
 #: inc/Woocommerce/ProductMetaPro.php:238
 #: inc/Woocommerce/ProductMetaPro.php:398
 msgid "Skybox Image"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:239
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:399
 #: inc/Woocommerce/ProductMetaPro.php:239
 #: inc/Woocommerce/ProductMetaPro.php:399
 msgid "Upload Image Or Input Valid image URL"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:263
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:265
 #: inc/Woocommerce/ProductMetaPro.php:263
 #: inc/Woocommerce/ProductMetaPro.php:265
 msgid "Target"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:264
 #: inc/Woocommerce/ProductMetaPro.php:264
 msgid "Leave it empty. It's used in special cases."
 msgstr ""
 
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:272
 #: inc/Woocommerce/ProductMetaPro.php:272
 msgid "Background"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:286
+#: inc/Woocommerce/ProductMetaPro.php:274
+msgid "Set Background color"
+msgstr ""
+
 #: inc/Woocommerce/ProductMetaPro.php:286
 msgid "Template Shortcode"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:344
 #: inc/Woocommerce/ProductMetaPro.php:344
 msgid "Select"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:347
 #: inc/Woocommerce/ProductMetaPro.php:347
 msgid "Carousel should be disabled"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:383
 #: inc/Woocommerce/ProductMetaPro.php:383
 msgid "Upload Poster Or Input Valid poster/image URL"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Woocommerce/ProductMetaPro.php:391
 #: inc/Woocommerce/ProductMetaPro.php:391
 msgid "Upload Image Or Input Valid Image URL"
 msgstr ""
 
-#: bundled/3d-viewer/inc/Woocommerce/SingleProduct.php:176
-#: bundled/3d-viewer/inc/Woocommerce/SingleProductPro.php:225
 #: inc/Woocommerce/SingleProduct.php:174
-#: inc/Woocommerce/SingleProductPro.php:226
+#: inc/Woocommerce/SingleProductPro.php:225
 msgid "Awaiting product image"
 msgstr ""
 
 #: 3d-viewer-block/dist/editor.js:1
-#: bundled/3d-viewer/3d-viewer-block/dist/editor.js:1
 #: 3d-viewer-block/dist/editor.js:688
-#: bundled/3d-viewer/3d-viewer-block/dist/editor.js:688
 msgid "3D Model Settings"
 msgstr ""
 
 #: 3d-viewer-block/dist/editor.js:1
-#: bundled/3d-viewer/3d-viewer-block/dist/editor.js:1
 #: 3d-viewer-block/dist/editor.js:694
-#: bundled/3d-viewer/3d-viewer-block/dist/editor.js:694
 msgid "Width:"
 msgstr ""
 
 #: 3d-viewer-block/dist/editor.js:1
-#: bundled/3d-viewer/3d-viewer-block/dist/editor.js:1
 #: 3d-viewer-block/dist/editor.js:695
-#: bundled/3d-viewer/3d-viewer-block/dist/editor.js:695
 msgid "Keep width 0, to auto width."
 msgstr ""
 
 #: 3d-viewer-block/dist/editor.js:1
-#: bundled/3d-viewer/3d-viewer-block/dist/editor.js:1
 #: 3d-viewer-block/dist/editor.js:697
-#: bundled/3d-viewer/3d-viewer-block/dist/editor.js:697
 msgid "Height:"
 msgstr ""
 
 #: 3d-viewer-block/dist/editor.js:1
-#: bundled/3d-viewer/3d-viewer-block/dist/editor.js:1
 #: 3d-viewer-block/dist/editor.js:698
-#: bundled/3d-viewer/3d-viewer-block/dist/editor.js:698
 msgid "Keep height 0, to 350px height."
 msgstr ""
 
 #: 3d-viewer-block/dist/editor.js:1
-#: bundled/3d-viewer/3d-viewer-block/dist/editor.js:1
 #: 3d-viewer-block/dist/editor.js:700
-#: bundled/3d-viewer/3d-viewer-block/dist/editor.js:700
 msgid "Controls via mouse/touch"
 msgstr ""
 
 #: 3d-viewer-block/dist/editor.js:1
-#: bundled/3d-viewer/3d-viewer-block/dist/editor.js:1
 #: 3d-viewer-block/dist/editor.js:703
-#: bundled/3d-viewer/3d-viewer-block/dist/editor.js:703
 msgid "Zoom"
 msgstr ""
 
 #: 3d-viewer-block/dist/editor.js:1
-#: bundled/3d-viewer/3d-viewer-block/dist/editor.js:1
 #: 3d-viewer-block/dist/editor.js:704
-#: bundled/3d-viewer/3d-viewer-block/dist/editor.js:704
 msgid "Enable 'Controls via mouse/touch' to work Zoom!"
 msgstr ""
 
 #: 3d-viewer-block/dist/editor.js:1
-#: bundled/3d-viewer/3d-viewer-block/dist/editor.js:1
 #: 3d-viewer-block/dist/editor.js:708
-#: bundled/3d-viewer/3d-viewer-block/dist/editor.js:708
 msgid "Loading Type:"
 msgstr ""
 
 #: 3d-viewer-block/dist/editor.js:1
-#: bundled/3d-viewer/3d-viewer-block/dist/editor.js:1
 #: 3d-viewer-block/dist/editor.js:718
-#: bundled/3d-viewer/3d-viewer-block/dist/editor.js:718
 msgid "Edit 3D Model:"
 msgstr ""
 
 #: 3d-viewer-block/dist/editor.js:1
-#: bundled/3d-viewer/3d-viewer-block/dist/editor.js:1
 #: 3d-viewer-block/dist/editor.js:723
-#: bundled/3d-viewer/3d-viewer-block/dist/editor.js:723
 msgid "3D Model in left"
 msgstr ""
 
 #: 3d-viewer-block/dist/editor.js:1
-#: bundled/3d-viewer/3d-viewer-block/dist/editor.js:1
 #: 3d-viewer-block/dist/editor.js:724
-#: bundled/3d-viewer/3d-viewer-block/dist/editor.js:724
 msgid "3D Model in center"
 msgstr ""
 
 #: 3d-viewer-block/dist/editor.js:1
-#: bundled/3d-viewer/3d-viewer-block/dist/editor.js:1
 #: 3d-viewer-block/dist/editor.js:725
-#: bundled/3d-viewer/3d-viewer-block/dist/editor.js:725
 msgid "3D Model in right"
 msgstr ""
 
 #: 3d-viewer-block/dist/editor.js:1
-#: bundled/3d-viewer/3d-viewer-block/dist/editor.js:1
 #: 3d-viewer-block/dist/editor.js:808
-#: bundled/3d-viewer/3d-viewer-block/dist/editor.js:808
 msgid "Please, upload Model or enter Model Link first!"
 msgstr ""
 
-#: build/blocks/3d-viewer/view.js:1312
-#: build/frontend.js:1347
-#: build/public.js:1359
-#: bundled/3d-viewer/build/blocks/3d-viewer/view.js:1314
-#: bundled/3d-viewer/build/frontend.js:1349
-#: bundled/3d-viewer/build/public.js:1361
-msgid "Reset Default View"
-msgstr ""
-
-#: build/blocks/3d-viewer/view.js:1312
-#: build/frontend.js:1347
-#: build/public.js:1359
-#: bundled/3d-viewer/build/blocks/3d-viewer/view.js:1314
-#: bundled/3d-viewer/build/frontend.js:1349
-#: bundled/3d-viewer/build/public.js:1361
-msgid "Set Default View"
-msgstr ""
-
-#: build/blocks/3d-viewer/view.js:1323
-#: build/frontend.js:1358
-#: build/public.js:1370
-#: bundled/3d-viewer/build/blocks/3d-viewer/view.js:1325
-#: bundled/3d-viewer/build/frontend.js:1360
-#: bundled/3d-viewer/build/public.js:1372
-msgid "See Default View"
-msgstr ""
-
-#: build/blocks/3d-viewer/view.js:1326
-#: build/frontend.js:1361
-#: build/public.js:1373
-#: bundled/3d-viewer/build/blocks/3d-viewer/view.js:1328
-#: bundled/3d-viewer/build/frontend.js:1363
-#: bundled/3d-viewer/build/public.js:1375
-msgid "Remove Default View"
-msgstr ""
-
 #: 3d-viewer-block/inc/block.json
-#: bundled/3d-viewer/3d-viewer-block/inc/block.json
 msgctxt "block title"
 msgid "3D Viewer"
 msgstr ""
 
 #: 3d-viewer-block/inc/block.json
-#: bundled/3d-viewer/3d-viewer-block/inc/block.json
 msgctxt "block description"
 msgid "Display interactive 3D models on the web."
 msgstr ""
 
 #: 3d-viewer-block/inc/block.json
-#: bundled/3d-viewer/3d-viewer-block/inc/block.json
 msgctxt "block keyword"
 msgid "3d"
 msgstr ""
 
 #: 3d-viewer-block/inc/block.json
-#: bundled/3d-viewer/3d-viewer-block/inc/block.json
 msgctxt "block keyword"
 msgid "3d model"
 msgstr ""
 
 #: 3d-viewer-block/inc/block.json
-#: bundled/3d-viewer/3d-viewer-block/inc/block.json
 msgctxt "block keyword"
 msgid "3d viewer"
 msgstr ""
 
 #: build/blocks/3d-viewer/block.json
-#: bundled/3d-viewer/blocks/3d-viewer/block.json
-#: bundled/3d-viewer/build/blocks/3d-viewer/block.json
 msgctxt "block title"
 msgid "Model Viewer"
 msgstr ""
 
 #: build/blocks/3d-viewer/block.json
-#: bundled/3d-viewer/blocks/3d-viewer/block.json
-#: bundled/3d-viewer/build/blocks/3d-viewer/block.json
 msgctxt "block keyword"
 msgid "3D Viewer"
 msgstr ""
 
 #: build/blocks/3d-viewer/block.json
-#: bundled/3d-viewer/blocks/3d-viewer/block.json
-#: bundled/3d-viewer/build/blocks/3d-viewer/block.json
 msgctxt "block keyword"
 msgid "3D Embedder"
 msgstr ""
 
 #: build/blocks/3d-viewer/block.json
-#: bundled/3d-viewer/blocks/3d-viewer/block.json
-#: bundled/3d-viewer/build/blocks/3d-viewer/block.json
 msgctxt "block keyword"
 msgid "3D Model Viewer"
 msgstr ""

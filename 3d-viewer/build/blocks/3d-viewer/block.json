@@ -226,6 +226,8 @@
     "wp-i18n"
   ],
   "viewScript": [
+    "react",
+    "react-dom",
     "file:./view.js"
   ],
   "style": [

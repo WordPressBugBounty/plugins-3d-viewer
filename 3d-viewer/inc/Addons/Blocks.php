@@ -72,21 +72,15 @@ class Blocks
 
     public function bp3d_pipe_checker()
     {
-        $nonce = $_GET['_wpnonce'];
+        $nonce = sanitize_text_field(isset($_GET['_wpnonce']) ? wp_unslash($_GET['_wpnonce']) : '');
 
         if (!wp_verify_nonce($nonce, 'wp_ajax')) {
-            echo wp_send_json([
-                'success' => false,
-            ]);
-            wp_die();
+            wp_send_json_error();
         }
 
-        echo wp_send_json([
-            'data' => [
-                'isPipe' => \bp3dv_fs()->is__premium_only() && \bp3dv_fs()->can_use_premium_code(),
-            ]
+        wp_send_json_success([
+            'isPipe' => \bp3dv_fs()->is__premium_only() && \bp3dv_fs()->can_use_premium_code(),
         ]);
-        wp_die();
     }
 
     public function init()

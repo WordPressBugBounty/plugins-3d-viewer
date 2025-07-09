@@ -79,10 +79,22 @@
   display: block;
 }
 
+.modelViewerBlock {
+  max-width: 100%;
+}
+
 .modelViewerBlock .fullscreen.bp_model_parent #openBtn,
 .modelViewerBlock .fullscreen.bp_model_gallery #openBtn,
 .modelViewerBlock .bp_model_parent:fullscreen #openBtn {
   display: none;
+}
+
+.bp3d_loader {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @keyframes opacityTo {
@@ -157,6 +169,7 @@ model-viewer {
   font-size: 2em;
   position: absolute;
   color: #fff;
+  max-width: 100%;
 }
 
 .qodef-woo-single-page .qodef-single-product-summary {
