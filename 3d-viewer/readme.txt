@@ -1,8 +1,8 @@
-=== 3D Viewer - 3D Model Viewer Plugin ===
+=== 3D Viewer – Display Interactive 3D Models ===
 Contributors: bplugins, abuhayat, shehabulislam, freemius
 Tags: 3D model viewer, threejs, widget, model viewer, 360° product view
 Tested up to: 6.8
-Stable tag: 1.7.0
+Stable tag: 1.8.0
 Requires PHP: 7.1
 Donate link: https://www.buymeacoffee.com/abuhayat
 License: GPLv2 or later
@@ -11,10 +11,11 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 3D Viewer lets you embed interactive 3D models and 360 product views on WordPress sites with support for GLB, GLTF, OBJ, STL, FBX, DAE, and BIM.
 
 == Description ==
+
 **Instantly Display Interactive 3D Models and 360° Product Image on Your Website – No Code Required**
 
 
-[**3D Viewer**](https://bplugins.com/products/3d-viewer/) | [**Documentation**](https://bplugins.com/docs/3d-viewer/) | [**Pricing**](https://bplugins.com/products/3d-viewer/#pricing) | [**Support**](https://bplugins.com/support/) | [**Demo**](https://bplugins.com/products/3d-viewer/#demos)
+[**3D Viewer**](https://bplugins.com/products/3d-viewer/) | [**Documentation**](https://bplugins.com/docs/3d-viewer/) | [**Pricing**](https://bplugins.com/products/3d-viewer/pricing) | [**Support**](https://bplugins.com/support/) | [**Demo**](https://bplugins.com/products/3d-viewer/#demos)
 
 https://youtube.com/watch?v=_9vKv5pEClM
 
@@ -49,7 +50,7 @@ Designed with performance in mind, 3D Viewer ensures responsive and mobile-frien
 
 
 ### Pro Version – Unlock More Control & Customization
-Want even more flexibility? [**3D Viewer Pro**](https://bplugins.com/products/3d-viewer/#pricing) adds powerful features that let you fine-tune the viewer, improve performance, and streamline your workflow.
+Want even more flexibility? [**3D Viewer Pro**](https://bplugins.com/products/3d-viewer/pricing) adds powerful features that let you fine-tune the viewer, improve performance, and streamline your workflow.
 
 **Pro Features Include:**
 
@@ -115,7 +116,7 @@ https://youtube.com/watch?v=ofC8XbdAuVE
 
 That’s it – your 3D model is live!
 
-[**Live Demo**](https://bplugins.com/products/3d-viewer/#demos) | [**Try The Pro**](https://bplugins.com/products/3d-viewer/#pricing)
+[**Live Demo**](https://bplugins.com/products/3d-viewer/#demos) | [**Try The Pro**](https://bplugins.com/products/3d-viewer/pricing)
 
 
 ### Use Cases
@@ -154,7 +155,7 @@ That’s it – your 3D model is live!
 
 - Works with most popular WordPress themes
 
-[**Live Demo**](https://bplugins.com/products/3d-viewer/#demos) | [**Try The Pro**](https://bplugins.com/products/3d-viewer/#pricing)
+[**Live Demo**](https://bplugins.com/products/3d-viewer/#demos) | [**Try The Pro**](https://bplugins.com/products/3d-viewer/pricing)
 
 
 ### User Feedback
@@ -221,7 +222,7 @@ No, This plugin only support .glb and .glTF files. Please convert your file to a
 3. Single and Multiple Preview
 4. 3D Product at top of the image
 5. 3D Product at bottom of the image
-6. Product image replaced with 3D Pr
+6. Product image replaced with 3D Pro
 7. Show 3D based on product variable
 8. Settings
 9. Gutenberg Block
@@ -230,11 +231,30 @@ No, This plugin only support .glb and .glTF files. Please convert your file to a
 
 == Changelog ==
 
+= 1.8.0 - 15 Sep, 2025  =
+* New Page: Dashboard
+* Added: Visual Editor
+* Feature: Show 3D on First Image of Woocommerce Gallery
+* Fixed: Broken Product Page Layout
+* Fixed: public.css not found
+* Improved: Code
+* Feature: Set Initial View (Premium)
+* Feature: Argument Reality (AR) (Premium)
+* Feature: Option to add Hotspot/Annotation (Premium)
+* Feature: Lock X/Y Axis Rotation (Premium)
+* Feature: Capture Button (Premium)
+* Feature: Zoom In/Out Button (Premium)
+* Feature: AR view using QR code (Premium)
+* Added: Presets (Premium)
+* Improved: Display 3D models in shop pages and product listings (Premium)
+
+
 = 1.7.0 - 9 Jul, 2025  =
 * Fixed: AR Icon on iPhone
 * Fixed: Fatal/Critical error on product page
 * Fixed: Showing Different 3D Models for Product Variations in WooCommerce when single attribute
 * Fixed: Fullscreen does not work on iPhone
+* Fixed: 3d_viewer_product shortcode does not work properly
 * Feature: Field to add Skybox Height
 * Feature: Show model based on multiple product variable
 * Feature: Added Loader

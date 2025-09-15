@@ -50,5 +50,28 @@ class EnqueueAssets
             wp_enqueue_style('bp3d-readonly-style');
             wp_enqueue_script('bp3d-admin-script');
         }
+
+        wp_register_script('bp3d-model-viewer', BP3D_DIR . 'public/js/model-viewer.min.js', [], BP3D_VERSION, true);
+        wp_register_script('bp3d-o3dviewer', BP3D_DIR . 'public/js/o3dv.min.js', [], BP3D_VERSION, true);
+
+        wp_register_script('bp3d-visual-editor', BP3D_DIR . 'build/visual-editor/index.js', [
+            'b3dviewer-modelviewer-editor-script',
+            'wp-block-library',
+            'wp-editor',
+            'wp-i18n',
+            'wp-api',
+            'wp-util',
+            'lodash',
+            'wp-data',
+            'wp-core-data',
+            'wp-api-request',
+            'wp-tinymce',
+            "bp3d-model-viewer",
+            "bp3d-o3dviewer",
+            "wp-components",
+            "wp-i18n"
+        ], BP3D_VERSION, true);
+
+        wp_register_style('bp3d-visual-editor', BP3D_DIR . 'build/visual-editor/index.css', ['b3dviewer-modelviewer-editor-style', 'wp-components', 'wp-block-library', 'wp-block-editor', 'wp-edit-blocks', 'wp-format-library'], BP3D_VERSION, 'all');
     }
 }

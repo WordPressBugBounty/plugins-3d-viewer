@@ -70,6 +70,7 @@ class Viewer
         array(
           'id'           => 'bp_3d_src',
           'type'         => 'media',
+          'library'      => 'model',
           'button_title' => __('Upload Source', 'model-viewer'),
           'title'        => __('3D Source', 'model-viewer'),
           'subtitle'     => __('Choose 3D Model', 'model-viewer'),
@@ -98,6 +99,7 @@ class Viewer
           'fields' => array(
             array(
               'id'    => 'model_src',
+              'library' => 'model',
               'type'  => 'media',
               'title' =>  __('Model Source', 'model-viewer'),
               'desc'  => __('Upload or Select 3d object files. Supported file type: glb, glTF', 'model-viewer'),
@@ -135,7 +137,7 @@ class Viewer
           'title'        => __('Background Color', 'model-viewer'),
           'subtitle'        => __('Set Background Color For 3d Model.If You don\'t need just leave blank. Default : \'transparent color\'', 'model-viewer'),
           'desc'         => __('Choose Your Background Color For Model.', 'model-viewer'),
-          'default'      => 'transparent'
+          'default'      => '#bdd6ea'
         ),
         array(
           'id'       => 'bp_camera_control',

@@ -44,7 +44,7 @@ class ModelViewer extends \Elementor\Widget_Base
 	//  */
 	public function get_style_depends()
 	{
-		return ['bp3d-public'];
+		return [];
 	}
 
 	protected function register_controls()
@@ -552,10 +552,32 @@ class ModelViewer extends \Elementor\Widget_Base
 
 	}
 
+	public function bp3d_get_settings()
+	{
+		$settings = $this->get_settings_for_display();
+		return function ($key, $default = false, $is_boolean = false, $key2 = null) use ($settings) {
+			if (isset($settings[$key]) && isset($settings[$key][$key2])) {
+				if ($is_boolean) {
+					return $settings[$key][$key2] === 'yes';
+				}
+				return $settings[$key][$key2];
+			}
+			if (isset($settings[$key])) {
+				if ($is_boolean) {
+					return $settings[$key] === 'yes';
+				}
+				return $settings[$key];
+			}
+			return $default;
+		};
+	}
+
 	protected function render()
 	{
 
 		$settings = $this->get_settings_for_display();
+		$get_settings = $this->bp3d_get_settings();
+
 
 		$finalData = [
 			"align" => 'center',
@@ -574,7 +596,7 @@ class ModelViewer extends \Elementor\Widget_Base
 				'useDecoder' => $settings['useDecoder']
 			],
 			"currentViewer" => $settings['currentViewer'],
-			'models' => $settings['models'],
+			'models' => $get_settings('models', []),
 			"lazyLoad" => $settings['lazy_load'] == 'yes', // done
 			"autoplay" => (bool) $settings['autoplay'], // done
 			"shadow" =>  $settings['shadow'] == 'yes', //done
@@ -595,7 +617,8 @@ class ModelViewer extends \Elementor\Widget_Base
 			"exposure" => isset($settings['exposure']['size']) ? $settings['exposure']['size'] : 1, //$options['3d_exposure'],
 			"styles" => [
 				"width" => '100%', //$options['bp_3d_width']['width'].$options['bp_3d_width']['unit'],
-				"height" =>  $settings['height']['size'] . $settings['height']['unit'],
+				// "height" =>  isset($settings['height']) ? $settings['height']['size'] . $settings['height']['unit'] : '500px', //$options['bp_3d_height']['height'].$options['bp_3d_height']['unit'],
+				"height" =>  $get_settings('height', '500', false, 'size') . $get_settings('height', 'px', false, 'unit'),
 				"bgColor" => $settings['backgroundColor'] ?? '', // done
 				"bgImage" => $settings['backgroundImage']['url'] ?? '',
 				"progressBarColor" => '#666', //$options['bp_model_progressbar_color'] ?? ''
@@ -610,10 +633,6 @@ class ModelViewer extends \Elementor\Widget_Base
 			"selectedAnimation" => ""
 		];
 
-		// echo '<pre>';
-		// print_r( $settings );
-		// echo '</pre>';
-
 ?>
 
 		<div class="modelViewerBlock" data-attributes='<?php echo esc_attr(wp_json_encode($finalData)) ?>'></div>
@@ -622,13 +641,13 @@ class ModelViewer extends \Elementor\Widget_Base
 
 
 		if (is_admin()) {
-			wp_enqueue_script('bp3d-model-viewer');
+			// wp_enqueue_script('bp3d-model-viewer');
 			wp_enqueue_script('bp3d-o3dviewer');
 		}
 
 		wp_enqueue_script('bp3d-public');
 		wp_enqueue_style('bp3d-custom-style');
-		wp_enqueue_style('bp3d-public');
+		// wp_enqueue_style('bp3d-public');
 
 
 		// echo \BP3D\Template\ModelViewer::html($data);

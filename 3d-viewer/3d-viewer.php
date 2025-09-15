@@ -4,7 +4,7 @@
  * Plugin Name: 3D Viewer
  * Plugin URI:  https://bplugins.com/
  * Description: Easily display interactive 3D models on the web. Supported File type .glb, .gltf,obj 3ds stl ply off 3dm fbx dae wrl 3mf amf ifc brep step iges fcstd bim
- * Version: 1.7.0
+ * Version: 1.8.0
  * Author: bPlugins
  * Author URI: http://bplugins.com
  * License: GPLv3
@@ -20,6 +20,9 @@ if ( function_exists( 'bp3dv_fs' ) ) {
     if ( file_exists( dirname( __FILE__ ) . '/vendor/autoload.php' ) ) {
         require_once dirname( __FILE__ ) . '/vendor/autoload.php';
     }
+    if ( file_exists( dirname( __FILE__ ) . '/inc/admin.php' ) ) {
+        require_once dirname( __FILE__ ) . '/inc/admin.php';
+    }
     function get_registered_js_files() {
         global $wp_scripts;
         $registered_js_files = array();
@@ -33,7 +36,7 @@ if ( function_exists( 'bp3dv_fs' ) ) {
     if ( isset( $_SERVER['HTTP_HOST'] ) && $_SERVER['HTTP_HOST'] === 'localhost' ) {
         define( 'BP3D_VERSION', time() );
     } else {
-        define( 'BP3D_VERSION', '1.7.0' );
+        define( 'BP3D_VERSION', '1.8.0' );
     }
     defined( 'BP3D_DIR' ) or define( 'BP3D_DIR', plugin_dir_url( __FILE__ ) );
     defined( 'BP3D_PATH' ) or define( 'BP3D_PATH', plugin_dir_path( __FILE__ ) );
@@ -62,8 +65,9 @@ if ( function_exists( 'bp3dv_fs' ) ) {
                     ),
                     'has_affiliation' => 'selected',
                     'menu'            => array(
-                        'slug'    => 'edit.php?post_type=bp3d-model-viewer',
-                        'contact' => false,
+                        'slug'       => '3d-viewer',
+                        'first-path' => 'admin.php?page=bp3d-choose-preferred-editor',
+                        'contact'    => false,
                     ),
                     'is_live'         => true,
                 ) );
@@ -85,7 +89,7 @@ if ( function_exists( 'bp3dv_fs' ) ) {
 
     // External files Inclusion
     require_once 'admin/csf/codestar-framework.php';
-    require_once 'admin/ads/submenu.php';
+    // require_once 'admin/ads/submenu.php';
     if ( !class_exists( 'BP3D' ) ) {
         class BP3D {
             protected static $instance = null;

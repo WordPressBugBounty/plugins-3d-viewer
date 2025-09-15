@@ -3,7 +3,7 @@
         'name' => 'rajud/3d-viewer',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '771ca2851a4f0eb64d96b4f111a9765681e3b4fd',
+        'reference' => 'ac1f7891cd30e5047d6ffaa6970996eef2ba4434',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -22,7 +22,7 @@
         'rajud/3d-viewer' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '771ca2851a4f0eb64d96b4f111a9765681e3b4fd',
+            'reference' => 'ac1f7891cd30e5047d6ffaa6970996eef2ba4434',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

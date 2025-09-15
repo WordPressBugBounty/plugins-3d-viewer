@@ -44,7 +44,7 @@ class BP3DProductModel extends \Elementor\Widget_Base
 	//  */
 	public function get_style_depends()
 	{
-		return ['bp3d-public'];
+		return [];
 	}
 
 	protected function register_controls()

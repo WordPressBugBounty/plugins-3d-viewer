@@ -15,6 +15,8 @@ class Settings
     $this->preset();
     $this->woocommerce();
     $this->shortcode();
+
+    $this->woocommerce_selectors();
   }
 
   public function preset()
@@ -23,7 +25,7 @@ class Settings
       'menu_title'  => 'Settings',
       'menu_slug'   => '3dviewer-settings',
       'menu_type'   => 'submenu',
-      'menu_parent' => 'edit.php?post_type=bp3d-model-viewer',
+      'menu_parent' => '3d-viewer',
       'theme'       => 'light',
       'framework_title' => __('3D Viewer Settings', 'model-viewer'),
       'menu_position' => 10,
@@ -212,14 +214,14 @@ class Settings
           'desc'     => __('Enable if 3D Viewer is not compatible with this theme', 'model-viewer'),
           'default' => false,
         ),
-        array(
-          'id'       => 'product_gallery_selector',
-          'type'      => 'text',
-          'title'    => __('Product Gallery Class or ID or Valid CSS Selector', 'model-viewer'),
-          'desc'     => __('Write here the product gallery class or id or any valid CSS selector', 'model-viewer'),
-          'default' => '.woocommerce-product-gallery',
-          'dependency' => array('is_not_compatible', '==', '1'),
-        ),
+        // array(
+        //   'id'       => 'product_gallery_selector',
+        //   'type'      => 'text',
+        //   'title'    => __('Product Gallery Class or ID or Valid CSS Selector', 'model-viewer'),
+        //   'desc'     => __('Write here the product gallery class or id or any valid CSS selector', 'model-viewer'),
+        //   'default' => '.woocommerce-product-gallery',
+        //   'dependency' => array('is_not_compatible', '==', '1'),
+        // ),
         array(
           'id'       => '3d_shadow_intensity',
           'type'     => 'spinner',
@@ -329,6 +331,64 @@ class Settings
           'class'    => 'bp3d-readonly'
         ),
       ) // End fields
+    ));
+  }
+
+  public function woocommerce_selectors()
+  {
+    \CSF::createSection($this->prefix, array(
+      'title'  => __('Woocommerce Selectors', 'model-viewer'),
+      'fields' => array(
+        // 3D Model Options
+        array(
+          'id'       => 'gallery',
+          'type'      => 'text',
+          'title' => __('Gallery Selector', 'model-viewer'),
+          'desc' => __('Write here the gallery selector', 'model-viewer'),
+          'placeholder' => '.woocommerce-product-gallery',
+        ),
+        array(
+          'id'       => 'gallery_item',
+          'type'      => 'text',
+          'title' => __('Gallery Item Selector', 'model-viewer'),
+          'desc' => __('Write here the gallery item selector', 'model-viewer'),
+          'placeholder' => '.woocommerce-product-gallery__image',
+        ),
+        array(
+          'id'       => 'gallery_item_active',
+          'type'      => 'text',
+          'title' => __('Gallery Item Active Selector', 'model-viewer'),
+          'desc' => __('Write here the gallery item active selector', 'model-viewer'),
+          'placeholder' => '.woocommerce-product-gallery__image.flex-active-slide',
+        ),
+        array(
+          'id' => 'gallery_thumbnail_item',
+          'type' => 'text',
+          'title' => __('Gallery Thumbnail Item Selector', 'model-viewer'),
+          'desc' => __('Write here the gallery thumbnail item selector', 'model-viewer'),
+          'placeholder' => '.flex-control-thumbs li',
+        ),
+        array(
+          'id' => 'gallery_trigger',
+          'type' => 'text',
+          'title' => __('Gallery Trigger Selector', 'model-viewer'),
+          'desc' => __('Write here the gallery trigger selector', 'model-viewer'),
+          'placeholder' => '.woocommerce-product-gallery__trigger',
+        ),
+        array(
+          'id' => 'custom_css',
+          'type' => 'code_editor',
+          'title' => __('Custom CSS', 'model-viewer'),
+          'desc' => __('Write here the custom css code', 'model-viewer'),
+          'settings' => array(
+            'mode' => 'css',
+            'theme' => 'monokai',
+            'indentWithTabs' => true,
+            'smartIndent' => true,
+            'lineNumbers' => true
+          ),
+        )
+      )
     ));
   }
 

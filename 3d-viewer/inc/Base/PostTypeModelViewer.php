@@ -10,7 +10,7 @@ class PostTypeModelViewer
 
     public function register()
     {
-        add_action('init', [$this, 'registerPostType']);
+        add_action('init', [$this, 'registerPostType'], 0);
 
         if (is_admin()) {
             add_action('manage_' . $this->post_type . '_posts_custom_column', [$this, 'addShortcodeColumn'], 10, 2);
@@ -107,20 +107,20 @@ class PostTypeModelViewer
                     'new_item'       => __('New 3D Viewer ', 'model-viewer'),
                     'edit_item'      => __('Edit 3D Viewer ', 'model-viewer'),
                     'view_item'      => __('View 3D Viewer ', 'model-viewer'),
-                    'all_items'      => __('All 3D Viewers', 'model-viewer'),
+                    'all_items'      => __('3D Viewers', 'model-viewer'),
                     'not_found'      => __('Sorry, we couldn\'t find the Feed you are looking for.', 'model-viewer'),
                 ),
                 'description'     => __('3D Viewer Options.', 'model-viewer'),
                 'public'          => false,
                 'show_ui'         => true,
-                'show_in_menu'    => true,
+                'show_in_menu'    => '3d-viewer',
                 'menu_icon'       => 'dashicons-format-image',
                 'query_var'       => true,
                 'rewrite'         => array('slug' => 'model-viewer'),
                 'capability_type' => 'post',
                 'has_archive'     => false,
                 'hierarchical'    => false,
-                'menu_position'   => 20,
+                'menu_position'   => 1,
                 'supports'        => array('title', 'editor'),
                 'show_in_rest'    => true,
                 'template'        => [

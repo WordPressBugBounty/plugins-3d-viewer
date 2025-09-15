@@ -35,6 +35,7 @@ class Init
             Base\EnqueueAssets::class,
             Base\MenuOrder::class,
             Base\Import::class,
+            Base\ChoosePreferredEditor::class,
             Shortcode\Shortcode::class,
             Base\ExtendMimeType::class,
             Field\Viewer::class,
@@ -60,6 +61,9 @@ class Init
     public static function register_post_type()
     {
         self::instantiate('BP3D\Base\PostTypeModelViewer')->register();
+        if (\bp3dv_fs()->can_use_premium_code()) {
+            self::instantiate('BP3D\Base\PostTypePreset')->register();
+        }
     }
 
     public static function init()

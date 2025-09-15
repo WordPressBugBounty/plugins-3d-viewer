@@ -40,10 +40,10 @@ final class AddonsPro
 	public function frontend_assets_scripts()
 	{
 		if (!wp_script_is('bp3d-model-viewer', 'registered')) {
-			wp_register_style('bp3d-public', BP3D_DIR . 'build/public.css', [], BP3D_VERSION);
+			// wp_register_style('bp3d-public', BP3D_DIR . 'build/public.css', [], BP3D_VERSION);
 
 			wp_register_script('bp3d-model-viewer', BP3D_DIR . 'public/js/model-viewer.min.js', [], BP3D_VERSION, true);
-			wp_register_script('bp3d-public', BP3D_DIR . 'build/frontend.js', ['react', 'react-dom', 'bp3d-model-viewer', 'jquery'], BP3D_VERSION, true);
+			wp_register_script('bp3d-public', BP3D_DIR . 'build/frontend.js', ['react', 'react-dom', 'jquery'], BP3D_VERSION, true);
 		}
 	}
 
