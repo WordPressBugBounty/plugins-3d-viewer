@@ -31,6 +31,7 @@ final class AddonsPro
 
 		// // Add Plugin actions
 		add_action('elementor/widgets/register', [$this, 'init_widgets']);
+		add_action('elementor/editor/before_enqueue_scripts', [$this, 'editor_assets_scripts']);
 	}
 
 
@@ -42,7 +43,7 @@ final class AddonsPro
 		if (!wp_script_is('bp3d-model-viewer', 'registered')) {
 			// wp_register_style('bp3d-public', BP3D_DIR . 'build/public.css', [], BP3D_VERSION);
 
-			wp_register_script('bp3d-model-viewer', BP3D_DIR . 'public/js/model-viewer.min.js', [], BP3D_VERSION, true);
+			wp_register_script('bp3d-model-viewer', BP3D_DIR . 'public/js/model-viewer.latest.min.js', [], BP3D_VERSION, true);
 			wp_register_script('bp3d-public', BP3D_DIR . 'build/frontend.js', ['react', 'react-dom', 'jquery'], BP3D_VERSION, true);
 		}
 	}
@@ -64,5 +65,11 @@ final class AddonsPro
 		// Register widget
 		\Elementor\Plugin::instance()->widgets_manager->register(new ModelViewer());
 		\Elementor\Plugin::instance()->widgets_manager->register(new BP3DProductModel());
+	}
+
+	public function editor_assets_scripts()
+	{
+		wp_enqueue_script('bp3d-o3dviewer', BP3D_DIR . 'public/js/o3dv.min.js', [], BP3D_VERSION, true);
+		wp_enqueue_script('bp3d-model-viewer', BP3D_DIR . 'public/js/model-viewer.latest.min.js', [], BP3D_VERSION, true);
 	}
 }

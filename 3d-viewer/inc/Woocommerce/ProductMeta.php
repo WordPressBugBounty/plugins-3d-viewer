@@ -40,7 +40,7 @@ class ProductMeta
             array(
               'id'           => 'model_src',
               'type'         => 'upload',
-              'library'      => 'model',
+              // 'library'      => 'model',
               'title'        => esc_html__('3D Source', 'model-viewer'),
               'subtitle'     => esc_html__('Upload Model Or Input Valid Model url', 'model-viewer'),
               'desc'         => esc_html__('Upload / Paste Model url. Supported file type: glb, glTF', 'model-viewer'),
@@ -169,7 +169,7 @@ class ProductMeta
           'id' => 'bp_model_bg',
           'type' => 'color',
           'title' => __("Background", "model-viewer"),
-          'default' => '#bdd6ea',
+          'default' => 'transparent',
           'desc' => __("Set Background color", "model-viewer")
         ),
         array(

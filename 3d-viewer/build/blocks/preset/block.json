@@ -5,6 +5,9 @@
   "description": "",
   "category": "vul",
   "icon": "visibility",
+  "parent": [
+    "b3dviewer/block"
+  ],
   "keywords": [
     "3D Viewer Preset",
     "3D Embedder Preset",
@@ -56,7 +59,7 @@
             "tablet": "300px",
             "mobile": "300px"
           },
-          "bgColor": "#bdd6ea",
+          "bgColor": "transparent",
           "progressBarColor": "#666",
           "thumbSize": "90px"
         },

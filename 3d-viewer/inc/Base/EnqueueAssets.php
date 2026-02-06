@@ -10,6 +10,7 @@ class EnqueueAssets
         add_action('admin_enqueue_scripts', [$this, 'enqueueBackendFiles']);
         add_action('wp_enqueue_scripts', [$this, 'enqueueFrontEndFiles']);
         add_filter('script_loader_tag', [$this, 'b3dviewer_script_type_load'], 10, 3);
+        add_action('wp_footer', [$this, 'custom_css']);
     }
 
 
@@ -51,7 +52,7 @@ class EnqueueAssets
             wp_enqueue_script('bp3d-admin-script');
         }
 
-        wp_register_script('bp3d-model-viewer', BP3D_DIR . 'public/js/model-viewer.min.js', [], BP3D_VERSION, true);
+        wp_register_script('bp3d-model-viewer', BP3D_DIR . 'public/js/model-viewer.latest.min.js', [], BP3D_VERSION, true);
         wp_register_script('bp3d-o3dviewer', BP3D_DIR . 'public/js/o3dv.min.js', [], BP3D_VERSION, true);
 
         wp_register_script('bp3d-visual-editor', BP3D_DIR . 'build/visual-editor/index.js', [
@@ -73,5 +74,16 @@ class EnqueueAssets
         ], BP3D_VERSION, true);
 
         wp_register_style('bp3d-visual-editor', BP3D_DIR . 'build/visual-editor/index.css', ['b3dviewer-modelviewer-editor-style', 'wp-components', 'wp-block-library', 'wp-block-editor', 'wp-edit-blocks', 'wp-format-library'], BP3D_VERSION, 'all');
+    }
+
+    public function custom_css()
+    {
+        $settings = \BP3D\Helper\Utils::getSettings('_bp3d_settings_', []);
+?>
+        <style>
+            <?php echo esc_html($settings('custom_css')); ?>
+        </style>
+
+<?php
     }
 }

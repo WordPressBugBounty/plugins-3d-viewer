@@ -1,8 +1,8 @@
 === 3D Viewer – Display Interactive 3D Models ===
-Contributors: bplugins, abuhayat, shehabulislam, freemius
+Contributors: bplugins, abuhayat, shehabulislam, freemius, farazi1
 Tags: 3D model viewer, threejs, widget, model viewer, 360° product view
-Tested up to: 6.8
-Stable tag: 1.8.0
+Tested up to: 6.9
+Stable tag: 1.8.3
 Requires PHP: 7.1
 Donate link: https://www.buymeacoffee.com/abuhayat
 License: GPLv2 or later
@@ -14,7 +14,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 **Instantly Display Interactive 3D Models and 360° Product Image on Your Website – No Code Required**
 
-
 [**3D Viewer**](https://bplugins.com/products/3d-viewer/) | [**Documentation**](https://bplugins.com/docs/3d-viewer/) | [**Pricing**](https://bplugins.com/products/3d-viewer/pricing) | [**Support**](https://bplugins.com/support/) | [**Demo**](https://bplugins.com/products/3d-viewer/#demos)
 
 https://youtube.com/watch?v=_9vKv5pEClM
@@ -25,7 +24,7 @@ The plugin offers features such as touch controls, zoom, pan, auto-rotation, and
 
 In WooCommerce, 3D Viewer facilitates the display of 3D product models, enhancing the user experience by allowing customers to interact with products in three dimensions. The plugin also supports the creation of galleries for multiple product variants.
 
-Designed with performance in mind, 3D Viewer ensures responsive and mobile-friendly rendering of 3D content across devices.
+Designed with performance in mind, 3D Viewer ensures responsive and mobile-friendly rendering of 3D content across all devices.
 
 
 ### Free Features – Everything You Need to Get Started
@@ -230,6 +229,22 @@ No, This plugin only support .glb and .glTF files. Please convert your file to a
 
 
 == Changelog ==
+
+
+= 1.8.3 - 17 Dec, 2025  =
+Fixed: new shortcodes were not working properly.
+
+= 1.8.2 - 4 Dec, 2025  =
+* Feature: Option to add Link on hotspot (Premium)
+* Improved: Some JS and CSS coding
+* Feature: AR mode on Classic Shortcode Generator
+
+= 1.8.1 - 5 Nov, 2025  =
+* Update: Library update
+* Fixed: Flatsome theme conflict
+* Removed: Hand tool on the model
+* Featature: Fullscreen Button on iPhone
+
 
 = 1.8.0 - 15 Sep, 2025  =
 * New Page: Dashboard

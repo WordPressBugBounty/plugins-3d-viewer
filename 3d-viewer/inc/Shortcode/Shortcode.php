@@ -65,6 +65,8 @@ class Shortcode
             ],
             "models" => [],
         ], $this->get_common_attributes($meta, $id));
+
+        $finalData =  apply_filters('bp3d_classic_model_attribute', $finalData);
 ?>
 
         <div class="modelViewerBlock" data-attributes='<?php echo esc_attr(wp_json_encode($finalData)) ?>'></div>

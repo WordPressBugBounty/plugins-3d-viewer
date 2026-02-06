@@ -605,7 +605,7 @@ class ModelViewer extends \Elementor\Widget_Base
 			"isPagination" => false,
 			"isNavigation" => false,
 			"preload" => 'auto', //$options['bp_3d_preloader'] == '1' ? 'auto' : 'interaction',
-			'rotationPerSecond' => '30deg', // done
+			'rotationPerSecond' => '30', // done
 			"mouseControl" =>  $settings['mouseControls'] == 'yes',
 			"fullscreen" =>   $settings['fullscreen'] == 'yes', // done
 			"variant" => (bool) $settings['variant'],
@@ -619,7 +619,7 @@ class ModelViewer extends \Elementor\Widget_Base
 				"width" => '100%', //$options['bp_3d_width']['width'].$options['bp_3d_width']['unit'],
 				// "height" =>  isset($settings['height']) ? $settings['height']['size'] . $settings['height']['unit'] : '500px', //$options['bp_3d_height']['height'].$options['bp_3d_height']['unit'],
 				"height" =>  $get_settings('height', '500', false, 'size') . $get_settings('height', 'px', false, 'unit'),
-				"bgColor" => $settings['backgroundColor'] ?? '', // done
+				"bgColor" => $settings['backgroundColor'] ?? 'transparent', // done
 				"bgImage" => $settings['backgroundImage']['url'] ?? '',
 				"progressBarColor" => '#666', //$options['bp_model_progressbar_color'] ?? ''
 			],
@@ -633,9 +633,15 @@ class ModelViewer extends \Elementor\Widget_Base
 			"selectedAnimation" => ""
 		];
 
+		if ($finalData['currentViewer'] === 'O3DViewer') {
+			wp_enqueue_script('bp3d-o3dviewer');
+		} else {
+			wp_enqueue_script('bp3d-model-viewer');
+		}
+
 ?>
 
-		<div class="modelViewerBlock" data-attributes='<?php echo esc_attr(wp_json_encode($finalData)) ?>'></div>
+		<div class="modelViewerBlock elementor" data-attributes='<?php echo esc_attr(wp_json_encode($finalData)) ?>'></div>
 
 <?php
 

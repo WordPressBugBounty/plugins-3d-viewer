@@ -33,7 +33,7 @@ class Blocks
     public function enqueue_block_assets()
     {
 
-        wp_register_script('bp3d-model-viewer', BP3D_DIR . 'public/js/model-viewer.min.js', [], BP3D_VERSION, true);
+        wp_register_script('bp3d-model-viewer', BP3D_DIR . 'public/js/model-viewer.latest.min.js', [], BP3D_VERSION, true);
         wp_register_script('bp3d-o3dviewer', BP3D_DIR . 'public/js/o3dv.min.js', [], BP3D_VERSION, true);
     }
 
@@ -47,7 +47,7 @@ class Blocks
 
         wp_register_script('bp3d-3d-viewer', BP3D_DIR . 'build/3d-viewer.js', [], '1.0.0', true);
         wp_register_script('bp3d-o3dviewer', BP3D_DIR . 'public/js/o3dv.min.js', [], BP3D_VERSION, true);
-        wp_register_script('bp3d-model-viewer', BP3D_DIR . 'public/js/model-viewer.min.js', [], BP3D_VERSION, true);
+        wp_register_script('bp3d-model-viewer', BP3D_DIR . 'public/js/model-viewer.latest.min.js', [], BP3D_VERSION, true);
         wp_register_script('bp3d-public', BP3D_DIR . 'build/frontend.js', ['react', 'react-dom', 'jquery'], BP3D_VERSION, true);
 
         // wp_register_script('bp3d-front-end', BP3D_DIR . 'build/3d-viewer-frontend.js', ['react', 'react-dom'], BP3D_VERSION, true);
@@ -55,19 +55,19 @@ class Blocks
         // wp_register_script('bp3d-block', BP3D_DIR . 'dist/block.js', ['bp3d-public', 'bp3d-o3dviewer', 'lodash'], BP3D_VERSION, true);
 
         wp_localize_script('b3dviewer-modelviewer-view-script', 'bp3dBlock', [
-            'modelViewerSrc' => BP3D_DIR . 'public/js/model-viewer.min.js',
+            'modelViewerSrc' => BP3D_DIR . 'public/js/model-viewer.latest.min.js',
             'o3dviewerSrc' => BP3D_DIR . 'public/js/o3dv.min.js'
         ]);
 
         // wp_localize_script('bp3d-front-end', 'bp3dBlock', [
-        //     'modelViewerSrc' => BP3D_DIR . 'public/js/model-viewer.min.js',
+        //     'modelViewerSrc' => BP3D_DIR . 'public/js/model-viewer.latest.min.js',
         //     'o3dviewerSrc' => BP3D_DIR . 'public/js/o3dv.min.js'
         // ]);
 
         $settings = Utils::getSettings('_bp3d_settings_', []);
 
         wp_localize_script('bp3d-public', 'bp3dBlock', [
-            'modelViewerSrc' => BP3D_DIR . 'public/js/model-viewer.min.js',
+            'modelViewerSrc' => BP3D_DIR . 'public/js/model-viewer.latest.min.js',
             'o3dviewerSrc' => BP3D_DIR . 'public/js/o3dv.min.js',
             'selectors' => [
                 'gallery' => $this->get_default_selector($settings('gallery', $settings('product_gallery_selector')), '.woocommerce-product-gallery'),

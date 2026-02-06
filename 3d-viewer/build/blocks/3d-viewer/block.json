@@ -183,7 +183,7 @@
           "tablet": "300px",
           "mobile": "300px"
         },
-        "bgColor": "#bdd6ea",
+        "bgColor": "transparent",
         "progressBarColor": "#666",
         "thumbSize": "90px"
       }

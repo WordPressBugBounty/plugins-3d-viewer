@@ -38,9 +38,8 @@ class SingleProduct
 
     public function woocommerce_loaded()
     {
-        $settings = get_option('_bp3d_settings_');
-
         $meta = Utils::getPostMeta(get_the_ID(), '_bp3d_product_');
+        $settings = Utils::getSettings('_bp3d_settings_');
 
         $is_compatible = Utils::isCompatibleTheme();
 
@@ -52,7 +51,7 @@ class SingleProduct
             return;
         }
 
-        if (isset($settings['3d_woo_switcher']) && $settings['3d_woo_switcher'] !== '0' && $settings['is_not_compatible'] !== '1') {
+        if ($settings('3d_woo_switcher') !== '0' && $settings('is_not_compatible') !== '1') {
             remove_action('woocommerce_before_single_product_summary', 'woocommerce_show_product_images', 30);
             remove_action('woocommerce_before_single_product_summary', 'woocommerce_show_product_images', 10);
             remove_action('woocommerce_before_single_product_summary', 'woocommerce_show_product_images', 20);

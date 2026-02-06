@@ -87,6 +87,7 @@ class Product
             "uniqueId" => "model" . get_the_ID(),
             "O3DVSettings" => [
                 'isFullscreen' => true,
+                "isNavigation" => $meta('show_arrows', false, true),
                 'mouseControl' => true,
                 // "zoom" =>  self::isset($modelData, 'bp_3d_zooming',  self::isset($options, 'bp_3d_zooming', "1")) === "1", // done
                 "zoom" => $meta('bp_3d_zooming', $get_option('bp_3d_zooming', "1"), true), // done
@@ -99,10 +100,11 @@ class Product
                 "poster" =>  ''
             ],
             "models" => $models,
+            'show_model_instead_thumbnail' => $meta('show_model_instead_thumbnail', false, true),
             "zoom" => $meta('bp_3d_zooming', $get_option('bp_3d_zooming', "1"), true), // done
             "lazyLoad" => $get_option('bp_3d_loading', 'lazy') === 'lazy', // done
             "autoplay" => $get_option('bp_3d_autoplay', false, true), // done
-            "shadow" =>  $get_option('3d_shadow_intensity', '1', true), //done
+            "shadow" =>  $meta('3d_shadow_intensity', '1', true), //done
             "autoRotate" => $get_option('bp_3d_rotate', false, true), // done
             "rotateDelay"  => (int) $get_option('3d_rotate_delay', 200), // done - 3d_rotate_delay
             "isPagination" => $meta('show_thumbs', false, true),
@@ -122,7 +124,7 @@ class Product
             "styles" => [
                 "width" => '100%', //$get_option('bp_3d_width']['width'].$get_option('bp_3d_width']['unit'],
                 'height' => $meta('bp_3d_height', '350', false, 'height') . $meta('bp_3d_height', 'px', false, 'unit'),
-                "bgColor" => $meta('bp_model_bg', '#bdd6ea'), //$modelData['bp_model_bg'] ?? '', // done
+                "bgColor" => $meta('bp_model_bg', 'transparent'), //$modelData['bp_model_bg'] ?? '', // done
                 "progressBarColor" => '#666', //$get_option('bp_model_progressbar_color'] ?? ''
             ],
             "stylesheet" => null,
@@ -136,6 +138,7 @@ class Product
             "selectedAnimation" => "",
             "placement" => "shortcode"
         ];
+
 
         return $finalData;
     }
@@ -172,11 +175,14 @@ class Product
 
         $finalData['arLink'] = get_the_permalink();
 
+        $show_model_instead_thumbnail = $meta('show_model_instead_thumbnail', false, true);
+
+        $finalData =  apply_filters('bp3d_woocommerce_model_attribute', $finalData);
+
         ob_start();
 
-
 ?>
-        <div class="modelViewerBlock wooCustomSelector product_<?php echo esc_attr($class) ?>" data-attributes='<?php echo esc_attr(wp_json_encode($finalData)); ?>'></div>
+        <div class="modelViewerBlock wooCustomSelector product_<?php echo esc_attr($class) ?> <?php echo esc_attr($meta('show_model_instead_thumbnail', false, true) ? 'active' : ''); ?>" data-attributes='<?php echo esc_attr(wp_json_encode($finalData)); ?>'></div>
 
 <?php
 

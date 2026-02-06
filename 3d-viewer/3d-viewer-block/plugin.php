@@ -29,7 +29,7 @@ class TDVB3DViewerBlock
 
 	function enqueueBlockAssets()
 	{
-		wp_register_script('bp3d-model-viewer', BP3D_DIR . 'public/js/model-viewer.min.js', [], BP3D_VERSION, true);
+		wp_register_script('bp3d-model-viewer', BP3D_DIR . 'public/js/model-viewer.latest.min.js', [], BP3D_VERSION, true);
 	}
 
 	function scriptLoaderTag($tag, $handle, $src)

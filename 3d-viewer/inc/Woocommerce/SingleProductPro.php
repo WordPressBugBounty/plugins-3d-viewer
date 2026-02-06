@@ -3,6 +3,7 @@
 namespace BP3D\Woocommerce;
 
 use BP3D\Helper\Utils;
+use finfo;
 
 class SingleProductPro extends SingleProduct
 {
@@ -68,22 +69,22 @@ class SingleProductPro extends SingleProduct
                 'arEnabled' =>  isset($model['enable_ar']) ? $model['enable_ar'] === '1' : false,
                 'modelISOSrc' =>  $model['model_iso_src'] ?? '',
             ]];
-?>
-            <div class="bp3dv-model-main" id="<?php echo esc_attr($model['target']) ?>" data-selector="<?php echo esc_attr($model['selector']) ?>">
-                <div class="bp3dv-model-inner">
-                    <div class="close-btn">&times;</div>
-                    <div class="bp3dv-model-wrap">
-                        <div class="pop-up-content-wrap">
-                            <div class="modelViewerBlock wooCustomSelector wp-block-b3dviewer-modelviewer" data-type="popup" data-attributes='<?php echo esc_attr(wp_json_encode($finalData)); ?>'> </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-overlay"></div>
+?>ki kora hosse
+<div class="bp3dv-model-main" id="<?php echo esc_attr($model['target']) ?>" data-selector="<?php echo esc_attr($model['selector']) ?>">
+    <div class="bp3dv-model-inner">
+        <div class="close-btn">&times;</div>
+        <div class="bp3dv-model-wrap">
+            <div class="pop-up-content-wrap">
+                <div class="modelViewerBlock wooCustomSelector wp-block-b3dviewer-modelviewer" data-type="popup" data-attributes='<?php echo esc_attr(wp_json_encode($finalData)); ?>'> </div>
             </div>
-            <script>
+        </div>
+    </div>
+    <div class="bg-overlay"></div>
+</div>
+<script>
 
-            </script>
-        <?php
+</script>
+<?php
         }
     }
 
@@ -125,6 +126,18 @@ class SingleProductPro extends SingleProduct
             $finalData['currentViewer'] = $model['popupCurrentViewer'] ?? 'modelViewer';
             $finalData['isPagination'] = false;
             $finalData['isNavigation'] = false;
+            $finalData['preload'] = 'auto';
+            $finalData['mouseControl'] = true;
+            $finalData['styles'] = [
+                'width' => '100%',
+                'height' => '350px',
+                'bgColor' => $meta('bp_model_bg', 'transparent'),
+            ];
+            $finalData['multiple'] = true;
+            $finalData['model'] =  [ // this will not work because multiple is enabled by default
+                "modelUrl" => '',
+                "poster" =>  ''
+            ];
 
             $finalData['models'] = [[
                 'modelUrl' => $model['model_src'],
@@ -134,21 +147,31 @@ class SingleProductPro extends SingleProduct
                 'arEnabled' =>  isset($model['enable_ar']) ? $model['enable_ar'] === '1' : false,
                 'modelISOSrc' =>  $model['model_iso_src'] ?? '',
             ]];
-        ?>
-            <div class="bp3dv-model-main" id="<?php echo esc_attr($model['target']) ?>" data-selector="<?php echo esc_attr($model['selector']) ?>">
-                <div class="bp3dv-model-inner">
-                    <div class="close-btn">&times;</div>
-                    <div class="bp3dv-model-wrap">
-                        <div class="pop-up-content-wrap">
-                            <div class="modelViewerBlock wooCustomSelector wp-block-b3dviewer-modelviewer" data-type="popup" data-attributes='<?php echo esc_attr(wp_json_encode($finalData)); ?>'> </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-overlay"></div>
-            </div>
-            <script>
 
-            </script>
+            $finalData["O3DVSettings"] = [
+                'isFullscreen' => true,
+                "isNavigation" => $meta('show_arrows', false, true),
+                'mouseControl' => true,
+                // "zoom" =>  self::isset($modelData, 'bp_3d_zooming',  self::isset($options, 'bp_3d_zooming', "1")) === "1", // done
+                "zoom" => $meta('bp_3d_zooming', true, true), // done
+                "isPagination" => $meta('show_thumbs', false, true)
+            ];
+
+?>
+    <div class="bp3dv-model-main" id="<?php echo esc_attr($model['target']) ?>" data-selector="<?php echo esc_attr($model['selector']) ?>">
+        <div class="bp3dv-model-inner">
+            <div class="close-btn">&times;</div>
+            <div class="bp3dv-model-wrap">
+                <div class="pop-up-content-wrap">
+                    <div class="modelViewerBlock wooCustomSelector wp-block-b3dviewer-modelviewer" data-type="popup" data-attributes='<?php echo esc_attr(wp_json_encode($finalData)); ?>'> </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-overlay"></div>
+    </div>
+    <script>
+
+    </script>
 <?php
         }
     }

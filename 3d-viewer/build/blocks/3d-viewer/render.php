@@ -8,6 +8,8 @@ if ($attributes['currentViewer'] == 'modelViewer') {
     wp_enqueue_script('bp3d-o3dviewer');
 }
 
+$attributes = apply_filters('bp3d_gutenberg_model_attribute', $attributes);
+
 ?>
 
 <div
