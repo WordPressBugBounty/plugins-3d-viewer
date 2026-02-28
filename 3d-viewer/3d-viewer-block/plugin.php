@@ -43,21 +43,15 @@ class TDVB3DViewerBlock
 
 	function bp3d_pipe_checker()
 	{
-		$nonce = $_GET['_wpnonce'];
+		$nonce = sanitize_text_field(wp_unslash($_GET['_wpnonce'] ?? ''));
 
 		if (!wp_verify_nonce($nonce, 'wp_ajax')) {
-			echo wp_send_json([
-				'success' => false
-			]);
-			wp_die();
+			wp_send_json_error();
 		}
 
-		echo wp_send_json([
-			'data' => [
-				'isPipe' => false
-			]
+		wp_send_json_success([
+			'isPipe' => false
 		]);
-		wp_die();
 	}
 
 	//Allow some additional file types for upload

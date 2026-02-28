@@ -2,6 +2,8 @@
 
 namespace BP3D\Template;
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 use BP3D\Helper\Utils;
 
 class ModelViewer{
@@ -11,7 +13,6 @@ class ModelViewer{
         ob_start();
 
         ?>
-        <!-- <h2>Nothing to hide</h2> -->
         <div id="<?php echo esc_attr($data['uniqueId']) ?>" class="b3dviewer align<?php echo esc_attr(self::i($data, 'align')) ?> <?php echo esc_attr($data['woo'] ? ' woocommerce' : '') ?>" > 
             <div id="<?php echo esc_attr(self::i($data['additional'], 'ID')) ?>" class="bp_model_parent <?php echo esc_attr(self::i($data['additional'], 'Class')) ?> b3dviewer-wrapper <?php echo esc_attr(self::i($data, 'elementor', false) ? 'elementor': '') ?>">
                 <style><?php echo esc_html($data['stylesheet']) ?></style>

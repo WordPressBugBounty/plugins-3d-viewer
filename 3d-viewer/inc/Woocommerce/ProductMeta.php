@@ -2,6 +2,9 @@
 
 namespace BP3D\Woocommerce;
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+
 class ProductMeta
 {
 

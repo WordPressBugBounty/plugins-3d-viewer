@@ -44,7 +44,7 @@ class ModelViewer extends \Elementor\Widget_Base
 	//  */
 	public function get_style_depends()
 	{
-		return [];
+		return ['bp3d-frontend'];
 	}
 
 	protected function register_controls()
@@ -651,12 +651,12 @@ class ModelViewer extends \Elementor\Widget_Base
 			wp_enqueue_script('bp3d-o3dviewer');
 		}
 
-		wp_enqueue_script('bp3d-public');
-		wp_enqueue_style('bp3d-custom-style');
+		// wp_enqueue_script('bp3d-public');
+		// wp_enqueue_style('bp3d-frontend');
 		// wp_enqueue_style('bp3d-public');
 
 
-		// echo \BP3D\Template\ModelViewer::html($data);
+		// echo \BP3D\Template\ModelViewer::html($finalData);
 
 	}
 }

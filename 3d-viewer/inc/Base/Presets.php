@@ -2,6 +2,8 @@
 
 namespace BP3D\Base;
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 class Presets
 {
 

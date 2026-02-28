@@ -2,6 +2,8 @@
 
 namespace BP3D\Woocommerce;
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 use BP3D\Helper\Utils;
 use finfo;
 
@@ -69,7 +71,7 @@ class SingleProductPro extends SingleProduct
                 'arEnabled' =>  isset($model['enable_ar']) ? $model['enable_ar'] === '1' : false,
                 'modelISOSrc' =>  $model['model_iso_src'] ?? '',
             ]];
-?>ki kora hosse
+?>
 <div class="bp3dv-model-main" id="<?php echo esc_attr($model['target']) ?>" data-selector="<?php echo esc_attr($model['selector']) ?>">
     <div class="bp3dv-model-inner">
         <div class="close-btn">&times;</div>

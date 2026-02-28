@@ -2,6 +2,8 @@
 
 namespace BP3D\Base;
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 class PostTypePreset
 {
 
@@ -76,7 +78,7 @@ class PostTypePreset
                 'description'     => __('Preset Options.', 'model-viewer'),
                 'public'          => false,
                 'show_ui'         => true,
-                'show_in_menu'    => '3d-viewer',
+                'show_in_menu'    => 'edit.php?post_type=bp3d-model-viewer',
                 'menu_icon'       => 'dashicons-format-image',
                 'query_var'       => true,
                 'rewrite'         => array('slug' => '3d-viewer-template'),

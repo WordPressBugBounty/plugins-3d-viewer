@@ -6,7 +6,7 @@
         <?php 
         if(is_array($attribute)){
             foreach($attribute as $key => $value){ 
-                echo "$key='$value'";
+                echo esc_attr("$key='$value'");
             }
         } ?>
         >

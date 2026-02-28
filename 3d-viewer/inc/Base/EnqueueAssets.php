@@ -2,6 +2,8 @@
 
 namespace BP3D\Base;
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 class EnqueueAssets
 {
 
@@ -43,9 +45,10 @@ class EnqueueAssets
         //script
         wp_register_script('bp3d-admin-script', BP3D_DIR . 'build/admin.js', ['jquery'], BP3D_VERSION, true);
         // style
-        wp_register_style('bp3d-admin-style', BP3D_DIR . 'public/css/admin-style.css', [], BP3D_VERSION);
-        wp_register_style('bp3d-readonly-style', BP3D_DIR . 'public/css/readonly.css', [], BP3D_VERSION);
+        wp_register_style('bp3d-admin-style', BP3D_DIR . 'admin/css/admin-style.css', [], BP3D_VERSION);
+        wp_register_style('bp3d-readonly-style', BP3D_DIR . 'admin/css/readonly.css', [], BP3D_VERSION);
 
+        
         if ($post_type === 'bp3d-model-viewer' || $post_type === 'product') {
             wp_enqueue_style('bp3d-admin-style');
             wp_enqueue_style('bp3d-readonly-style');
@@ -74,6 +77,8 @@ class EnqueueAssets
         ], BP3D_VERSION, true);
 
         wp_register_style('bp3d-visual-editor', BP3D_DIR . 'build/visual-editor/index.css', ['b3dviewer-modelviewer-editor-style', 'wp-components', 'wp-block-library', 'wp-block-editor', 'wp-edit-blocks', 'wp-format-library'], BP3D_VERSION, 'all');
+
+        
     }
 
     public function custom_css()

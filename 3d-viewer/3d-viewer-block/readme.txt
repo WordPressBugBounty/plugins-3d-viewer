@@ -3,7 +3,7 @@ Contributors: bplugins, abuhayat, charlescormier
 Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: block, 3d, 3d model, 3d viewer, Gutenberg block
 Requires at least: 6.2+
-Tested up to: 6.8
+Tested up to: 6.9
 Stable tag: 1.0.8
 Requires PHP: 7.1
 License: GPLv3 or later

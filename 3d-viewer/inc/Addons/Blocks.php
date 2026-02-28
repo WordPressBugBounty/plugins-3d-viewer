@@ -89,7 +89,7 @@ class Blocks
 
     public function bp3d_pipe_checker()
     {
-        $nonce = sanitize_text_field(isset($_GET['_wpnonce']) ? wp_unslash($_GET['_wpnonce']) : '');
+        $nonce = sanitize_text_field(wp_unslash($_GET['_wpnonce'] ?? ''));
 
         if (!wp_verify_nonce($nonce, 'wp_ajax')) {
             wp_send_json_error();
@@ -102,12 +102,12 @@ class Blocks
 
     public function bp3d_preset_handler()
     {
-        if (!wp_verify_nonce(sanitize_text_field($_POST['_wpnonce']), 'wp_ajax_pb3d_preset')) {
+        if (!wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['_wpnonce'] ?? '')), 'wp_ajax_pb3d_preset')) {
             wp_send_json_error('nonce not verified');
         }
 
-        $preset = sanitize_text_field(wp_unslash($_POST['preset']));
-        $post_id = absint(sanitize_text_field(wp_unslash($_POST['postId'])));
+        $preset = sanitize_text_field(wp_unslash($_POST['preset'] ?? ''));
+        $post_id = absint(sanitize_text_field(wp_unslash($_POST['postId'] ?? '')));
 
         if (!$post_id) {
             wp_send_json_error('post id not found');

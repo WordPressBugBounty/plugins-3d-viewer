@@ -2,6 +2,8 @@
 
 namespace BP3D\Shortcode;
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 use BP3D\Helper\Utils;
 use BP3D\Helper\Block;
 use BP3D\Woocommerce\Product;
@@ -143,6 +145,7 @@ class Shortcode
             "loadingPercentage" =>  $meta('bp_model_progress_percent', "0", true),
             "progressBar" =>  $meta('bp_3d_progressbar', "0", true),
             "rotate" => $meta('bp_model_angle', "0", true),
+            "rotateDelay" => (int) $meta('3d_rotate_delay', "3000"),
             "rotateAlongX" => $meta("angle_property", "0", false, "top"), // $data['angle_property']['top'],
             "rotateAlongY" => $meta('angle_property', "75", false, "right"),
             "exposure" => $meta('3d_exposure'),

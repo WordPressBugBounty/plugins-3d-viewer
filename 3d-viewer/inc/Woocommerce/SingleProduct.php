@@ -2,6 +2,8 @@
 
 namespace BP3D\Woocommerce;
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 use BP3D\Helper\Utils;
 
 class SingleProduct
@@ -21,19 +23,19 @@ class SingleProduct
         add_action('woocommerce_product_thumbnails', [$this, 'woocommerce_product_thumbnails'], 40); // merge with first image
     }
 
-    public function hide_product_gallery()
-    {
-        $settings = Utils::getSettings('_bp3d_settings_');
-        $meta = Utils::getPostMeta(get_the_ID(), '_bp3d_product_');
-        $is_compatible = Utils::isCompatibleTheme();
-        if ($is_compatible) {
-            // return;
-        }
-        if ($meta('viewer_position') === 'replace') {
-            $selector = $settings['gallery'];
-            echo "selector is {$selector}";
-        }
-    }
+    // public function hide_product_gallery()
+    // {
+    //     $settings = Utils::getSettings('_bp3d_settings_');
+    //     $meta = Utils::getPostMeta(get_the_ID(), '_bp3d_product_');
+    //     $is_compatible = Utils::isCompatibleTheme();
+    //     if ($is_compatible) {
+    //         // return;
+    //     }
+    //     if ($meta('viewer_position') === 'replace') {
+    //         $selector = $settings['gallery'];
+    //         echo "selector is {$selector}";
+    //     }
+    // }
 
 
     public function woocommerce_loaded()

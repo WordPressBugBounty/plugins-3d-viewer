@@ -26,11 +26,12 @@ final class AddonsPro
 
 	public function register()
 	{
+		add_action('elementor/widgets/register', [$this, 'init_widgets']);
+		
 		//Register Frontend Script
 		add_action("elementor/frontend/after_register_scripts", [$this, 'frontend_assets_scripts']);
 
 		// // Add Plugin actions
-		add_action('elementor/widgets/register', [$this, 'init_widgets']);
 		add_action('elementor/editor/before_enqueue_scripts', [$this, 'editor_assets_scripts']);
 	}
 
@@ -44,7 +45,8 @@ final class AddonsPro
 			// wp_register_style('bp3d-public', BP3D_DIR . 'build/public.css', [], BP3D_VERSION);
 
 			wp_register_script('bp3d-model-viewer', BP3D_DIR . 'public/js/model-viewer.latest.min.js', [], BP3D_VERSION, true);
-			wp_register_script('bp3d-public', BP3D_DIR . 'build/frontend.js', ['react', 'react-dom', 'jquery'], BP3D_VERSION, true);
+			wp_register_script('bp3d-public', BP3D_DIR . 'build/frontend.js', ['react', 'react-dom', 'jquery', 'elementor-frontend'], BP3D_VERSION, true);
+			wp_register_style('bp3d-frontend', BP3D_DIR . 'build/frontend.css', [],  BP3D_VERSION, 'all');
 		}
 	}
 

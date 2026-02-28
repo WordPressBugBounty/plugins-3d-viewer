@@ -2,7 +2,7 @@
 Contributors: bplugins, abuhayat, shehabulislam, freemius, farazi1
 Tags: 3D model viewer, threejs, widget, model viewer, 360° product view
 Tested up to: 6.9
-Stable tag: 1.8.3
+Stable tag: 1.8.4
 Requires PHP: 7.1
 Donate link: https://www.buymeacoffee.com/abuhayat
 License: GPLv2 or later
@@ -14,6 +14,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 **Instantly Display Interactive 3D Models and 360° Product Image on Your Website – No Code Required**
 
+
 [**3D Viewer**](https://bplugins.com/products/3d-viewer/) | [**Documentation**](https://bplugins.com/docs/3d-viewer/) | [**Pricing**](https://bplugins.com/products/3d-viewer/pricing) | [**Support**](https://bplugins.com/support/) | [**Demo**](https://bplugins.com/products/3d-viewer/#demos)
 
 https://youtube.com/watch?v=_9vKv5pEClM
@@ -24,7 +25,7 @@ The plugin offers features such as touch controls, zoom, pan, auto-rotation, and
 
 In WooCommerce, 3D Viewer facilitates the display of 3D product models, enhancing the user experience by allowing customers to interact with products in three dimensions. The plugin also supports the creation of galleries for multiple product variants.
 
-Designed with performance in mind, 3D Viewer ensures responsive and mobile-friendly rendering of 3D content across all devices.
+Designed with performance in mind, 3D Viewer ensures responsive and mobile-friendly rendering of 3D content across devices.
 
 
 ### Free Features – Everything You Need to Get Started
@@ -230,6 +231,14 @@ No, This plugin only support .glb and .glTF files. Please convert your file to a
 
 == Changelog ==
 
+= 1.8.4 - 28 Feb, 2026  =
+New: 4 step Setup Wizard after installation.
+Fixed: WooCommerce variation not working.
+Fixed: Shadow not working.
+Fixed: Rotation Delay not working.
+Update: Added Info text with all the controls.
+Update: Remove affiliate and contact Submenu.
+Update: Minimize shortcode area (Classic Shortcode Generator).
 
 = 1.8.3 - 17 Dec, 2025  =
 Fixed: new shortcodes were not working properly.

@@ -1,18 +1,21 @@
 <?php
 
+if (! defined('ABSPATH')) exit;
+
 if (!class_exists('BP3DAdmin')) {
 	class BP3DAdmin
 	{
 		function __construct()
 		{
 			add_action('admin_enqueue_scripts', [$this, 'adminEnqueueScripts']);
-			add_action('admin_menu', [$this, 'adminMenu']);
+			add_action('admin_menu', [$this, 'adminMenu'], 15);
+			add_action('admin_head', [$this, 'admin_head']);
 		}
 
 		function adminEnqueueScripts($hook)
 		{
 			if (str_contains($hook, '3d-viewer')) {
-				wp_enqueue_style('bp3d-admin-style', BP3D_DIR . 'build/dashboard.css', [], BP3D_VERSION);
+				wp_enqueue_style('bp3d-dashboard', BP3D_DIR . 'build/dashboard.css', [], BP3D_VERSION);
 
 				wp_enqueue_script('bp3d-admin-script', BP3D_DIR . 'build/dashboard.js', ['react', 'react-dom',  'wp-components', 'wp-i18n', 'wp-api', 'wp-util', 'lodash', 'wp-media-utils', 'wp-data', 'wp-core-data', 'wp-api-request'], BP3D_VERSION, true);
 				wp_localize_script('bp3d-admin-script', 'bp3dDashboard', [
@@ -24,44 +27,24 @@ if (!class_exists('BP3DAdmin')) {
 		function adminMenu()
 		{
 
-			add_menu_page(
-				__('3D Viewer', 'model-viewer'),
-				__('3D Viewer', 'model-viewer'),
-				'manage_options',
-				'3d-viewer',
-				[$this, 'dashboardPage'],
-				'dashicons-format-image',
-				15
-			);
-
 			add_submenu_page(
-				'3d-viewer',
-				__('Dashboard', 'model-viewer'),
-				__('Dashboard', 'model-viewer'),
-				'manage_options',
-				'3d-viewer',
-				[$this, 'dashboardPage'],
-				0
-			);
-
-			add_submenu_page(
-				'3d-viewer',
-				__('Add New', 'model-viewer'),
-				__(' &#8627; Add New', 'model-viewer'),
-				'manage_options',
-				'3d-viewer-add-new',
-				[$this, 'redirectToAddNew'],
-				2
-			);
-
-			add_submenu_page(
-				'3d-viewer',
+				'edit.php?post_type=bp3d-model-viewer',
 				__('Visual Editor', 'model-viewer'),
 				__('Visual Editor', 'model-viewer'),
-				'manage_options',
+				'edit_posts',
 				'3d-viewer-visual-editor',
 				[$this, 'visualEditorPage'],
 				4
+			);
+
+			add_submenu_page(
+				'edit.php?post_type=bp3d-model-viewer',
+				__('Demo and Help - 3D Viewer', 'model-viewer'),
+				'<span style="color: #f18500;">' . __('Help & Demos', 'model-viewer') . '</span>',
+				'edit_posts',
+				'3d-viewer',
+				[$this, 'dashboardPage'],
+				9
 			);
 		}
 
@@ -73,30 +56,17 @@ if (!class_exists('BP3DAdmin')) {
 				data-info='<?php echo esc_attr(wp_json_encode([
 								'version' => BP3D_VERSION,
 								'isPremium' => bp3dv_fs()->can_use_premium_code(),
-								'hasPro' => false
+								'hasPro' => file_exists(BP3D_PATH . '/inc/Base/LicenseActivation.php'),
+								'nonce' => wp_create_nonce('apbCreatePage'),
+								'licenseActiveNonce' => wp_create_nonce('bPlLicenseActivation')
 							])); ?>'></div>
 		<?php }
 
 		function upgradePage()
 		{ ?>
 			<div id='bp3dAdminUpgrade'>Coming soon...</div>
-			<?php }
+		<?php }
 
-		/**	
-		 * Redirect to add new Model Viewer
-		 * */
-		function redirectToAddNew()
-		{
-			if (function_exists('headers_sent') && headers_sent()) {
-			?>
-				<script>
-					window.location.href = "<?php echo esc_url(admin_url('post-new.php?post_type=bp3d-model-viewer')); ?>";
-				</script>
-			<?php
-			} else {
-				wp_redirect(admin_url('post-new.php?post_type=bp3d-model-viewer'));
-			}
-		}
 
 
 		function visualEditorPage()
@@ -106,8 +76,23 @@ if (!class_exists('BP3DAdmin')) {
 			wp_enqueue_media();
 
 			wp_enqueue_style('bp3d-visual-editor');
-			?>
+		?>
 			<div class="wrap" id='bp3dAdminVisualEditor'></div>
+		<?php
+		}
+
+		public function admin_head()
+		{
+		?>
+			<style>
+				.fs-submenu-item.3d-viewer.pricing.upgrade-mode {
+					background: #146ef5;
+					border-radius: 3px;
+					color: #fff;
+					display: inline-block;
+					padding: 9px 20px 9px 18px;
+				}
+			</style>
 <?php
 		}
 	}

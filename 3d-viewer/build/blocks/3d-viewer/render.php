@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 $id = wp_unique_id('bp3d-viewer-');
 

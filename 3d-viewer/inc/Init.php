@@ -11,7 +11,6 @@ class Init
     private static $instance = null;
     private function __construct()
     {
-        add_action('init', [$this, 'i18n']);
         add_action('woocommerce_after_register_post_type', [$this, 'load_woocommerce_files']);
     }
 
@@ -23,19 +22,15 @@ class Init
         return self::$instance;
     }
 
-    public function i18n()
-    {
-        load_plugin_textdomain('model-viewer', false, dirname(plugin_basename(BP3D__FILE__)) . '/languages/');
-    }
-
     public static function get_services()
     {
         return [
-            Base\Activate::class,
             Base\EnqueueAssets::class,
             Base\MenuOrder::class,
             Base\Import::class,
-            Base\ChoosePreferredEditor::class,
+            Base\SetupWizard::class,
+            Base\AdminNotice::class,
+            Base\Ajax::class,
             Shortcode\Shortcode::class,
             Base\ExtendMimeType::class,
             Field\Viewer::class,

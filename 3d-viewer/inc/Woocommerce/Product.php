@@ -2,6 +2,8 @@
 
 namespace BP3D\Woocommerce;
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 use BP3D\Helper\Utils;
 
 class Product

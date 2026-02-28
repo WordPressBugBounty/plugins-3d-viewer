@@ -2,6 +2,8 @@
 
 namespace BP3D\Helper;
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 class Utils
 {
 

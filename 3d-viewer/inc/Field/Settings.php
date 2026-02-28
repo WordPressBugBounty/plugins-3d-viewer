@@ -2,6 +2,9 @@
 
 namespace BP3D\Field;
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+
 class Settings
 {
 
@@ -25,7 +28,7 @@ class Settings
       'menu_title'  => 'Settings',
       'menu_slug'   => '3dviewer-settings',
       'menu_type'   => 'submenu',
-      'menu_parent' => '3d-viewer',
+      'menu_parent' => 'edit.php?post_type=bp3d-model-viewer',
       'theme'       => 'light',
       'framework_title' => __('3D Viewer Settings', 'model-viewer'),
       'menu_position' => 10,
@@ -37,13 +40,19 @@ class Settings
 
     \CSF::createSection($this->prefix, array(
       'title'  => __('Preset', 'model-viewer'),
-      'class'    => 'bp3d-readonly',
+      'subtitle' => 'subtitl',
+      'desc' => 'desc',
       'fields' => array(
+        array(
+					'type' => 'content',
+					'content' => '<div class="bp3d-metabox-upgrade-section">3D Viewer lets you embed interactive 3D models and 360 product views on WordPress sites with almost all 3D file formats. <a class="button button-bplugins" href="' . admin_url('edit.php?post_type=bp3d-model-viewer&page=3d-viewer#/pricing') . '">Upgrade to PRO </a></div>'
+        ),
         array(
           'id'           => 'bpp_3d_width',
           'type'         => 'dimensions',
           'title'        => __('Width', 'model-viewer'),
           'desc'         => __('3D Viewer Width', 'model-viewer'),
+          'class'    => 'bp3d-readonly',
           'default'  => array(
             'width'  => '100',
             'unit'   => '%',
@@ -55,6 +64,7 @@ class Settings
           'type'    => 'dimensions',
           'title'   => __('Height', 'model-viewer'),
           'desc'    => __('3D Viewer height', 'model-viewer'),
+          'class'    => 'bp3d-readonly',
           'units'   => ['px', 'em', 'pt'],
           'default'  => array(
             'height' => '320',
@@ -68,6 +78,7 @@ class Settings
           'title'        => __('Background Color', 'model-viewer'),
           'subtitle'        => __('Set Background Color For 3d Model.If You don\'t need just leave blank. Default : \'transparent color\'', 'model-viewer'),
           'desc'         => __('Choose Your Background Color For Model.', 'model-viewer'),
+          'class'    => 'bp3d-readonly',
           'default'      => 'transparent'
         ),
         array(
@@ -78,6 +89,7 @@ class Settings
           'desc'     => __('Autoplay Feature is for Autoplay Supported Model.', 'model-viewer'),
           'text_on'  => __('Yes', 'model-viewer'),
           'text_off' => __('No', 'model-viewer'),
+          'class'    => 'bp3d-readonly',
           'default'  => false,
         ),
         array(
@@ -98,6 +110,7 @@ class Settings
           'desc'      => __('Choose "Yes" if you want to use preload with poster image.', 'model-viewer'),
           'text_on'   => __('Yes', 'model-viewer'),
           'text_off'  => __('NO', 'model-viewer'),
+          'class'    => 'bp3d-readonly',
           'text_width'  => 60,
           'default'   => false,
         ),
@@ -108,6 +121,7 @@ class Settings
           'desc'     => __('Use The Moving controls to enable user interaction', 'model-viewer'),
           'text_on'  => __('Yes', 'model-viewer'),
           'text_off' => __('No', 'model-viewer'),
+          'class'    => 'bp3d-readonly',
           'default' => true,
 
         ),
@@ -119,6 +133,7 @@ class Settings
           'desc'      => __('If you wish to disable zooming behaviour please choose No.', 'model-viewer'),
           'text_on'   => __('Yes', 'model-viewer'),
           'text_off'  => __('No', 'model-viewer'),
+          'class'    => 'bp3d-readonly',
           'text_width'  => 60,
           'default'   => true,
         ),
@@ -131,6 +146,7 @@ class Settings
           'text_on'   => __('Yes', 'model-viewer'),
           'text_off'  => __('No', 'model-viewer'),
           'text_width'  => 60,
+          'class'    => 'bp3d-readonly',
           'default'   => true,
         ),
         array(
@@ -143,6 +159,7 @@ class Settings
             'lazy'  => __('Lazy', 'model-viewer'),
             'eager' => __('Eager', 'model-viewer'),
           ),
+          'class'    => 'bp3d-readonly',
           'default' => 'auto',
         ),
 
@@ -154,6 +171,7 @@ class Settings
           'desc'     => __('Enables the auto-rotation of the model.', 'model-viewer'),
           'text_on'  => __('Yes', 'model-viewer'),
           'text_off' => __('No', 'model-viewer'),
+          'class'    => 'bp3d-readonly',
           'default'  => true,
 
         ),
@@ -166,15 +184,17 @@ class Settings
           'min'         => 0,
           'max'         => 180,
           'default' => 30,
+          'class'    => 'bp3d-readonly',
           'dependency' => array('bp_3d_rotate', '==', true),
         ),
         array(
           'id'       => '3dp_rotate_delay',
           'type'     => 'number',
-          'title'    => __('Auto Rotation Delay', 'model-viewer'),
+          'title'    => __('Auto Rotation Delay (ms)', 'model-viewer'),
           'subtitle' => __('After a period of time auto rotation will start', 'model-viewer'),
           'desc'     => __('Sets the delay before auto-rotation begins. The format of the value is a number in milliseconds.(1000ms = 1s)', 'model-viewer'),
           'default' => 3000,
+          'class'    => 'bp3d-readonly',
           'dependency' => array('bp_3d_rotate', '==', true),
         ),
         array(
@@ -185,6 +205,7 @@ class Settings
           'desc'     => __('Default: "Yes / Enable"', 'model-viewer'),
           'text_on'  => __('Yes', 'model-viewer'),
           'text_off' => __('No', 'model-viewer'),
+          'class'    => 'bp3d-readonly',
           'default'  => true,
         ),
       ) // End fields
@@ -199,6 +220,10 @@ class Settings
       'title'  => __('Woocommerce Settings', 'model-viewer'),
       'fields' => array(
         // 3D Model Options
+        array(
+					'type' => 'content',
+					'content' => '<div class="bp3d-metabox-upgrade-section">3D Viewer lets you embed interactive 3D models and 360 product views on WordPress sites with almost all 3D file formats. <a class="button button-bplugins" href="' . admin_url('edit.php?post_type=bp3d-model-viewer&page=3d-viewer#/pricing') . '">Upgrade to PRO </a></div>'
+        ),
         array(
           'id'       => '3d_woo_switcher',
           'type'      => 'switcher',
@@ -301,7 +326,7 @@ class Settings
         array(
           'id'       => '3d_rotate_delay',
           'type'     => 'number',
-          'title'    => __('Auto Rotation Delay', 'model-viewer'),
+          'title'    => __('Auto Rotation Delay (ms)', 'model-viewer'),
           'subtitle' => __('After a period of time auto rotation will start', 'model-viewer'),
           'desc'     => __('Sets the delay before auto-rotation begins. The format of the value is a number in milliseconds.(1000ms = 1s)', 'model-viewer'),
           'default' => 3000,
