@@ -2,7 +2,7 @@
 
 namespace BP3D\Base;
 
-if ( ! defined( 'ABSPATH' ) ) exit;
+if (! defined('ABSPATH')) exit;
 
 class PostTypeModelViewer
 {
@@ -123,7 +123,7 @@ class PostTypeModelViewer
                 'public'          => false,
                 'show_ui'         => true,
                 // 'show_in_menu'    => '3d-viewer',
-                'menu_icon'       => 'dashicons-format-image',
+                'menu_icon'       => BP3D_DIR . 'admin/images/logo.svg',
                 'query_var'       => true,
                 'rewrite'         => array('slug' => 'model-viewer'),
                 'capability_type' => 'post',
@@ -185,29 +185,33 @@ class PostTypeModelViewer
         return $metaboxs;
     }
 
- 
 
-    function bp3d_shortcode_area(){
 
-        if($this->post_type != get_post_type()){
+    function bp3d_shortcode_area()
+    {
+
+        if ($this->post_type != get_post_type()) {
             return;
         }
         global $post;
         $id = $post->ID;
 
         $shortcode = "[3d_viewer id='" . esc_attr($id) . "']";
-        ?>
+?>
         <div class="bp3d_shortcode_area_after_title">
             <label><?php esc_html_e('Copy and paste this shortcode into your posts, pages and widget', 'model-viewer'); ?></label>
-           <div class="shortcode_area">
-             <button class="button button-bplugins button-large bp3d_shortcode_copy_btn" data-clipboard-text="<?php echo esc_attr($shortcode) ?>"><?php echo esc_html($shortcode); ?></button>
-             <svg class='bp3d_shortcode_copy_icon' data-clipboard-text='[3d_viewer id="<?php echo esc_attr($post->ID) ?>"]' width='22px' height='22px' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'> <path d='M8 4V16C8 17.1046 8.89543 18 10 18L18 18C19.1046 18 20 17.1046 20 16V7.24162C20 6.7034 19.7831 6.18789 19.3982 5.81161L16.0829 2.56999C15.7092 2.2046 15.2074 2 14.6847 2H10C8.89543 2 8 2.89543 8 4Z' stroke='#000000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/> <path d='M16 18V20C16 21.1046 15.1046 22 14 22H6C4.89543 22 4 21.1046 4 20V9C4 7.89543 4.89543 7 6 7H8' stroke='#000000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/> </svg>
-           </div>
+            <div class="shortcode_area">
+                <button class="button button-bplugins button-large bp3d_shortcode_copy_btn" data-clipboard-text="<?php echo esc_attr($shortcode) ?>"><?php echo esc_html($shortcode); ?></button>
+                <svg class='bp3d_shortcode_copy_icon' data-clipboard-text='[3d_viewer id="<?php echo esc_attr($post->ID) ?>"]' width='22px' height='22px' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                    <path d='M8 4V16C8 17.1046 8.89543 18 10 18L18 18C19.1046 18 20 17.1046 20 16V7.24162C20 6.7034 19.7831 6.18789 19.3982 5.81161L16.0829 2.56999C15.7092 2.2046 15.2074 2 14.6847 2H10C8.89543 2 8 2.89543 8 4Z' stroke='#000000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' />
+                    <path d='M16 18V20C16 21.1046 15.1046 22 14 22H6C4.89543 22 4 21.1046 4 20V9C4 7.89543 4.89543 7 6 7H8' stroke='#000000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' />
+                </svg>
+            </div>
         </div>
-        <?php
+<?php
     }
 
-    
+
 
     // Add a "Duplicate" link to the action links for a custom post type
     function add_duplicate_post_link($actions, $post)
@@ -221,7 +225,7 @@ class PostTypeModelViewer
     // Handle the duplication process when the "Duplicate" link is clicked
     function duplicate_post_action()
     {
-        if(!wp_verify_nonce(sanitize_text_field(wp_unslash($_REQUEST['duplicate_nonce'] ?? '')), basename(__FILE__))) {
+        if (!wp_verify_nonce(sanitize_text_field(wp_unslash($_REQUEST['duplicate_nonce'] ?? '')), basename(__FILE__))) {
             wp_die('No post to duplicate has been supplied!');
         }
 

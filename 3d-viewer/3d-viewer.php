@@ -4,7 +4,7 @@
  * Plugin Name: 3D Viewer – Display Interactive 3D Models
  * Plugin URI:  https://bplugins.com/
  * Description: Easily display interactive 3D models on the web. Supported File type .glb, .gltf,obj 3ds stl ply off 3dm fbx dae wrl 3mf amf ifc brep step iges fcstd bim
- * Version: 1.8.4
+ * Version: 1.8.5
  * Author: bPlugins
  * Author URI: http://bplugins.com
  * License: GPLv2 or later
@@ -36,7 +36,7 @@ if ( function_exists( 'bp3dv_fs' ) ) {
     if ( isset( $_SERVER['HTTP_HOST'] ) && $_SERVER['HTTP_HOST'] === 'dev.local' ) {
         define( 'BP3D_VERSION', time() );
     } else {
-        define( 'BP3D_VERSION', '1.8.4' );
+        define( 'BP3D_VERSION', '1.8.5' );
     }
     defined( 'BP3D_DIR' ) or define( 'BP3D_DIR', plugin_dir_url( __FILE__ ) );
     defined( 'BP3D_PATH' ) or define( 'BP3D_PATH', plugin_dir_path( __FILE__ ) );
@@ -130,18 +130,4 @@ if ( function_exists( 'bp3dv_fs' ) ) {
 
         BP3D::get_instance();
     }
-    add_filter(
-        'plugin_row_meta',
-        function ( $plugin_meta, $plugin_file ) {
-            if ( $plugin_file == '3d-viewer/3d-viewer.php' && time() < strtotime( '2025-12-06' ) ) {
-                $new_links = array(
-                    'deal' => "<a href='https://bplugins.com/coupons/?from=plugins.php&plugin=3d-viewer' target='_blank' style='font-weight: 600; color: #146ef5;'>🎉 Black Friday Sale - Get up to 80% OFF Now!</a>",
-                );
-                $plugin_meta = array_merge( $plugin_meta, $new_links );
-            }
-            return $plugin_meta;
-        },
-        10,
-        2
-    );
 }

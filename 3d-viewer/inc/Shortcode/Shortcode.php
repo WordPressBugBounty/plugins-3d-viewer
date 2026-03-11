@@ -71,7 +71,27 @@ class Shortcode
         $finalData =  apply_filters('bp3d_classic_model_attribute', $finalData);
 ?>
 
-        <div class="modelViewerBlock" data-attributes='<?php echo esc_attr(wp_json_encode($finalData)) ?>'></div>
+        <div class="modelViewerBlock" data-attributes='<?php echo esc_attr(wp_json_encode($finalData)) ?>'>
+            <div class="bp3d_backup_view" style="display: none;">
+
+                <?php if(current_user_can('manage_options')) { ?>
+                    <p><b>Admin message:</b> Something went wrong. the model is not working perfectly. <a target="_blank" href="https://bplugins.com/contact/">Get Support</p>
+                    <?php } ?>
+                    <model-viewer camera-controls src="<?php echo esc_url($finalData['model']['modelUrl'] ?? '') ?>" style="height: 350px;"></model-viewer>
+            </div>
+            <script>
+                setTimeout(() => {
+                    let backupModels = document.querySelectorAll('.bp3d_backup_view');
+                    if(backupModels.length > 0){
+                        backupModels.forEach(element => {
+                            if(element){
+                                element.style.display = 'block';
+                            }
+                        });
+                    }
+                }, 5000);
+            </script>
+        </div>
 
 <?php
 

@@ -42,27 +42,17 @@ class Blocks
         // public
         wp_register_style('bp3d-custom-style', BP3D_DIR . 'public/css/custom-style.css', [],  BP3D_VERSION);
         wp_register_style('bp3d-frontend', BP3D_DIR . 'build/frontend.css', [],  BP3D_VERSION, 'all');
-        // wp_register_style('bp3d-public', BP3D_DIR . 'build/public.css', ['bp3d-custom-style'], BP3D_VERSION); // does not need to be loaded
-        // wp_register_style('bp3d-block', BP3D_DIR . 'build/block.css', ['bp3d-public'], BP3D_VERSION);
 
         wp_register_script('bp3d-3d-viewer', BP3D_DIR . 'build/3d-viewer.js', [], '1.0.0', true);
         wp_register_script('bp3d-o3dviewer', BP3D_DIR . 'public/js/o3dv.min.js', [], BP3D_VERSION, true);
         wp_register_script('bp3d-model-viewer', BP3D_DIR . 'public/js/model-viewer.latest.min.js', [], BP3D_VERSION, true);
         wp_register_script('bp3d-public', BP3D_DIR . 'build/frontend.js', ['react', 'react-dom', 'jquery'], BP3D_VERSION, true);
 
-        // wp_register_script('bp3d-front-end', BP3D_DIR . 'build/3d-viewer-frontend.js', ['react', 'react-dom'], BP3D_VERSION, true);
-
-        // wp_register_script('bp3d-block', BP3D_DIR . 'dist/block.js', ['bp3d-public', 'bp3d-o3dviewer', 'lodash'], BP3D_VERSION, true);
 
         wp_localize_script('b3dviewer-modelviewer-view-script', 'bp3dBlock', [
             'modelViewerSrc' => BP3D_DIR . 'public/js/model-viewer.latest.min.js',
             'o3dviewerSrc' => BP3D_DIR . 'public/js/o3dv.min.js'
         ]);
-
-        // wp_localize_script('bp3d-front-end', 'bp3dBlock', [
-        //     'modelViewerSrc' => BP3D_DIR . 'public/js/model-viewer.latest.min.js',
-        //     'o3dviewerSrc' => BP3D_DIR . 'public/js/o3dv.min.js'
-        // ]);
 
         $settings = Utils::getSettings('_bp3d_settings_', []);
 
@@ -89,7 +79,7 @@ class Blocks
 
     public function bp3d_pipe_checker()
     {
-        $nonce = sanitize_text_field(wp_unslash($_GET['_wpnonce'] ?? ''));
+        $nonce = sanitize_text_field(wp_unslash($_GET['_wpnonce'] ?? $_POST['_wpnonce'] ?? ''));
 
         if (!wp_verify_nonce($nonce, 'wp_ajax')) {
             wp_send_json_error();
@@ -102,15 +92,15 @@ class Blocks
 
     public function bp3d_preset_handler()
     {
-        if (!wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['_wpnonce'] ?? '')), 'wp_ajax_pb3d_preset')) {
-            wp_send_json_error('nonce not verified');
+        if (!wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['_wpnonce'] ?? '')), 'wp_ajax_pb3d_preset') || !current_user_can('edit_posts')) {
+            wp_send_json_error(__('You are not authorized to perform this action.', 'model-viewer'));
         }
 
         $preset = sanitize_text_field(wp_unslash($_POST['preset'] ?? ''));
         $post_id = absint(sanitize_text_field(wp_unslash($_POST['postId'] ?? '')));
 
         if (!$post_id) {
-            wp_send_json_error('post id not found');
+            wp_send_json_error(__('Post id not found', 'model-viewer'));
         }
         if (!$preset) {
             $preset = get_post_meta($post_id, '_bp3d_preset', true);

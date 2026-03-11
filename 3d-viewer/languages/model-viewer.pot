@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: 3D Viewer – Display Interactive 3D Models 1.8.4\n"
+"Project-Id-Version: 3D Viewer – Display Interactive 3D Models 1.8.5\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/3d-viewer\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-02-26T09:09:11+00:00\n"
+"POT-Creation-Date: 2026-03-11T03:35:21+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: model-viewer\n"
@@ -37,6 +37,14 @@ msgstr ""
 #. Author URI of the plugin
 #: 3d-viewer.php
 msgid "http://bplugins.com"
+msgstr ""
+
+#: inc/Addons/Blocks.php:96
+msgid "You are not authorized to perform this action."
+msgstr ""
+
+#: inc/Addons/Blocks.php:103
+msgid "Post id not found"
 msgstr ""
 
 #: inc/Addons/BP3DProductModel.php:19
@@ -287,7 +295,7 @@ msgstr ""
 msgid "3D Viewer Options."
 msgstr ""
 
-#: inc/Base/PostTypeModelViewer.php:201
+#: inc/Base/PostTypeModelViewer.php:202
 msgid "Copy and paste this shortcode into your posts, pages and widget"
 msgstr ""
 

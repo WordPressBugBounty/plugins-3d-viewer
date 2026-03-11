@@ -2,7 +2,7 @@
 Contributors: bplugins, abuhayat, shehabulislam, freemius, farazi1
 Tags: 3D model viewer, threejs, widget, model viewer, 360° product view
 Tested up to: 6.9
-Stable tag: 1.8.4
+Stable tag: 1.8.5
 Requires PHP: 7.1
 Donate link: https://www.buymeacoffee.com/abuhayat
 License: GPLv2 or later
@@ -231,6 +231,10 @@ No, This plugin only support .glb and .glTF files. Please convert your file to a
 
 == Changelog ==
 
+= 1.8.5 - 10 Mar, 2026  =
+Fixed: Stl File does not work
+Fixed: Does not work on Elementor Page Builder
+
 = 1.8.4 - 28 Feb, 2026  =
 New: 4 step Setup Wizard after installation.
 Fixed: WooCommerce variation not working.
@@ -238,7 +242,7 @@ Fixed: Shadow not working.
 Fixed: Rotation Delay not working.
 Update: Added Info text with all the controls.
 Update: Remove affiliate and contact Submenu.
-Update: Minimize shortcode area (Classic Shortcode Generator).
+Update: Minimize Shortcode area (Classic Shortcode Generator).
 
 = 1.8.3 - 17 Dec, 2025  =
 Fixed: new shortcodes were not working properly.

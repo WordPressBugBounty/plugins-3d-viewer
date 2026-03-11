@@ -647,16 +647,8 @@ class ModelViewer extends \Elementor\Widget_Base
 
 
 		if (is_admin()) {
-			// wp_enqueue_script('bp3d-model-viewer');
 			wp_enqueue_script('bp3d-o3dviewer');
 		}
-
-		// wp_enqueue_script('bp3d-public');
-		// wp_enqueue_style('bp3d-frontend');
-		// wp_enqueue_style('bp3d-public');
-
-
-		// echo \BP3D\Template\ModelViewer::html($finalData);
 
 	}
 }
