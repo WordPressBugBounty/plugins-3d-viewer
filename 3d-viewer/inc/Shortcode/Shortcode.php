@@ -72,11 +72,7 @@ class Shortcode
 ?>
 
         <div class="modelViewerBlock" data-attributes='<?php echo esc_attr(wp_json_encode($finalData)) ?>'>
-            <div class="bp3d_backup_view" style="display: none;">
-
-                <?php if(current_user_can('manage_options')) { ?>
-                    <p><b>Admin message:</b> Something went wrong. the model is not working perfectly. <a target="_blank" href="https://bplugins.com/contact/">Get Support</p>
-                    <?php } ?>
+            <div class="bp3d_backup_view" style="display: none;height:350px;">
                     <model-viewer camera-controls src="<?php echo esc_url($finalData['model']['modelUrl'] ?? '') ?>" style="height: 350px;"></model-viewer>
             </div>
             <script>
@@ -86,6 +82,16 @@ class Shortcode
                         backupModels.forEach(element => {
                             if(element){
                                 element.style.display = 'block';
+                                setTimeout(() => {
+                                    let adminMessages = document.querySelectorAll('.bp3d_admin_message');
+                                    if(adminMessages.length > 0){
+                                        adminMessages.forEach(adminMessage => {
+                                            if(adminMessage){
+                                                adminMessage.style.display = 'block';
+                                            }
+                                        });
+                                    }
+                                }, 5000);
                             }
                         });
                     }
