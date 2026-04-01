@@ -22,7 +22,8 @@ class TDVB3DViewerBlock
 		add_filter('upload_mimes', [$this, 'uploadMimes']);
 		if (version_compare($GLOBALS['wp_version'], '5.1') >= 0) {
 			add_filter('wp_check_filetype_and_ext', [$this, 'wpCheckFiletypeAndExt'], 10, 5);
-		} else {
+		}
+		else {
 			add_filter('wp_check_filetype_and_ext', [$this, 'wpCheckFiletypeAndExt'], 10, 4);
 		}
 	}
@@ -50,7 +51,7 @@ class TDVB3DViewerBlock
 		}
 
 		wp_send_json_success([
-			'isPipe' => false
+			'isPipe' => true
 		]);
 	}
 
@@ -70,7 +71,8 @@ class TDVB3DViewerBlock
 
 		if ($f_exp_count <= 1) {
 			return $data;
-		} else {
+		}
+		else {
 			$f_name = $f_sp[0];
 			$ext = $f_sp[$f_exp_count - 1];
 		}
@@ -79,7 +81,8 @@ class TDVB3DViewerBlock
 			$type = 'model/gltf-binary';
 			$proper_filename = '';
 			return compact('ext', 'type', 'proper_filename');
-		} else {
+		}
+		else {
 			return $data;
 		}
 	}

@@ -1,97 +1,131 @@
 <?php
 
+
+
 namespace BP3D\Helper;
 
-if ( ! defined( 'ABSPATH' ) ) exit;
+if (!defined('ABSPATH')) {
+    exit;
+}
 
+/**
+ * General utility functions for the 3D Viewer plugin.
+ *
+ * Provides helper methods for post meta access, settings retrieval,
+ * color conversion, theme compatibility, and CSS class generation.
+ */
 class Utils
 {
+    public static ?string $theme_name = null;
 
-    public static $theme_name = null;
-
-    function __construct()
+    public function __construct()
     {
         self::$theme_name = wp_get_theme()->name;
     }
 
-    public static function isset($array, $key, $default = false)
+    /**
+     * Safely get a value from an array by key.
+     *
+     * @param  array<string, mixed>  $array
+     * @param  string                $key
+     * @param  mixed                 $default
+     * @return mixed
+     */
+    public static function isset(array $array, string $key, mixed $default = false): mixed
     {
-        if (isset($array[$key])) {
-            return $array[$key];
-        }
-        return $default;
-    }
-
-    public static function isset2($array, $key1, $key2, $default = false)
-    {
-        if (isset($array[$key1][$key2])) {
-            return $array[$key1][$key2];
-        }
-        return $default;
+        return $array[$key] ?? $default;
     }
 
     /**
-     * convert hex to rgb color
+     * Safely get a nested value from a two-level array.
+     *
+     * @param  array<string, mixed>  $array
+     * @param  string                $key1
+     * @param  string                $key2
+     * @param  mixed                 $default
+     * @return mixed
      */
-    public static function hexToRGB($hex, $alpha = false)
+    public static function isset2(array $array, string $key1, string $key2, mixed $default = false): mixed
     {
-        $hex      = str_replace('#', '', $hex);
-        $length   = strlen($hex);
-        $rgb['r'] = hexdec($length == 6 ? substr($hex, 0, 2) : ($length == 3 ? str_repeat(substr($hex, 0, 1), 2) : 0));
-        $rgb['g'] = hexdec($length == 6 ? substr($hex, 2, 2) : ($length == 3 ? str_repeat(substr($hex, 1, 1), 2) : 0));
-        $rgb['b'] = hexdec($length == 6 ? substr($hex, 4, 2) : ($length == 3 ? str_repeat(substr($hex, 2, 1), 2) : 0));
-        if ($alpha) {
+        return $array[$key1][$key2] ?? $default;
+    }
+
+    /**
+     * Convert a hex color string to an RGB array.
+     *
+     * @param  string      $hex    Hex color (with or without #)
+     * @param  float|false $alpha  Optional alpha value
+     * @return array{r: int, g: int, b: int, a?: float}
+     */
+    public static function hexToRGB(string $hex, float|false $alpha = false): array
+    {
+        $hex = str_replace('#', '', $hex);
+        $length = strlen($hex);
+
+        $rgb = [
+            'r' => hexdec($length === 6 ? substr($hex, 0, 2) : ($length === 3 ? str_repeat(substr($hex, 0, 1), 2) : '0')),
+            'g' => hexdec($length === 6 ? substr($hex, 2, 2) : ($length === 3 ? str_repeat(substr($hex, 1, 1), 2) : '0')),
+            'b' => hexdec($length === 6 ? substr($hex, 4, 2) : ($length === 3 ? str_repeat(substr($hex, 2, 1), 2) : '0')),
+        ];
+
+        if ($alpha !== false) {
             $rgb['a'] = $alpha;
         }
+
         return $rgb;
     }
 
     /**
-     * @param string $theme
-     * @return string css selector
+     * Get the WooCommerce product gallery CSS selector for a given theme.
+     *
+     * @param  string $theme  Theme name
+     * @return string CSS selector
      */
-    public static function getCustomSelector($theme)
+    public static function getCustomSelector(string $theme): string
     {
-
         $theme = str_replace(' Child', '', $theme);
 
-        // $common_themes = ['Twenty Twenty-Four', 'Astra', 'Storely', 'OceanWP', 'Woodmart', 'Rafdt'];
-
-        // if(in_array($theme, $common_themes)){
-        //     return '.woocommerce-product-gallery';
-        // }
-
         $selectors = [
-            'Woostify' => '.product-gallery'
+            'Woostify' => '.product-gallery',
         ];
 
         return $selectors[$theme] ?? '.woocommerce-product-gallery';
     }
 
-
     /**
-     * @param string $string
-     * @return string css class
+     * Convert a theme name to a CSS-safe class string.
+     *
+     * @param  string|null $string  Theme name (defaults to current theme)
+     * @return string Lowercase, underscored class name
      */
-    static function getThemeClass($string = null)
+    public static function getThemeClass(?string $string = null): string
     {
-        if (!$string) {
+        if ($string === null) {
             $string = wp_get_theme()->name;
         }
-        // Replace spaces with underscores
-        $string = str_replace(' ', '_', $string);
-        // Convert the string to lowercase
-        $string = strtolower($string);
-        return $string;
+
+        return strtolower(str_replace(' ', '_', $string));
     }
 
-    static function getNotCompatibleThemes()
+    /**
+     * Get a list of themes known to be incompatible with the plugin.
+     *
+     * @return array<int, string>
+     */
+    public static function getNotCompatibleThemes(): array
     {
-
         $settings = get_option('_bp3d_settings_');
-
         $is_not_compatible = $settings['is_not_compatible'] ?? false;
-        $themes = ['Twenty Twenty-Four', 'Twenty Twenty Three', 'Woostify', 'Raft', 'eStore', 'Customify', 'B Technologies'];
+
+        $themes = [
+            'Twenty Twenty-Four',
+            'Twenty Twenty Three',
+            'Woostify',
+            'Raft',
+            'eStore',
+            'Customify',
+            'B Technologies',
+        ];
 
         if ($is_not_compatible) {
             return wp_parse_args([wp_get_theme()->name], $themes);
@@ -100,58 +134,74 @@ class Utils
         return $themes;
     }
 
-    static function isCompatibleTheme()
+    /**
+     * Check if the current theme is compatible with the plugin.
+     */
+    public static function isCompatibleTheme(): bool
     {
-        if (in_array(wp_get_theme()->name, self::getNotCompatibleThemes()) || (function_exists('wp_is_block_theme') && wp_is_block_theme())) {
+        if (
+        in_array(wp_get_theme()->name, self::getNotCompatibleThemes(), true)
+        || (function_exists('wp_is_block_theme') && wp_is_block_theme())
+        ) {
             return false;
         }
+
         return true;
     }
 
-    static function getPostMeta($id, $key)
+    /**
+     * Get a callable accessor for post meta values.
+     *
+     * Returns a closure that provides convenient access to meta fields
+     * with support for default values, boolean casting, and nested keys.
+     *
+     * @param  int    $id   Post ID
+     * @param  string $key  Meta key
+     * @return \Closure(string, mixed=, bool=, string|null=): mixed
+     */
+    public static function getPostMeta(int $id, string $key): \Closure
     {
         $meta = get_post_meta($id, $key, true);
-        return function ($key, $default = null, $is_boolean = false, $key2 = null) use ($meta) {
-            if ($key === 'all') {
-                return $meta;
-            }
-            if ($key2) {
-                $value = isset($meta[$key][$key2]) ? $meta[$key][$key2] : $default;
-            } else {
-                $value = isset($meta[$key]) ? $meta[$key] : $default;
-            }
-            if ($is_boolean) {
-                return $value == '1';
-            }
-            return $value;
-        };
+
+        return self::return_function($meta);
     }
 
-    public static function return_function($meta)
+    /**
+     * Create a closure accessor for an associative array.
+     *
+     * @param  mixed $meta  The data array (or other value)
+     * @return \Closure(string, mixed=, bool=, string|null=): mixed
+     */
+    public static function return_function(mixed $meta): \Closure
     {
-        return function ($key, $default = null, $is_boolean = false, $key2 = null) use ($meta) {
+        return function (string $key, mixed $default = null, bool $is_boolean = false, ?string $key2 = null) use ($meta): mixed {
             if ($key === 'all') {
                 return $meta;
             }
-            if ($key2) {
-                $value = isset($meta[$key][$key2]) ? $meta[$key][$key2] : $default;
-            } else {
-                $value = isset($meta[$key]) ? $meta[$key] : $default;
-            }
 
-            // if (!$value) {
-            //     $value = $default;
-            // }
+            $value = $key2
+                ? ($meta[$key][$key2] ?? $default)
+                : ($meta[$key] ?? $default);
+
             if ($is_boolean) {
                 return $value == '1';
             }
+
             return $value;
         };
     }
 
-    static function getSettings($key, $default = null)
+    /**
+     * Get a callable accessor for a plugin option.
+     *
+     * @param  string     $key      Option key
+     * @param  mixed|null $default  Default value
+     * @return \Closure
+     */
+    public static function getSettings(string $key, mixed $default = null): \Closure
     {
         $settings = get_option($key, $default);
+
         return self::return_function($settings);
     }
 }

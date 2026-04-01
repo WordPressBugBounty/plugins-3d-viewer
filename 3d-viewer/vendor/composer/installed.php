@@ -3,7 +3,7 @@
         'name' => 'rajud/3d-viewer',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '9a3d50064de96a71b9fc0f4d0981449667d0b5a7',
+        'reference' => 'd25b7281f10ee8ef31a44bf054e5853477852e4f',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         'freemius/wordpress-sdk' => array(
-            'pretty_version' => '2.13.0',
-            'version' => '2.13.0.0',
-            'reference' => '3cbe98b5bd0b0fb5ca4df97b8088592737ea4375',
+            'pretty_version' => '2.13.1',
+            'version' => '2.13.1.0',
+            'reference' => '7376c0eca1ae7f92aaba9d3b550bd10affe797ff',
             'type' => 'library',
             'install_path' => __DIR__ . '/../freemius/wordpress-sdk',
             'aliases' => array(),
@@ -22,7 +22,7 @@
         'rajud/3d-viewer' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '9a3d50064de96a71b9fc0f4d0981449667d0b5a7',
+            'reference' => 'd25b7281f10ee8ef31a44bf054e5853477852e4f',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

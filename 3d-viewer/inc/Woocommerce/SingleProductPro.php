@@ -1,38 +1,53 @@
 <?php
 
+
+
 namespace BP3D\Woocommerce;
 
-if ( ! defined( 'ABSPATH' ) ) exit;
+if (!defined('ABSPATH')) {
+    exit;
+}
 
 use BP3D\Helper\Utils;
-use finfo;
 
+/**
+ * WooCommerce single product integration (Pro).
+ *
+ * Extends the free SingleProduct class with popup/modal support
+ * for displaying 3D models in custom popups triggered by selectors.
+ */
 class SingleProductPro extends SingleProduct
 {
+    public string $theme_name = '';
 
-    public $theme_name;
-
-    public function register()
+    /**
+     * Register WooCommerce integration hooks (extends parent).
+     */
+    public function register(): void
     {
         $this->theme_name = wp_get_theme()->name;
-        add_action('wp', [$this, 'woocommerce_loaded']);
-        add_action('wp_footer', [$this, 'wp_woocommerce_theme_not_compatible']);
-        add_action('wp_footer', [$this, 'wp_woocommerce_3d_popups']);
 
-        add_action('bp3d_product_model_before', [$this, 'model']);
-        add_action('bp3d_product_model_after', [$this, 'model']);
-
-        add_action('woocommerce_product_thumbnails', [$this, 'woocommerce_product_thumbnails'], 40); // merge with first image
-
+        add_action('wp', [$this, 'onWoocommerceLoaded']);
+        add_action('wp_footer', [$this, 'handleIncompatibleTheme']);
+        add_action('wp_footer', [$this, 'renderPopupModels']);
+        add_action('bp3d_product_model_before', [$this, 'renderModel']);
+        add_action('bp3d_product_model_after', [$this, 'renderModel']);
+        add_action('woocommerce_product_thumbnails', [$this, 'renderGalleryThumbnail'], 40);
     }
 
-
-    public function wp_woocommerfce_3d_popups()
+    /**
+     * Render popup 3D model modals in the footer.
+     *
+     * Creates modal overlays for each popup model configured on the product,
+     * triggered by the corresponding CSS selector.
+     */
+    public function renderPopupModels(): void
     {
         global $product;
-        $woocommerce_enabled = get_option('_bp3d_settings_', ['3d_woo_switcher' => false])['3d_woo_switcher'];
 
-        if (!$woocommerce_enabled || gettype($product) !== 'object' || !is_single()) {
+        $woo_enabled = get_option('_bp3d_settings_', ['3d_woo_switcher' => false])['3d_woo_switcher'];
+
+        if (!$woo_enabled || !is_object($product) || !is_single()) {
             return;
         }
 
@@ -41,140 +56,89 @@ class SingleProductPro extends SingleProduct
         }
 
         $modelData = get_post_meta($product->get_id(), '_bp3d_product_', true);
-        $meta = Utils::getPostMeta($product->get_id(), '_bp3d_product_', true);
+        $meta = Utils::getPostMeta($product->get_id(), '_bp3d_product_');
 
-        // code for modal/popup - Premium only
-        $popupModels = isset($modelData['bp3d_popup_models']) && is_array($modelData['bp3d_popup_models']) ? $modelData['bp3d_popup_models'] : [];
-        foreach ($popupModels as $index => $model) {
-            wp_enqueue_script('bp3d-public');
-            wp_enqueue_style('bp3d-custom-style');
-            wp_enqueue_style('bp3d-frontend');
+        $popupModels = (isset($modelData['bp3d_popup_models']) && is_array($modelData['bp3d_popup_models']))
+            ? $modelData['bp3d_popup_models']
+            : [];
 
-            if ($model['popupCurrentViewer'] === 'O3DViewer') {
-                wp_enqueue_script('bp3d-o3dviewer');
-            } else {
-                wp_enqueue_script('bp3d-model-viewer');
-            }
-
-            $finalData = Product::getProductAttributes($meta('all'));
-            $finalData['loading'] = 'lazy';
-            $finalData['placement'] = 'popup';
-            $finalData['uniqueId'] = "model" . uniqid();
-            $finalData['loadingPercentage'] = true;
-            $finalData['currentViewer'] = $model['popupCurrentViewer'] ?? 'modelViewer';
-
-            $finalData['models'] = [[
-                'modelUrl' => $model['model_src'],
-                'poster' => $model['poster_src'] ?? '',
-                'skyboxImage' => $model['skybox_image_src'] ?? '',
-                'environmentImage' => $model['environment_image_src'] ?? '',
-                'arEnabled' =>  isset($model['enable_ar']) ? $model['enable_ar'] === '1' : false,
-                'modelISOSrc' =>  $model['model_iso_src'] ?? '',
-            ]];
-?>
-<div class="bp3dv-model-main" id="<?php echo esc_attr($model['target']) ?>" data-selector="<?php echo esc_attr($model['selector']) ?>">
-    <div class="bp3dv-model-inner">
-        <div class="close-btn">&times;</div>
-        <div class="bp3dv-model-wrap">
-            <div class="pop-up-content-wrap">
-                <div class="modelViewerBlock wooCustomSelector wp-block-b3dviewer-modelviewer" data-type="popup" data-attributes='<?php echo esc_attr(wp_json_encode($finalData)); ?>'> </div>
-            </div>
-        </div>
-    </div>
-    <div class="bg-overlay"></div>
-</div>
-<script>
-
-</script>
-<?php
+        foreach ($popupModels as $model) {
+            $this->renderSinglePopup($model, $meta);
         }
     }
 
-
-    public function wp_woocommerce_3d_popups()
+    /**
+     * Render a single popup modal for a 3D model.
+     *
+     * @param array<string, mixed> $model  Popup model configuration
+     * @param \Closure             $meta   Meta accessor closure
+     */
+    private function renderSinglePopup(array $model, \Closure $meta): void
     {
-        global $product;
-        $woocommerce_enabled = get_option('_bp3d_settings_', ['3d_woo_switcher' => false])['3d_woo_switcher'];
+        wp_enqueue_script('bp3d-public');
+        wp_enqueue_style('bp3d-custom-style');
+        wp_enqueue_style('bp3d-frontend');
 
-        if (!$woocommerce_enabled || gettype($product) !== 'object' || !is_single()) {
-            return;
+        $viewer = $model['popupCurrentViewer'] ?? 'modelViewer';
+
+        if ($viewer === 'O3DViewer') {
+            wp_enqueue_script('bp3d-o3dviewer');
+        }
+        else {
+            wp_enqueue_script('bp3d-model-viewer');
         }
 
-        if (!method_exists($product, 'get_id')) {
-            return;
-        }
+        $finalData = Product::getProductAttributes($meta('all'));
 
-        $modelData = get_post_meta($product->get_id(), '_bp3d_product_', true);
-        $meta = Utils::getPostMeta($product->get_id(), '_bp3d_product_', true);
-
-        // code for modal/popup - Premium only
-        $popupModels = isset($modelData['bp3d_popup_models']) && is_array($modelData['bp3d_popup_models']) ? $modelData['bp3d_popup_models'] : [];
-        foreach ($popupModels as $index => $model) {
-            wp_enqueue_script('bp3d-public');
-            wp_enqueue_style('bp3d-custom-style');
-            wp_enqueue_style('bp3d-frontend');
-
-            if ($model['popupCurrentViewer'] === 'O3DViewer') {
-                wp_enqueue_script('bp3d-o3dviewer');
-            } else {
-                wp_enqueue_script('bp3d-model-viewer');
-            }
-
-            $finalData = Product::getProductAttributes($meta('all'));
-            $finalData['loading'] = 'lazy';
-            $finalData['placement'] = 'popup';
-            $finalData['uniqueId'] = "model" . uniqid();
-            $finalData['loadingPercentage'] = true;
-            $finalData['currentViewer'] = $model['popupCurrentViewer'] ?? 'modelViewer';
-            $finalData['isPagination'] = false;
-            $finalData['isNavigation'] = false;
-            $finalData['preload'] = 'auto';
-            $finalData['mouseControl'] = true;
-            $finalData['styles'] = [
+        $finalData = array_merge($finalData, [
+            'loading' => 'lazy',
+            'placement' => 'popup',
+            'uniqueId' => 'model' . uniqid(),
+            'loadingPercentage' => true,
+            'currentViewer' => $viewer,
+            'isPagination' => false,
+            'isNavigation' => false,
+            'preload' => 'auto',
+            'mouseControl' => true,
+            'multiple' => true,
+            'model' => ['modelUrl' => '', 'poster' => ''],
+            'styles' => [
                 'width' => '100%',
                 'height' => '350px',
                 'bgColor' => $meta('bp_model_bg', 'transparent'),
-            ];
-            $finalData['multiple'] = true;
-            $finalData['model'] =  [ // this will not work because multiple is enabled by default
-                "modelUrl" => '',
-                "poster" =>  ''
-            ];
-
-            $finalData['models'] = [[
-                'modelUrl' => $model['model_src'],
-                'poster' => $model['poster_src'] ?? '',
-                'skyboxImage' => $model['skybox_image_src'] ?? '',
-                'environmentImage' => $model['environment_image_src'] ?? '',
-                'arEnabled' =>  isset($model['enable_ar']) ? $model['enable_ar'] === '1' : false,
-                'modelISOSrc' =>  $model['model_iso_src'] ?? '',
-            ]];
-
-            $finalData["O3DVSettings"] = [
+            ],
+            'O3DVSettings' => [
                 'isFullscreen' => true,
-                "isNavigation" => $meta('show_arrows', false, true),
+                'isNavigation' => $meta('show_arrows', false, true),
                 'mouseControl' => true,
-                // "zoom" =>  self::isset($modelData, 'bp_3d_zooming',  self::isset($options, 'bp_3d_zooming', "1")) === "1", // done
-                "zoom" => $meta('bp_3d_zooming', true, true), // done
-                "isPagination" => $meta('show_thumbs', false, true)
-            ];
+                'zoom' => $meta('bp_3d_zooming', true, true),
+                'isPagination' => $meta('show_thumbs', false, true),
+            ],
+            'models' => [[
+                    'modelUrl' => $model['model_src'] ?? '',
+                    'poster' => $model['poster_src'] ?? '',
+                    'skyboxImage' => $model['skybox_image_src'] ?? '',
+                    'environmentImage' => $model['environment_image_src'] ?? '',
+                    'arEnabled' => isset($model['enable_ar']) && $model['enable_ar'] === '1',
+                    'modelISOSrc' => $model['model_iso_src'] ?? '',
+                ]],
+        ]);
 
+        $target = esc_attr($model['target'] ?? '');
+        $selector = esc_attr($model['selector'] ?? '');
+        $json = esc_attr(wp_json_encode($finalData));
 ?>
-    <div class="bp3dv-model-main" id="<?php echo esc_attr($model['target']) ?>" data-selector="<?php echo esc_attr($model['selector']) ?>">
-        <div class="bp3dv-model-inner">
-            <div class="close-btn">&times;</div>
-            <div class="bp3dv-model-wrap">
-                <div class="pop-up-content-wrap">
-                    <div class="modelViewerBlock wooCustomSelector wp-block-b3dviewer-modelviewer" data-type="popup" data-attributes='<?php echo esc_attr(wp_json_encode($finalData)); ?>'> </div>
+        <div class="bp3dv-model-main" id="<?php echo $target; ?>" data-selector="<?php echo $selector; ?>">
+            <div class="bp3dv-model-inner">
+                <div class="close-btn">&times;</div>
+                <div class="bp3dv-model-wrap">
+                    <div class="pop-up-content-wrap">
+                        <div class="modelViewerBlock wooCustomSelector wp-block-b3dviewer-modelviewer" data-type="popup" data-attributes='<?php echo $json; ?>'>Loading...</div>
+                    </div>
                 </div>
             </div>
+            <div class="bg-overlay"></div>
         </div>
-        <div class="bg-overlay"></div>
-    </div>
-    <script>
-
-    </script>
-<?php
-        }
+        <?php
     }
 }

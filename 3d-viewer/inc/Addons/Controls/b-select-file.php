@@ -1,84 +1,89 @@
 <?php
+
+
+
 namespace BP3D\Addons\Controls;
 
 if (!defined('ABSPATH')) {
     exit;
-} // Exit if accessed directly
+}
+
 /**
- * FileSelect control.
+ * File select Elementor control.
  *
- * A control for selecting any type of files.
+ * A custom Elementor control that provides a media file selector
+ * for uploading or selecting 3D model files and other assets.
  *
  * @since 1.0.0
  */
-class SelectFile extends \Elementor\Base_Data_Control {
+class SelectFile extends \Elementor\Base_Data_Control
+{
+    /**
+     * Get the control type identifier.
+     *
+     * @return string Control type slug
+     */
+    public function get_type(): string
+    {
+        return 'b-select-file';
+    }
 
-	/**
-	 * Get control type.
-	 *
-	 * Retrieve the control type, in this case `FILESELECT`.
-	 *
-	 * @since 1.0.0
-	 * @access public
-	 *
-	 * @return string Control type.
-	 */
-	public function get_type() {
-		return 'b-select-file';
-	}
+    /**
+     * Enqueue control scripts and styles.
+     *
+     * Registers media upload dependencies and the
+     * custom control JavaScript handler.
+     */
+    public function enqueue(): void
+    {
+        wp_enqueue_media();
+        wp_enqueue_style('thickbox');
+        wp_enqueue_script('media-upload');
+        wp_enqueue_script('thickbox');
 
-	/**
-	 * Enqueue control scripts and styles.
-	 *
-	 * Used to register and enqueue custom scripts and styles
-	 * for this control.
-	 *
-	 * @since 1.0.0
-	 * @access public
-	 */
-	public function enqueue() {
-		wp_enqueue_media();
-		wp_enqueue_style('thickbox');
-	    wp_enqueue_script('media-upload');
-	    wp_enqueue_script('thickbox');
-		// Scripts
-		wp_register_script( 'bplugins-elementor-controls', plugins_url( '/js/controls.js', __FILE__ ), [ 'jquery' ], '1.0.0', true );
-		wp_enqueue_script( 'bplugins-elementor-controls' );
-	}
+        wp_register_script(
+            'bplugins-elementor-controls',
+            plugins_url('/js/controls.js', __FILE__),
+        ['jquery'],
+            '1.0.0',
+            true
+        );
 
-	/**
-	 * Get default settings.
-	 *
-	 * @since 1.0.0
-	 * @access protected
-	 *
-	 * @return array Control default settings.
-	 */
-	protected function get_default_settings() {
-		return [
-			'label_block' => true,
-		];
-	}
+        wp_enqueue_script('bplugins-elementor-controls');
+    }
 
-	/**
-	 * Render control output in the editor.
-	 *
-	 * @since 1.0.0
-	 * @access public
-	 */
-	public function content_template() {
-		$control_uid = $this->get_control_uid();
-		?>
-		<div class="elementor-control-field">
-			<label for="<?php echo esc_attr( $control_uid ); ?>" class="elementor-control-title">{{{ data.label }}}</label>
-			<div class="elementor-control-input-wrapper">
-				<a href="#" class="tnc-b-select-file text-center w-100 elementor-button elementor-button-default elementor-button-go-pro" id="select-file-<?php echo esc_attr( $control_uid ); ?>" ><?php echo esc_html( '{{data.label}}', 'file-select-control-for-elementor' ); ?></a> <br />
-				<input type="text" class="tnc-b-selected-fle-url" id="<?php echo esc_attr( $control_uid ); ?>" data-setting="{{ data.name }}" placeholder="{{ data.placeholder }}">
-			</div>
-		</div>
-		<# if ( data.description ) { #>
-		<div class="elementor-control-field-description">{{{ data.description }}}</div>
-		<# } #>
-		<?php
-	}
+    /**
+     * Get the default control settings.
+     *
+     * @return array<string, mixed>
+     */
+    protected function get_default_settings(): array
+    {
+        return [
+            'label_block' => true,
+        ];
+    }
+
+    /**
+     * Render the control output template in the editor.
+     */
+    public function content_template(): void
+    {
+        $control_uid = $this->get_control_uid();
+?>
+        <div class="elementor-control-field">
+            <label for="<?php echo esc_attr($control_uid); ?>" class="elementor-control-title">{{{ data.label }}}</label>
+            <div class="elementor-control-input-wrapper">
+                <a href="#" class="tnc-b-select-file text-center w-100 elementor-button elementor-button-default elementor-button-go-pro" id="select-file-<?php echo esc_attr($control_uid); ?>">
+                    <?php echo esc_html('{{data.label}}'); ?>
+                </a>
+                <br />
+                <input type="text" class="tnc-b-selected-fle-url" id="<?php echo esc_attr($control_uid); ?>" data-setting="{{ data.name }}" placeholder="{{ data.placeholder }}">
+            </div>
+        </div>
+        <# if ( data.description ) { #>
+        <div class="elementor-control-field-description">{{{ data.description }}}</div>
+        <# } #>
+        <?php
+    }
 }

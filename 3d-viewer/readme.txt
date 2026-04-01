@@ -2,7 +2,7 @@
 Contributors: bplugins, abuhayat, shehabulislam, freemius, farazi1
 Tags: 3D model viewer, threejs, widget, model viewer, 360° product view
 Tested up to: 6.9
-Stable tag: 1.8.5
+Stable tag: 1.8.6
 Requires PHP: 7.1
 Donate link: https://www.buymeacoffee.com/abuhayat
 License: GPLv2 or later
@@ -230,6 +230,9 @@ No, This plugin only support .glb and .glTF files. Please convert your file to a
 
 
 == Changelog ==
+
+= 1.8.6 - 15 Mar, 2026  =
+Fixed: Remove unknown anchor link
 
 = 1.8.5 - 10 Mar, 2026  =
 Fixed: Stl File does not work

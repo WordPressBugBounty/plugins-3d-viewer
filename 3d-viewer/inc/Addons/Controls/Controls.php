@@ -1,36 +1,45 @@
 <?php
+
+
+
 namespace BP3D\Addons\Controls;
 
 if (!defined('ABSPATH')) {
     exit;
-} // Exit if accessed directly
+}
 
-final class Controls {
+/**
+ * Elementor custom controls manager.
+ *
+ * Registers custom Elementor controls for file selection
+ * in the 3D Viewer widget editor.
+ */
+final class Controls
+{
+    private static ?self$_instance = null;
 
-	const VERSION = '1.0.0';
-	const MINIMUM_ELEMENTOR_VERSION = '2.0.0';
-	const MINIMUM_PHP_VERSION = '7.0';
+    public static function instance(): self
+    {
+        if (is_null(self::$_instance)) {
+            self::$_instance = new self();
+        }
 
-	private static $_instance = null;
+        return self::$_instance;
+    }
 
-	public static function instance() {
-		if ( is_null( self::$_instance ) ) {
-			self::$_instance = new self();
-		}
-		return self::$_instance;
-	}
+    public function __construct()
+    {
+        add_action('elementor/controls/register', [$this, 'registerControls']);
+    }
 
-	public function __construct() {
-		add_action( 'elementor/controls/register', [ $this, 'init_controls' ] );
-	}
-
-	public function init_controls($controls_manager) {
-
-		// Include Widget files
-		require_once( __DIR__ . '/b-select-file.php' );
-
-		// Register controls
-		$controls_manager->register( new SelectFile() );
-	}
-
+    /**
+     * Register custom Elementor controls.
+     *
+     * @param \Elementor\Controls_Manager $controls_manager
+     */
+    public function registerControls(object $controls_manager): void
+    {
+        require_once __DIR__ . '/b-select-file.php';
+        $controls_manager->register(new SelectFile());
+    }
 }

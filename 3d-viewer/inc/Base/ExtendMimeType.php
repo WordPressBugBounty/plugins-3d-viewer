@@ -2,9 +2,6 @@
 
 namespace BP3D\Base;
 
-if ( ! defined( 'ABSPATH' ) ) exit;
-
-
 class ExtendMimeType
 {
 
@@ -64,7 +61,6 @@ class ExtendMimeType
             '3mf' => 'application/vnd.ms-3mfdocument',
             'mtl' => 'model/mtl',
             'bin' => 'application/octet-stream',
-            'ply' => 'application/octet-stream',
             'hdr' => 'image/vnd.radiance',
             'usdz' => 'model/vnd.pixar.usd',
         ];
