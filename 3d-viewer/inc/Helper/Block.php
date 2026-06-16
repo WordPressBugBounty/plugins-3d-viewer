@@ -16,7 +16,7 @@ if (!defined('ABSPATH')) {
  */
 class Block
 {
-    private static ?self$_instance = null;
+    private static ?self $_instance = null;
 
     public static function instance(): self
     {

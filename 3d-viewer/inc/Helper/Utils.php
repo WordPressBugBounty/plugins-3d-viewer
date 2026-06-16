@@ -31,7 +31,7 @@ class Utils
      * @param  mixed                 $default
      * @return mixed
      */
-    public static function isset(array $array, string $key, mixed $default = false): mixed
+    public static function isset($array, $key, $default = false)
     {
         return $array[$key] ?? $default;
     }
@@ -45,7 +45,7 @@ class Utils
      * @param  mixed                 $default
      * @return mixed
      */
-    public static function isset2(array $array, string $key1, string $key2, mixed $default = false): mixed
+    public static function isset2($array, $key1, $key2, $default = false)
     {
         return $array[$key1][$key2] ?? $default;
     }
@@ -57,7 +57,7 @@ class Utils
      * @param  float|false $alpha  Optional alpha value
      * @return array{r: int, g: int, b: int, a?: float}
      */
-    public static function hexToRGB(string $hex, float|false $alpha = false): array
+    public static function hexToRGB($hex, $alpha = false)
     {
         $hex = str_replace('#', '', $hex);
         $length = strlen($hex);
@@ -98,7 +98,7 @@ class Utils
      * @param  string|null $string  Theme name (defaults to current theme)
      * @return string Lowercase, underscored class name
      */
-    public static function getThemeClass(?string $string = null): string
+    public static function getThemeClass($string = null)
     {
         if ($string === null) {
             $string = wp_get_theme()->name;
@@ -140,8 +140,8 @@ class Utils
     public static function isCompatibleTheme(): bool
     {
         if (
-        in_array(wp_get_theme()->name, self::getNotCompatibleThemes(), true)
-        || (function_exists('wp_is_block_theme') && wp_is_block_theme())
+            in_array(wp_get_theme()->name, self::getNotCompatibleThemes(), true)
+            || (function_exists('wp_is_block_theme') && wp_is_block_theme())
         ) {
             return false;
         }
@@ -159,7 +159,7 @@ class Utils
      * @param  string $key  Meta key
      * @return \Closure(string, mixed=, bool=, string|null=): mixed
      */
-    public static function getPostMeta(int $id, string $key): \Closure
+    public static function getPostMeta($id, $key)
     {
         $meta = get_post_meta($id, $key, true);
 
@@ -172,9 +172,9 @@ class Utils
      * @param  mixed $meta  The data array (or other value)
      * @return \Closure(string, mixed=, bool=, string|null=): mixed
      */
-    public static function return_function(mixed $meta): \Closure
+    public static function return_function($meta)
     {
-        return function (string $key, mixed $default = null, bool $is_boolean = false, ?string $key2 = null) use ($meta): mixed {
+        return function ($key, $default = null, $is_boolean = false, $key2 = null) use ($meta) {
             if ($key === 'all') {
                 return $meta;
             }
@@ -198,7 +198,7 @@ class Utils
      * @param  mixed|null $default  Default value
      * @return \Closure
      */
-    public static function getSettings(string $key, mixed $default = null): \Closure
+    public static function getSettings($key, $default = null)
     {
         $settings = get_option($key, $default);
 

@@ -1,9 +1,10 @@
 === 3D Viewer – Display Interactive 3D Models ===
 Contributors: bplugins, abuhayat, shehabulislam, freemius, farazi1
 Tags: 3D model viewer, threejs, widget, model viewer, 360° product view
-Tested up to: 6.9
-Stable tag: 1.8.6
-Requires PHP: 7.1
+Tested up to: 7.0
+Stable tag: 1.8.13
+Requires PHP: 7.4
+Requires at least: 6.5
 Donate link: https://www.buymeacoffee.com/abuhayat
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -23,7 +24,7 @@ https://youtube.com/watch?v=_9vKv5pEClM
 
 The plugin offers features such as touch controls, zoom, pan, auto-rotation, and lazy loading. Users can customize viewer settings, including lighting, background, and camera angles, to suit their needs. Integration with Elementor and Gutenberg editors allows for seamless placement of 3D models using blocks or shortcodes.
 
-In WooCommerce, 3D Viewer facilitates the display of 3D product models, enhancing the user experience by allowing customers to interact with products in three dimensions. The plugin also supports the creation of galleries for multiple product variants.
+In WooCommerce, 3D Viewer facilitates the display of 3D product models, enhancing the user experience by allowing customers to interact with products in three dimensions.
 
 Designed with performance in mind, 3D Viewer ensures responsive and mobile-friendly rendering of 3D content across devices.
 
@@ -38,15 +39,9 @@ Designed with performance in mind, 3D Viewer ensures responsive and mobile-frien
 
 - **Touch, Pan, Zoom & Rotate:** Visitors can explore your model with mouse or touchscreen gestures.
 
-- **Auto-Rotation Feature:** Automatically spin your model to create a 360° product view without interaction.
-
-- **Gallery Support for Variants:** Add multiple 3D models (like product variants) into a single viewer gallery.
-
-- **Preset Settings:** Save your preferred viewer configurations and reuse them across multiple models.
-
 - **Elementor Compatible:** Works seamlessly with Elementor to place 3D models with drag-and-drop ease.
 
-- **Lazy Loading for Performance:** Optimize page load speed by loading models only when visible—great for SEO!
+- **Lazy Loading for Performance:** Optimize page load speed by loading models only when visible - great for SEO!
 
 
 ### Pro Version – Unlock More Control & Customization
@@ -140,9 +135,7 @@ That’s it – your 3D model is live!
 
 ### Supported 3D File Formats
 
-- **- Models:** .GLB, .GLTF, .OBJ, .STL
-
-- **- Optional (Pro):** .FBX, .DAE, .PLY, .3DS
+- **- Models:** .GLB, .GLTF, .OBJ, .STL, .FBX, .DAE, .PLY, .3DS
 
 
 ### Optimized for All Devices
@@ -168,7 +161,7 @@ That’s it – your 3D model is live!
 <br />
 <br />
 
-❛❛-_Fantastic plugin the main feature that i like is the 3D model is perfectly loaded and you can adjust the light, am using the PRO version._**❜❜ 
+❛❛-_Fantastic plugin the main feature that i like is the 3D model is perfectly loaded and you can adjust the light, I am using the PRO version._**❜❜ 
 
 **_-blunoa_**
 
@@ -200,16 +193,92 @@ e.g.
 4. If you want player in your theme php, Place `<?php echo do_shortcode('YOUR_SHORTCODE'); ?>` in your templates
 
 
+== Source Code ==
+
+You can find the source code, report bugs, and contribute to the development of this plugin on our GitHub repository: 
+[**3D Viewer on GitHub**](https://github.com/bPlugins/3d-viewer-wp)
+
+== External Services ==
+
+This plugin connects to the following external services. Connections are made only from the plugin's admin dashboard pages and are not triggered for your site's visitors on the front end.
+
+= bPlugins API =
+
+* **Service:** bPlugins product API – `https://api.bplugins.com`
+* **What it does:** When you open the plugin's dashboard, the plugin requests product information (such as the plugin's own details and other plugins by bPlugins) so it can display product cards, version information, and upgrade options.
+* **What data is sent:** A request is made to the bPlugins API endpoint with the product identifier (e.g. `https://api.bplugins.com/wp-json/bpl/v1/products/{id}`). No personal data or site content is sent as part of this request.
+* **When:** Only while an administrator is viewing the plugin's dashboard in wp-admin.
+* **Terms of Service:** [https://bplugins.com/terms-of-service/](https://bplugins.com/terms-of-service/)
+* **Privacy Policy:** [https://bplugins.com/privacy-policy/](https://bplugins.com/privacy-policy/)
+
+= WordPress.org Plugins API =
+
+* **Service:** WordPress.org Plugins Info API – `https://api.wordpress.org`
+* **What it does:** The dashboard queries the public WordPress.org Plugins API to list other plugins published by the author (titles, icons, ratings, active installs, etc.).
+* **What data is sent:** A public, read-only query request (e.g. `https://api.wordpress.org/plugins/info/1.2/?action=query_plugins&request[author]=bplugins`). No personal data is sent.
+* **When:** Only while an administrator is viewing the plugin's dashboard in wp-admin.
+* **Terms of Service:** [https://wordpress.org/about/privacy/](https://wordpress.org/about/privacy/)
+* **Privacy Policy:** [https://wordpress.org/about/privacy/](https://wordpress.org/about/privacy/)
+
+== Third-Party Libraries ==
+
+This plugin bundles the following third-party JavaScript/PHP libraries.
+
+= Codestar Framework =
+
+* **Source:** [http://codestarframework.com/](http://codestarframework.com/)
+* **GitHub:** [https://github.com/Codestar/codestar-framework](https://github.com/Codestar/codestar-framework)
+* **License:** GPLv2 or later – [https://github.com/Codestar/codestar-framework/blob/master/LICENSE.md](https://github.com/Codestar/codestar-framework/blob/master/LICENSE.md)
+* **Purpose:** Provides the options framework for the plugin's settings and shortcode generator.
+
+= Freemius SDK =
+
+* **Source:** [https://freemius.com/](https://freemius.com/)
+* **GitHub:** [https://github.com/Freemius/wordpress-sdk](https://github.com/Freemius/wordpress-sdk)
+* **License:** GPLv3 – [https://github.com/Freemius/wordpress-sdk/blob/master/LICENSE.txt](https://github.com/Freemius/wordpress-sdk/blob/master/LICENSE.txt)
+* **Purpose:** Provides opt-in usage tracking and analytics to help improve the plugin.
+
+= Online 3D Viewer (o3dv) =
+
+* **File:** `public/js/o3dv.min.js`
+* **Source:** [https://github.com/kovacsv/Online3DViewer](https://github.com/kovacsv/Online3DViewer)
+* **License:** MIT – [https://github.com/kovacsv/Online3DViewer/blob/master/LICENSE.md](https://github.com/kovacsv/Online3DViewer/blob/master/LICENSE.md)
+* **Purpose:** Provides the "Advanced" 3D viewer engine, supporting GLB, GLTF, OBJ, STL, and other 3D file formats.
+
+The bundle also includes the following sub-dependencies:
+
+* Three.js r163 – MIT – [https://github.com/mrdoob/three.js](https://github.com/mrdoob/three.js)
+* fflate 0.8.2 – MIT – [https://github.com/101arrowz/fflate](https://github.com/101arrowz/fflate)
+* Chevrotain 9.0.1 – Apache-2.0 – [https://github.com/Chevrotain/chevrotain](https://github.com/Chevrotain/chevrotain)
+
+= Google Model Viewer =
+
+* **File:** `public/js/model-viewer.latest.min.js`
+* **Source:** [https://github.com/google/model-viewer](https://github.com/google/model-viewer)
+* **npm:** `@google/model-viewer`
+* **License:** Apache-2.0 (code) / BSD-3-Clause (some components) – [https://github.com/google/model-viewer/blob/master/LICENSE](https://github.com/google/model-viewer/blob/master/LICENSE)
+* **Purpose:** Provides the `<model-viewer>` web component used for the "Lite" viewer and WooCommerce product display.
+
+The bundle also includes the following sub-dependencies:
+
+* Three.js r174 – MIT – [https://github.com/mrdoob/three.js](https://github.com/mrdoob/three.js)
+* Lit 3.2.1 / LitElement 4.1.1 – BSD-3-Clause – [https://github.com/lit/lit](https://github.com/lit/lit)
+
+
+= bpl-tools =
+* Source / GitHub: https://github.com/bPlugins/bpl-tools
+* License: GPL-2.0-or-later – https://www.gnu.org/licenses/gpl-2.0.html
+* Purpose: Shared utility library providing admin dashboard components and common Gutenberg editor controls.
+* External Services: The library may connect to bPlugins, WordPress.org, and Freemius services for product data and checkout functionality. See full details: https://github.com/bPlugins/bpl-tools#external-requests--why-they-are-made
+
+
 == Frequently Asked Questions ==
 
-= Which 3D files currently this plugin support?  
-Currently this plugin support .glb, .gltf files. 
+= Which 3D files currently this plugin support? 
+Currently this plugin support .GLB, .GLTF, .OBJ, .STL, .FBX, .DAE, .PLY, .3DS files. 
 
 = Can I use this plugin with Elementor page builder ?  
-Yes, you can paste the shortCode of 3D Viewer and paste it inside Elementor's Shortcode elements. 
-
-= I have a .fbx file, can I embed that file using the 3D Viewer Plugin?
-No, This plugin only support .glb and .glTF files. Please convert your file to any supported file types and upload it to your site.
+Yes, we have build in Elementor widget and shortcode both. 
 
 = How can I reach you, if I need any modification, customization or helps?
 [Please follow this link to reach us directly ](https://bplugins.com/support)
@@ -230,6 +299,40 @@ No, This plugin only support .glb and .glTF files. Please convert your file to a
 
 
 == Changelog ==
+
+= 1.8.13 - 01 June, 2026  =
+Update: Tested with WordPress 7.0 and Updated Product Meta Field.
+Update: Prefixed isGutenberg meta key and configuration options for standards compliance.
+Fixed: Hardened file extension exception checks against double-extension script uploads.
+New: Added Allowed Mime Types settings checklist to enable/disable 3D file formats on upload.
+New: Integrated dynamic and minimal warning notices in Metaboxes and Gutenberg sidebar.
+
+= 1.8.12 - 16 May, 2026  =
+Update: Overall code quality and strengthened security protocols.
+Update: Required WordPress version updated.
+
+= 1.8.11 - 13 May, 2026  =
+Update: Removed Custom CSS Field from Settings
+
+
+= 1.8.10 - 09 May, 2026  =
+Improved: Overall code quality and strengthened security protocols.
+
+= 1.8.9 - 05 May, 2026  =
+Update: Updated Codestar Framework for better stability.
+Update: Removed restricted "Locked Fields" to improve user flexibility
+New: Added Zoom In/Out controls to the Classic Shortcode Generator.
+New: Added Camera controls to the Classic Shortcode Generator.
+Improved: Overall code quality and strengthened security protocols.
+
+
+= 1.8.8 - 02 April, 2026  =
+Fixed: Woocommerce order issue
+
+= 1.8.7 - 28 Mar, 2026  =
+Fixed: Move elements fields to 'Elements' tab in classic editor
+Fixed: Zoom not working in 'Advanced' Viewer
+Update: Freemius SDK
 
 = 1.8.6 - 15 Mar, 2026  =
 Fixed: Remove unknown anchor link
@@ -481,17 +584,3 @@ Fixed: new shortcodes were not working properly.
 
 = 1.0.0 =
 * Initial Release
-
-
-
-== Upgrade Notice ==
-
-= 1.3.26 - 7 Feb, 2024 =
-* Fixed: Modal width issue
-
-= 1.3.17 - 12 Oct, 2023 =
-* Fixed Single product view on Divi theme
-
-= 1.3.16 - 5 Oct, 2023 =
-* model/popup on product page for 3D
-* Fix Poster issue

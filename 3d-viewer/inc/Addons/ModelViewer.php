@@ -13,7 +13,7 @@ if (!defined('ABSPATH')) {
  *
  * Provides a full-featured Elementor widget for embedding 3D models
  * with controls for viewer type, rotation, shadows, animations,
- * exposure, dimensions, backgrounds, and more.
+ * dimensions, backgrounds, and more.
  */
 class ModelViewer extends \Elementor\Widget_Base
 {
@@ -30,7 +30,7 @@ class ModelViewer extends \Elementor\Widget_Base
      */
     public function get_title(): string
     {
-        return esc_html__('Model Viewer', 'model-viewer');
+        return esc_html__('Model Viewer', '3d-viewer');
     }
 
     /**
@@ -96,108 +96,54 @@ class ModelViewer extends \Elementor\Widget_Base
     private function registerContentControls(): void
     {
         $this->start_controls_section('embedder', [
-            'label' => esc_html__('Model Viewer', 'model-viewer'),
+            'label' => esc_html__('Model Viewer', '3d-viewer'),
             'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
         ]);
 
         // Viewer type
         $this->add_control('currentViewer', [
-            'label' => esc_html__('Viewer', 'model-viewer'),
+            'label' => esc_html__('Viewer', '3d-viewer'),
             'type' => \Elementor\Controls_Manager::SELECT,
             'default' => 'modelViewer',
             'options' => [
-                'modelViewer' => __('Lite', 'model-viewer'),
-                'O3DViewer' => __('Advanced', 'model-viewer'),
+                'modelViewer' => __('Lite', '3d-viewer'),
+                'O3DViewer' => __('Advanced', '3d-viewer'),
             ],
-        ]);
-
-        // Multiple models toggle
-        $this->add_control('multiple', [
-            'label' => esc_html__('Use Multiple Model?', 'model-viewer'),
-            'type' => \Elementor\Controls_Manager::SWITCHER,
-            'return_value' => 'yes',
-            'default' => false,
         ]);
 
         // Single model controls
         $this->add_control('modelUrl', [
-            'label' => esc_html__('Select Model', 'model-viewer'),
+            'label' => esc_html__('Select Model', '3d-viewer'),
             'type' => 'b-select-file',
             'separator' => 'before',
-            'placeholder' => esc_html__('Paste Model URL', 'model-viewer'),
-            'condition' => ['multiple!' => 'yes'],
+            'placeholder' => esc_html__('Paste Model URL', '3d-viewer'),
         ]);
 
         $this->add_control('useDecoder', [
-            'label' => esc_html__('Use Decoder', 'model-viewer'),
+            'label' => esc_html__('Use Decoder', '3d-viewer'),
             'type' => \Elementor\Controls_Manager::SELECT,
             'default' => 'none',
             'options' => [
-                'none' => esc_html__('None', 'model-viewer'),
-                'draco' => esc_html__('Draco', 'model-viewer'),
+                'none' => esc_html__('None', '3d-viewer'),
+                'draco' => esc_html__('Draco', '3d-viewer'),
             ],
-            'condition' => ['multiple!' => 'yes', 'currentViewer' => 'modelViewer'],
+            'condition' => ['currentViewer' => 'modelViewer'],
         ]);
 
         $this->add_control('bin_file', [
-            'label' => esc_html__('Upload bin file', 'model-viewer'),
+            'label' => esc_html__('Upload bin file', '3d-viewer'),
             'type' => 'b-select-file',
             'separator' => 'before',
-            'placeholder' => esc_html__('Paste bin file URL', 'model-viewer'),
-            'condition' => ['decoder' => 'draco', 'multiple!' => 'yes', 'currentViewer' => 'modelViewer'],
-        ]);
-
-        $this->add_control('poster', [
-            'label' => esc_html__('Select Poster', 'model-viewer'),
-            'type' => 'b-select-file',
-            'separator' => 'after',
-            'placeholder' => esc_html__('Paste Poster URL', 'model-viewer'),
-            'condition' => ['multiple!' => 'yes', 'currentViewer' => 'modelViewer'],
-        ]);
-
-        // Multiple model repeater
-        $repeater = new \Elementor\Repeater();
-
-        $repeater->add_control('modelUrl', [
-            'label' => esc_html__('Select Model', 'model-viewer'),
-            'type' => 'b-select-file',
-            'separator' => 'before',
-            'placeholder' => esc_html__('Paste Model URL', 'model-viewer'),
-        ]);
-
-        $repeater->add_control('useDecoder', [
-            'label' => esc_html__('Use Decoder', 'model-viewer'),
-            'type' => \Elementor\Controls_Manager::SELECT,
-            'default' => 'none',
-            'options' => [
-                'none' => esc_html__('None', 'model-viewer'),
-                'draco' => esc_html__('Draco', 'model-viewer'),
-            ],
-            'condition' => ['currentViewer' => 'modelViewer'],
-        ]);
-
-        $repeater->add_control('bin_file', [
-            'label' => esc_html__('Upload bin file', 'model-viewer'),
-            'type' => 'b-select-file',
-            'separator' => 'before',
-            'placeholder' => esc_html__('Paste bin file URL', 'model-viewer'),
+            'placeholder' => esc_html__('Paste bin file URL', '3d-viewer'),
             'condition' => ['decoder' => 'draco', 'currentViewer' => 'modelViewer'],
         ]);
 
-        $repeater->add_control('poster', [
-            'label' => esc_html__('Select Poster', 'model-viewer'),
+        $this->add_control('poster', [
+            'label' => esc_html__('Select Poster', '3d-viewer'),
             'type' => 'b-select-file',
             'separator' => 'after',
-            'placeholder' => esc_html__('Paste Poster URL', 'model-viewer'),
+            'placeholder' => esc_html__('Paste Poster URL', '3d-viewer'),
             'condition' => ['currentViewer' => 'modelViewer'],
-        ]);
-
-        $this->add_control('models', [
-            'label' => esc_html__('Models', 'model-viewer'),
-            'type' => \Elementor\Controls_Manager::REPEATER,
-            'fields' => $repeater->get_controls(),
-            'condition' => ['multiple' => 'yes'],
-            'default' => [['modelUrl' => '', 'poster' => '']],
         ]);
 
         // Divider
@@ -205,119 +151,38 @@ class ModelViewer extends \Elementor\Widget_Base
             'type' => \Elementor\Controls_Manager::DIVIDER,
         ]);
 
-        // Custom angle controls
-        $this->add_control('rotate', [
-            'label' => esc_html__('Rotate', 'model-viewer'),
-            'type' => \Elementor\Controls_Manager::SWITCHER,
-            'return_value' => 'yes',
-            'condition' => ['currentViewer' => 'modelViewer'],
-        ]);
-
-        $this->add_control('rotateAlongX', [
-            'label' => esc_html__('Rotate Along X (degree)', 'model-viewer'),
-            'type' => \Elementor\Controls_Manager::SLIDER,
-            'size_units' => ['px'],
-            'range' => ['px' => ['min' => 0, 'max' => 360, 'step' => 1]],
-            'condition' => ['multiple!' => 'yes', 'rotate' => 'yes', 'currentViewer' => 'modelViewer'],
-        ]);
-
-        $this->add_control('rotateAlongY', [
-            'label' => esc_html__('Rotate Along Y (degree)', 'model-viewer'),
-            'type' => \Elementor\Controls_Manager::SLIDER,
-            'size_units' => ['px'],
-            'range' => ['px' => ['min' => 0, 'max' => 360, 'step' => 1]],
-            'default' => ['unit' => 'px', 'size' => '75'],
-            'condition' => ['multiple!' => 'yes', 'rotate' => 'yes', 'currentViewer' => 'modelViewer'],
-        ]);
-
-        $this->add_control('hr_after_angle', [
-            'type' => \Elementor\Controls_Manager::DIVIDER,
-            'condition' => ['multiple!' => 'yes', 'rotate' => 'yes'],
-        ]);
-
         // Feature toggles
         $this->add_control('fullscreen', [
-            'label' => esc_html__('Fullscreen Button', 'model-viewer'),
+            'label' => esc_html__('Fullscreen Button', '3d-viewer'),
             'type' => \Elementor\Controls_Manager::SWITCHER,
             'return_value' => 'yes',
             'default' => 'yes',
         ]);
 
         $this->add_control('mouseControls', [
-            'label' => esc_html__('Mouse Control', 'model-viewer'),
+            'label' => esc_html__('Mouse Control', '3d-viewer'),
             'type' => \Elementor\Controls_Manager::SWITCHER,
-            'label_on' => esc_html__('Enable', 'model-viewer'),
-            'label_off' => esc_html__('Disable', 'model-viewer'),
+            'label_on' => esc_html__('Enable', '3d-viewer'),
+            'label_off' => esc_html__('Disable', '3d-viewer'),
             'return_value' => 'yes',
             'default' => 'yes',
         ]);
 
         $this->add_control('lazy_load', [
-            'label' => esc_html__('Lazy Load', 'model-viewer'),
+            'label' => esc_html__('Lazy Load', '3d-viewer'),
             'type' => \Elementor\Controls_Manager::SWITCHER,
-            'label_on' => esc_html__('Enable', 'model-viewer'),
-            'label_off' => esc_html__('Disable', 'model-viewer'),
-            'return_value' => 'yes',
-            'default' => false,
-            'condition' => ['currentViewer' => 'modelViewer'],
-        ]);
-
-        $this->add_control('shadow', [
-            'label' => esc_html__('Enable Shadow', 'model-viewer'),
-            'type' => \Elementor\Controls_Manager::SWITCHER,
-            'label_on' => esc_html__('Enable', 'model-viewer'),
-            'label_off' => esc_html__('Disable', 'model-viewer'),
-            'return_value' => 'yes',
-            'default' => false,
-            'condition' => ['currentViewer' => 'modelViewer'],
-        ]);
-
-        $this->add_control('autoplay', [
-            'label' => esc_html__('Autoplay (if animated)', 'model-viewer'),
-            'type' => \Elementor\Controls_Manager::SWITCHER,
-            'return_value' => 'yes',
-            'default' => false,
-            'condition' => ['currentViewer' => 'modelViewer'],
-        ]);
-
-        $this->add_control('variant', [
-            'label' => esc_html__('Enable Variant Selector', 'model-viewer'),
-            'type' => \Elementor\Controls_Manager::SWITCHER,
-            'return_value' => 'yes',
-            'default' => false,
-            'condition' => ['currentViewer' => 'modelViewer'],
-        ]);
-
-        $this->add_control('enableAnimationSelector', [
-            'label' => esc_html__('Enable Animation Selector', 'model-viewer'),
-            'type' => \Elementor\Controls_Manager::SWITCHER,
-            'return_value' => 'yes',
-            'default' => false,
-            'condition' => ['currentViewer' => 'modelViewer'],
-        ]);
-
-        $this->add_control('loadingPercentage', [
-            'label' => esc_html__('Show Loading Percentage', 'model-viewer'),
-            'type' => \Elementor\Controls_Manager::SWITCHER,
+            'label_on' => esc_html__('Enable', '3d-viewer'),
+            'label_off' => esc_html__('Disable', '3d-viewer'),
             'return_value' => 'yes',
             'default' => false,
             'condition' => ['currentViewer' => 'modelViewer'],
         ]);
 
         $this->add_control('progressBar', [
-            'label' => esc_html__('Show Progress Bar', 'model-viewer'),
+            'label' => esc_html__('Show Progress Bar', '3d-viewer'),
             'type' => \Elementor\Controls_Manager::SWITCHER,
             'return_value' => 'yes',
             'default' => 'yes',
-            'condition' => ['currentViewer' => 'modelViewer'],
-        ]);
-
-        $this->add_control('exposure', [
-            'label' => esc_html__('Exposure', 'model-viewer'),
-            'type' => \Elementor\Controls_Manager::SLIDER,
-            'size_units' => ['px'],
-            'range' => ['px' => ['min' => 0.1, 'max' => 10, 'step' => 0.1]],
-            'default' => ['unit' => 'px', 'size' => 1],
             'condition' => ['currentViewer' => 'modelViewer'],
         ]);
 
@@ -330,13 +195,13 @@ class ModelViewer extends \Elementor\Widget_Base
     private function registerStyleControls(): void
     {
         $this->start_controls_section('model', [
-            'label' => esc_html__('Model', 'model-viewer'),
+            'label' => esc_html__('Model', '3d-viewer'),
             'tab' => \Elementor\Controls_Manager::TAB_STYLE,
         ]);
 
         // Width
         $this->add_control('width', [
-            'label' => esc_html__('Width', 'model-viewer'),
+            'label' => esc_html__('Width', '3d-viewer'),
             'type' => \Elementor\Controls_Manager::SLIDER,
             'size_units' => ['px', '%', 'vw'],
             'range' => [
@@ -347,12 +212,13 @@ class ModelViewer extends \Elementor\Widget_Base
             'default' => ['unit' => '%', 'size' => 100],
             'selectors' => [
                 '{{WRAPPER}} .b3dviewer model-viewer' => 'width: {{SIZE}}{{UNIT}};margin:0 auto;max-width:100%;',
+                '{{WRAPPER}} .b3dviewer .bp_model_parent' => 'width: {{SIZE}}{{UNIT}} !important;margin:0 auto;max-width:100%;',
             ],
         ]);
 
         // Height
         $this->add_control('height', [
-            'label' => esc_html__('Height', 'model-viewer'),
+            'label' => esc_html__('Height', '3d-viewer'),
             'type' => \Elementor\Controls_Manager::SLIDER,
             'size_units' => ['px', 'vh'],
             'range' => [
@@ -368,37 +234,26 @@ class ModelViewer extends \Elementor\Widget_Base
 
         // Background color
         $this->add_control('backgroundColor', [
-            'label' => esc_html__('Background Color', 'model-viewer'),
+            'label' => esc_html__('Background Color', '3d-viewer'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
                 '{{WRAPPER}} .b3dviewer model-viewer' => 'background: {{VALUE}}',
+                '{{WRAPPER}} .b3dviewer .bp_model_parent' => 'background: {{VALUE}}',
             ],
         ]);
 
-        // Background image
-        $this->add_control('backgroundImage', [
-            'label' => esc_html__('Choose Background Image', 'model-viewer'),
-            'type' => \Elementor\Controls_Manager::MEDIA,
-            'dynamic' => ['active' => true],
-            'selectors' => [
-                '{{WRAPPER}} .b3dviewer model-viewer' => 'background-image: url({{URL}});background-repeat: no-repeat; background-size: cover',
-            ],
-            'condition' => ['currentViewer' => 'modelViewer'],
-        ]);
 
         $this->end_controls_section();
     }
 
     /**
      * Create a settings accessor closure.
-     *
-     * @return \Closure(string, mixed=, bool=, string|null=): mixed
      */
     public function bp3d_get_settings(): \Closure
     {
         $settings = $this->get_settings_for_display();
 
-        return function (string $key, mixed $default = false, bool $is_boolean = false, ?string $key2 = null) use ($settings): mixed {
+        return function ($key, $default = false, $is_boolean = false, $key2 = null) use ($settings) {
             if (isset($settings[$key], $settings[$key][$key2])) {
                 return $is_boolean ? ($settings[$key][$key2] === 'yes') : $settings[$key][$key2];
             }
@@ -422,11 +277,8 @@ class ModelViewer extends \Elementor\Widget_Base
         $finalData = [
             'align' => 'center',
             'uniqueId' => 'b3dviewer' . uniqid(),
-            'multiple' => ($settings['multiple'] ?? '') === 'yes',
             'O3DVSettings' => [
                 'isFullscreen' => true,
-                'isPagination' => false,
-                'isNavigation' => false,
                 'camera' => null,
                 'mouseControl' => true,
             ],
@@ -436,25 +288,13 @@ class ModelViewer extends \Elementor\Widget_Base
                 'useDecoder' => $settings['useDecoder'] ?? 'none',
             ],
             'currentViewer' => $settings['currentViewer'] ?? 'modelViewer',
-            'models' => $get_settings('models', []),
             'lazyLoad' => ($settings['lazy_load'] ?? '') === 'yes',
-            'autoplay' => (bool)($settings['autoplay'] ?? false),
-            'shadow' => ($settings['shadow'] ?? '') === 'yes',
-            'autoRotate' => true,
             'zoom' => true,
-            'isPagination' => false,
-            'isNavigation' => false,
             'preload' => 'auto',
-            'rotationPerSecond' => '30',
             'mouseControl' => ($settings['mouseControls'] ?? '') === 'yes',
             'fullscreen' => ($settings['fullscreen'] ?? '') === 'yes',
-            'variant' => (bool)($settings['variant'] ?? false),
-            'loadingPercentage' => (bool)($settings['loadingPercentage'] ?? false),
+            'loadingPercentage' => (bool) ($settings['loadingPercentage'] ?? false),
             'progressBar' => ($settings['progressBar'] ?? '') === 'yes',
-            'rotate' => ($settings['rotate'] ?? '') === 'yes',
-            'rotateAlongX' => $settings['rotateAlongX']['size'] ?? 0,
-            'rotateAlongY' => $settings['rotateAlongY']['size'] ?? 75,
-            'exposure' => $settings['exposure']['size'] ?? 1,
             'styles' => [
                 'width' => '100%',
                 'height' => $get_settings('height', '500', false, 'size') . $get_settings('height', 'px', false, 'unit'),
@@ -462,25 +302,21 @@ class ModelViewer extends \Elementor\Widget_Base
                 'bgImage' => $settings['backgroundImage']['url'] ?? '',
                 'progressBarColor' => '#666',
             ],
-            'stylesheet' => null,
-            'additional' => ['ID' => '', 'Class' => '', 'CSS' => ''],
-            'animation' => (bool)($settings['enableAnimationSelector'] ?? false),
-            'selectedAnimation' => '',
         ];
 
         if ($finalData['currentViewer'] === 'O3DViewer') {
-            wp_enqueue_script('bp3d-o3dviewer');
+            wp_enqueue_script('bp3d-lib-o3dviewer');
+        } else {
+            wp_enqueue_script_module('bp3d-lib-model-viewer');
         }
-        else {
-            wp_enqueue_script('bp3d-model-viewer');
-        }
-?>
+        ?>
 
         <div class="modelViewerBlock elementor" data-attributes='<?php echo esc_attr(wp_json_encode($finalData)); ?>'></div>
 
         <?php
         if (is_admin()) {
-            wp_enqueue_script('bp3d-o3dviewer');
+            wp_enqueue_script('bp3d-lib-o3dviewer');
+            wp_enqueue_script_module('bp3d-lib-model-viewer');
         }
     }
 }

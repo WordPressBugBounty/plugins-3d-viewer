@@ -24,27 +24,23 @@ class Blocks
      */
     public function register(): void
     {
-        add_action('init', [$this, 'init'], 0);
-        add_action('rest_api_init', [$this, 'rest_api_init']);
+        add_action('init', [$this, 'init'], 1);
         add_action('init', [$this, 'registerBlockAssets'], 0);
         add_action('enqueue_block_editor_assets', [$this, 'enqueueEditorAssets']);
-        add_action('wp_ajax_bp3dviewer_create_page', [$this, 'createPage']);
+        add_action('enqueue_block_assets', [$this, 'enqueueBlockAssets']);
 
-        // pipe checker
-        add_action('wp_ajax_nopriv_bp3d_pipe_checker', [$this, 'bp3d_pipe_checker']);
-        add_action('wp_ajax_bp3d_pipe_checker', [$this, 'bp3d_pipe_checker']);
     }
 
     /**
      * Register block-related scripts and styles on init.
      */
-    public function registerBlockAssets(): void
+    public function registerBlockAssets()
     {
         // Frontend styles
         wp_register_style(
             'bp3d-frontend',
             BP3D_DIR . 'build/frontend.css',
-        [],
+            [],
             BP3D_VERSION,
             'all'
         );
@@ -52,7 +48,7 @@ class Blocks
         wp_register_style(
             'bp3d-custom-style',
             BP3D_DIR . 'public/css/custom-style.css',
-        [],
+            [],
             BP3D_VERSION,
             'all'
         );
@@ -61,7 +57,7 @@ class Blocks
         wp_register_script(
             'bp3d-public',
             BP3D_DIR . 'build/frontend.js',
-        ['react', 'react-dom'],
+            ['react', 'react-dom'],
             BP3D_VERSION,
             true
         );
@@ -84,40 +80,17 @@ class Blocks
     /**
      * Register block types from build directory.
      */
-    public function init(): void
+    public function init()
     {
         register_block_type(BP3D_PATH . 'build/blocks/3d-viewer');
-        register_block_type(BP3D_PATH . 'build/blocks/preset');
+        register_block_type(BP3D_PATH . '3d-viewer-block/build');
     }
 
-    /**
-     * Register REST route for pipe check.
-     */
-    public function rest_api_init(): void
-    {
-        register_rest_route('bp3d/v1', '/pipe-check', [
-            'methods' => 'GET',
-            'callback' => [$this, 'pipeCheckCallback'],
-            'permission_callback' => function () {
-            return current_user_can('edit_posts');
-        },
-        ]);
-    }
-
-    /**
-     * Handle pipe check REST API callback.
-     *
-     * @return \WP_REST_Response
-     */
-    public function pipeCheckCallback(): \WP_REST_Response
-    {
-        return new \WP_REST_Response(['status' => 'ok'], 200);
-    }
 
     /**
      * Enqueue block editor assets with localized data.
      */
-    public function enqueueEditorAssets(): void
+    public function enqueueEditorAssets()
     {
         $presets_raw = get_posts([
             'post_type' => 'bp3d-preset',
@@ -134,66 +107,32 @@ class Blocks
             ];
         }
 
+        $settings = get_option('_bp3d_settings_', []);
+        $allowed_mimes = isset($settings['allowed_mime_types']) ? $settings['allowed_mime_types'] : [];
+        if (!is_array($allowed_mimes)) {
+            $allowed_mimes = [];
+        }
+
         wp_localize_script('b3dviewer-modelviewer-editor-script', 'bp3dBlock', [
-            'nonce' => wp_create_nonce('apbCreatePage'),
-            'isPremium' => bp3dv_fs()->can_use_premium_code(),
-            'ajax_url' => admin_url('admin-ajax.php'),
-            'siteUrl' => site_url(),
-            'assetsUrl' => BP3D_DIR . '/public',
-            'presets' => $presets,
-            'editUrl' => admin_url('post.php?post='),
-            'visual_editor' => admin_url('admin.php?page=3d-viewer-visual-editor'),
-            '_wpnonce' => wp_create_nonce('wp_ajax'),
-            'ajaxURL' => admin_url('admin-ajax.php')
+            'admin_url' => admin_url(),
+            'allowedMimeTypes' => $allowed_mimes
         ]);
 
-        wp_localize_script('b3dviewer-preset-editor-script', 'bp3dPreset', [
-            'isPremium' => \bp3dv_fs()->is__premium_only() && \bp3dv_fs()->can_use_premium_code(),
-            '_nonce' => wp_create_nonce('wp_ajax_pb3d_preset'),
-        ]);
+        wp_enqueue_script_module('bp3d-lib-model-viewer');
+
     }
-
-    /**
-     * Handle AJAX request to create a new page with 3D viewer shortcode.
-     */
-    public function createPage(): void
+    public function enqueueBlockAssets()
     {
-        $nonce = sanitize_text_field(wp_unslash($_POST['nonce'] ?? ''));
+        wp_register_script('bp3d-lib-model-viewer', BP3D_DIR . 'public/js/model-viewer.latest.min.js', [], BP3D_VERSION, true);
+        wp_register_script('bp3d-lib-o3dviewer', BP3D_DIR . 'public/js/o3dv.min.js', [], BP3D_VERSION, true);
 
-        if (!wp_verify_nonce($nonce, 'apbCreatePage')) {
-            wp_send_json_error('Invalid nonce');
+        wp_register_script_module('bp3d-lib-model-viewer', BP3D_DIR . 'public/js/model-viewer.latest.min.js', [], BP3D_VERSION);
+
+        if (is_admin()) {
+            wp_enqueue_script('bp3d-lib-model-viewer');
         }
-
-        $title = sanitize_text_field(wp_unslash($_POST['title'] ?? ''));
-        $shortcode = sanitize_text_field(wp_unslash($_POST['shortcode'] ?? ''));
-
-        $new_post_id = wp_insert_post([
-            'post_title' => $title,
-            'post_status' => 'publish',
-            'post_type' => 'page',
-            'post_content' => $shortcode,
-        ]);
-
-        if (is_wp_error($new_post_id)) {
-            wp_send_json_error('Failed to create page');
-        }
-
-        $page_url = get_permalink($new_post_id);
-        wp_send_json_success(['page_url' => $page_url]);
     }
 
-    public function bp3d_pipe_checker()
-    {
-        $nonce = sanitize_text_field(isset($_POST['_wpnonce']) ? wp_unslash($_POST['_wpnonce']) : '');
-
-        if (!wp_verify_nonce($nonce, 'wp_ajax')) {
-            wp_send_json_error($nonce);
-        }
-
-        wp_send_json_success([
-            'isPipe' => \bp3dv_fs()->is__premium_only() && \bp3dv_fs()->can_use_premium_code(),
-        ]);
-    }
 
     public function get_default_selector($selector, $default)
     {

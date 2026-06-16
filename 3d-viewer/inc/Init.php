@@ -8,19 +8,19 @@ if (!defined('ABSPATH')) {
 /**
  * Plugin initialization and service container.
  *
- * Handles bootstrapping all plugin services, loading premium files,
+ * Handles bootstrapping all plugin services
  * and managing the singleton lifecycle.
  */
 class Init
 {
-    private static ?self$instance = null;
+    private static ?self $instance = null;
 
     private function __construct()
     {
         add_action('woocommerce_after_register_post_type', [$this, 'load_woocommerce_files']);
     }
 
-    public static function instance(): self
+    public static function instance()
     {
         if (is_null(self::$instance)) {
             self::$instance = new self();
@@ -32,28 +32,22 @@ class Init
     /**
      * Get the list of core service classes to register.
      *
-     * @return array<int, class-string>
      */
-    public static function get_services(): array
+    public static function get_services()
     {
         return [
-            Base\EnqueueAssets::class ,
-            Base\Import::class ,
-            Base\SetupWizard::class ,
-            Base\AdminNotice::class ,
-            Base\Ajax::class ,
-            Shortcode\Shortcode::class ,
-            Base\ExtendMimeType::class ,
-            Field\Viewer::class ,
-            Field\Settings::class ,
-            Woocommerce\SingleProduct::class ,
-            Woocommerce\ProductsPro::class ,
-            Helper\Utils::class ,
-            Helper\Block::class ,
-            Addons\Controls\Controls::class ,
-            Addons\AddonsPro::class ,
-            Addons\Blocks::class ,
-            Template\ModelViewer::class ,
+            Base\EnqueueAssets::class,
+            Base\Import::class,
+            Shortcode\Shortcode::class,
+            Base\ExtendMimeType::class,
+            Field\Viewer::class,
+            Field\Settings::class,
+            Woocommerce\SingleProduct::class,
+            Helper\Utils::class,
+            Helper\Block::class,
+            Addons\Blocks::class,
+            Addons\Addons::class,
+            Addons\Controls\Controls::class
         ];
     }
 
@@ -62,29 +56,26 @@ class Init
      *
      * @return array<int, class-string>
      */
-    public static function get_woocommerce_services(): array
+    public static function get_woocommerce_services()
     {
         return [
-            Woocommerce\ProductMeta::class ,
+            Woocommerce\ProductMeta::class,
         ];
     }
 
     /**
      * Register custom post types.
      */
-    public static function register_post_type(): void
+    public static function register_post_type()
     {
         self::instantiate('BP3D\\Base\\PostTypeModelViewer')->register();
 
-        if (\bp3dv_fs()->can_use_premium_code()) {
-            self::instantiate('BP3D\\Base\\PostTypePreset')->register();
-        }
     }
 
     /**
      * Initialize all registered services.
      */
-    public static function init(): void
+    public static function init()
     {
         foreach (self::get_services() as $class) {
             $resolved_class = self::require_file($class);
@@ -104,7 +95,7 @@ class Init
     /**
      * Load WooCommerce-dependent service files.
      */
-    public function load_woocommerce_files(): void
+    public function load_woocommerce_files()
     {
         foreach (self::get_woocommerce_services() as $class) {
             $resolved_class = self::require_file($class);
@@ -124,25 +115,12 @@ class Init
     /**
      * Resolve and require the file for a given class.
      *
-     * Checks for a premium "Pro" version first if applicable.
-     *
-     * @param  class-string  $class
-     * @return class-string|false
      */
-    public static function require_file(string $class): string|false
+    public static function require_file($class)
     {
         $file = str_replace('\\', '/', $class);
-        $pro_file = BP3D_PATH . str_replace('BP3D', 'inc', $file . 'Pro') . '.php';
         $free_file = BP3D_PATH . str_replace('BP3D', 'inc', $file) . '.php';
 
-        if (
-        file_exists($pro_file)
-        && \bp3dv_fs()->is__premium_only()
-        && \bp3dv_fs()->can_use_premium_code()
-        ) {
-            require_once $pro_file;
-            return $class . 'Pro';
-        }
 
         if (file_exists($free_file)) {
             require_once $free_file;
@@ -155,10 +133,8 @@ class Init
     /**
      * Instantiate a class if it exists.
      *
-     * @param  class-string  $class
-     * @return object
      */
-    private static function instantiate(string $class): object
+    private static function instantiate($class)
     {
         if (class_exists($class)) {
             return new $class();

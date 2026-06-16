@@ -29,7 +29,7 @@ class BP3DProductModel extends \Elementor\Widget_Base
      */
     public function get_title(): string
     {
-        return esc_html__('Product Model', 'model-viewer');
+        return esc_html__('Product Model', '3d-viewer');
     }
 
     /**
@@ -87,19 +87,19 @@ class BP3DProductModel extends \Elementor\Widget_Base
     {
         // Content Tab
         $this->start_controls_section('embedder', [
-            'label' => esc_html__('Model Viewer', 'model-viewer'),
+            'label' => esc_html__('Model Viewer', '3d-viewer'),
             'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
         ]);
         $this->end_controls_section();
 
         // Style Tab
         $this->start_controls_section('model', [
-            'label' => esc_html__('Model', 'model-viewer'),
+            'label' => esc_html__('Model', '3d-viewer'),
             'tab' => \Elementor\Controls_Manager::TAB_STYLE,
         ]);
 
         $this->add_control('width', [
-            'label' => esc_html__('Width', 'model-viewer'),
+            'label' => esc_html__('Width', '3d-viewer'),
             'type' => \Elementor\Controls_Manager::SLIDER,
             'size_units' => ['px', '%', 'vw'],
             'range' => [
@@ -114,7 +114,7 @@ class BP3DProductModel extends \Elementor\Widget_Base
         ]);
 
         $this->add_control('height', [
-            'label' => esc_html__('Height', 'model-viewer'),
+            'label' => esc_html__('Height', '3d-viewer'),
             'type' => \Elementor\Controls_Manager::SLIDER,
             'size_units' => ['px', 'vh'],
             'range' => [

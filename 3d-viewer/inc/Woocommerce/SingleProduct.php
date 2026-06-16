@@ -47,17 +47,18 @@ class SingleProduct
         $settings = Utils::getSettings('_bp3d_settings_');
 
         if (
-        $meta('force_to_change_position', false, true)
-        || $meta('is_custom_selector', false, true)
-        || in_array($meta('viewer_position'), ['none', 'merge_with_first_image', 'custom_selector'], true)
-        || !Utils::isCompatibleTheme()
+            $meta('force_to_change_position', false, true)
+            || $meta('is_custom_selector', false, true)
+            || in_array($meta('viewer_position'), ['none', 'merge_with_first_image', 'custom_selector'], true)
+            || !Utils::isCompatibleTheme()
         ) {
             return;
         }
 
         $models = $meta('bp3d_models', []);
+        $model_src = $meta('bp3d_model_src') ?? $models['0']['model_src'] ?? '';
 
-        if (is_array($models) && count($models) < 1) {
+        if ($model_src === '') {
             return;
         }
 
@@ -76,7 +77,8 @@ class SingleProduct
     {
         global $product;
 
-        $woo_enabled = get_option('_bp3d_settings_', ['3d_woo_switcher' => false])['3d_woo_switcher'];
+        $settings = Utils::getSettings('_bp3d_settings_');
+        $woo_enabled = $settings('3d_woo_switcher') !== '0';
 
         if (!$woo_enabled || !is_object($product) || !is_single()) {
             return;
@@ -89,7 +91,7 @@ class SingleProduct
         if (Utils::isCompatibleTheme()) {
             return;
         }
-        
+
         Product::instance()->get_3d_model_html(false, 'product-gallery');
     }
 
@@ -120,16 +122,17 @@ class SingleProduct
         }
 
         $modeview_3d = get_post_meta(get_the_ID(), '_bp3d_product_', true);
-        $viewer_position = $modeview_3d['viewer_position'] ?? 'none';
+        $viewer_position = is_array($modeview_3d) ? ($modeview_3d['viewer_position'] ?? 'none') : 'none';
         $class = Utils::getThemeClass($this->theme_name);
 
         // Handle incompatible themes with replace position
         if (in_array($this->theme_name, Utils::getNotCompatibleThemes(), true)) {
             if ($viewer_position === 'replace') {
                 $custom_selector = Utils::getCustomSelector($this->theme_name);
-?>
+                ?>
                 <style>
-                    <?php echo esc_html($custom_selector); ?>>*:not(.modelViewerBlock) {
+                    <?php echo esc_html($custom_selector); ?>
+                    >*:not(.modelViewerBlock) {
                         display: none;
                     }
                 </style>
@@ -140,59 +143,61 @@ class SingleProduct
 
         global $product;
 
-        wp_enqueue_style('bp3d-custom-style');
         wp_enqueue_script('bp3d-public');
 
+        // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Core WooCommerce hook, must keep its name for compatibility.
         $columns = apply_filters('woocommerce_product_thumbnails_columns', 4);
         $post_thumbnail_id = $product->get_image_id();
-        $wrapper_classes = apply_filters(
-            'woocommerce_single_product_image_gallery_classes',
-        [
-            'woocommerce-product-gallery',
-            'woocommerce-product-gallery--' . ($post_thumbnail_id ? 'with-images' : 'without-images'),
-            'woocommerce-product-gallery--columns-' . absint($columns),
-            'images',
-        ]
+        // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Core WooCommerce hook, must keep its name for compatibility.
+        $wrapper_classes = apply_filters('woocommerce_single_product_image_gallery_classes',
+            [
+                'woocommerce-product-gallery',
+                'woocommerce-product-gallery--' . ($post_thumbnail_id ? 'with-images' : 'without-images'),
+                'woocommerce-product-gallery--columns-' . absint($columns),
+                'images',
+            ]
         );
 
-?>
+        ?>
         <div class="product-modal-wrap <?php echo esc_attr($class); ?> position_<?php echo esc_attr($viewer_position); ?>">
-            <div class="<?php echo esc_attr(implode(' ', array_map('sanitize_html_class', $wrapper_classes))); ?>" data-columns="<?php echo esc_attr((string)$columns); ?>">
+            <div class="<?php echo esc_attr(implode(' ', array_map('sanitize_html_class', $wrapper_classes))); ?>"
+                data-columns="<?php echo esc_attr((string) $columns); ?>">
                 <?php
-        if (in_array($viewer_position, ['top', 'replace'], true)) {
-            if ($viewer_position === 'replace') {
-                add_filter('woocommerce_single_product_image_thumbnail_html', '__return_empty_string', 10, 2);
-            }
-            do_action('bp3d_product_model_before');
-        }
-?>
+                if (in_array($viewer_position, ['top', 'replace'], true)) {
+                    if ($viewer_position === 'replace') {
+                        add_filter('woocommerce_single_product_image_thumbnail_html', '__return_empty_string', 10, 2);
+                    }
+                    do_action('bp3d_product_model_before');
+                }
+                ?>
 
                 <figure class="woocommerce-product-gallery__wrapper">
                     <?php
-        if ($post_thumbnail_id) {
-            $html = \wc_get_gallery_image_html($post_thumbnail_id, true);
-        }
-        else {
-            $html = '<div class="woocommerce-product-gallery__image--placeholder">';
-            $html .= sprintf(
-                '<img src="%s" alt="%s" class="wp-post-image" />',
-                esc_url(\wc_placeholder_img_src('woocommerce_single')),
-                esc_html__('Awaiting product image', 'model-viewer')
-            );
-            $html .= '</div>';
-        }
+                    if ($post_thumbnail_id) {
+                        $html = \wc_get_gallery_image_html($post_thumbnail_id, true);
+                    } else {
+                        $html = '<div class="woocommerce-product-gallery__image--placeholder">';
+                        $html .= sprintf(
+                            '<img src="%s" alt="%s" class="wp-post-image" />',
+                            esc_url(\wc_placeholder_img_src('woocommerce_single')),
+                            esc_html__('Awaiting product image', '3d-viewer')
+                        );
+                        $html .= '</div>';
+                    }
 
-        echo apply_filters('woocommerce_single_product_image_thumbnail_html', $html, $post_thumbnail_id); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-        do_action('woocommerce_product_thumbnails');
-?>
+                    // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound, WordPress.Security.EscapeOutput.OutputNotEscaped -- Core WooCommerce hook; output escaped by WooCommerce.
+                    echo apply_filters('woocommerce_single_product_image_thumbnail_html', $html, $post_thumbnail_id);
+                    // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Core WooCommerce hook, must keep its name for compatibility.
+                    do_action('woocommerce_product_thumbnails');
+                    ?>
                 </figure>
             </div>
 
             <?php
-        if ($viewer_position === 'bottom') {
-            do_action('bp3d_product_model_after');
-        }
-?>
+            if ($viewer_position === 'bottom') {
+                do_action('bp3d_product_model_after');
+            }
+            ?>
         </div>
         <?php
     }
@@ -202,6 +207,7 @@ class SingleProduct
      */
     public function renderModel(): void
     {
+        
         Product::instance()->get_3d_model_html(false, 'product-gallery');
     }
 }

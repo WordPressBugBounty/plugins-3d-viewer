@@ -15,7 +15,7 @@ use BP3D\Woocommerce\Product;
 /**
  * Shortcode handler.
  *
- * Registers and renders the `[3d_viewer]` and `[3d_viewer_product]`
+ * Registers and renders the 
  * shortcodes for displaying 3D model viewers.
  */
 class Shortcode
@@ -30,12 +30,12 @@ class Shortcode
     }
 
     /**
-     * Render the [3d_viewer] shortcode.
+     * Render the  shortcode.
      *
      * @param  array<string, string>|string $atts  Shortcode attributes
      * @return string|false Rendered HTML or false on failure
      */
-    public function renderModelViewer(array |string $atts): string|false
+    public function renderModelViewer($atts)
     {
         $atts = shortcode_atts([
             'id' => '',
@@ -57,23 +57,25 @@ class Shortcode
         }
 
         $post_type = get_post_type($id);
-        $isGutenberg = get_post_meta($id, 'isGutenberg', true);
+        
+        $isGutenberg = get_post_meta($id, '_bp3d_is_gutenberg', true);
+        if ($isGutenberg === '') {
+            $isGutenberg = get_post_meta($id, 'isGutenberg', true);
+        }
 
         if (!in_array($post_type, ['bp3d-model-viewer', 'product'], true)) {
             return false;
         }
 
         if ($isGutenberg) {
-            return Block::instance()->render_block((int)$id);
+            return Block::instance()->render_block((int) $id);
         }
 
         ob_start();
 
-        $meta = Utils::getPostMeta((int)$id, '_bp3dimages_');
+        $meta = Utils::getPostMeta((int) $id, '_bp3dimages_');
 
-        $modelSrc = $meta('bp_3d_src_type') === 'upload'
-            ? $meta('bp_3d_src', [], false, 'url')
-            : $meta('bp_3d_src_link');
+        $modelSrc = $meta('bp_3d_src', [], false, 'url');
 
         $poster = $meta('bp_3d_poster', [], false, 'url');
 
@@ -82,67 +84,44 @@ class Shortcode
                 'modelUrl' => $modelSrc,
                 'poster' => $poster,
             ],
-            'models' => [],
         ], $this->getCommonAttributes($meta, $id));
 
         /** @var array<string, mixed> $finalData */
         $finalData = apply_filters('bp3d_classic_model_attribute', $finalData);
         $model_url = $finalData['model']['modelUrl'] ?? '';
-?>
+
+        ?>
 
         <div class="modelViewerBlock" data-attributes='<?php echo esc_attr(wp_json_encode($finalData)); ?>'>
             <div class="bp3d_backup_view" style="display: none;height:350px;">
                 <model-viewer camera-controls src="<?php echo esc_url($model_url); ?>" style="height: 350px;"></model-viewer>
             </div>
-            <script>
-                setTimeout(() => {
-                    let backupModels = document.querySelectorAll('.bp3d_backup_view');
-                    if(backupModels.length > 0){
-                        backupModels.forEach(element => {
-                            if(element){
-                                element.style.display = 'block';
-                                setTimeout(() => {
-                                    let adminMessages = document.querySelectorAll('.bp3d_admin_message');
-                                    if(adminMessages.length > 0){
-                                        adminMessages.forEach(adminMessage => {
-                                            if(adminMessage){
-                                                adminMessage.style.display = 'block';
-                                            }
-                                        });
-                                    }
-                                }, 5000);
-                            }
-                        });
-                    }
-                }, 5000);
-            </script>
         </div>
 
         <?php
         wp_enqueue_script('bp3d-public');
-        wp_enqueue_style('bp3d-custom-style');
+        // wp_enqueue_style('bp3d-custom-style');
         wp_enqueue_style('bp3d-frontend');
 
         if ($meta('currentViewer') === 'O3DViewer') {
-            wp_enqueue_script('bp3d-o3dviewer');
-        }
-        else {
-            wp_enqueue_script('bp3d-model-viewer');
+            wp_enqueue_script('bp3d-lib-o3dviewer');
+        } else {
+            wp_enqueue_script('bp3d-lib-model-viewer');
         }
 
         return ob_get_clean();
     }
 
     /**
-     * Render the [3d_viewer_product] shortcode.
+     * Render the shortcode.
      *
      * @param  array<string, string>|string $attrs  Shortcode attributes
      * @return string|false Rendered HTML or false on failure
      */
-    public function renderProductModelViewer(array |string $attrs): string|false
+    public function renderProductModelViewer($attrs)
     {
         $attrs = shortcode_atts([
-            'id' => (string)get_the_ID(),
+            'id' => (string) get_the_ID(),
             'width' => '100%',
             'late_initialize' => 'false',
         ], $attrs);
@@ -163,63 +142,34 @@ class Shortcode
      * @param  string|int  $id    Post ID
      * @return array<string, mixed>
      */
-    public function getCommonAttributes(\Closure $meta, string|int $id): array
+    public function getCommonAttributes(\Closure $meta, $id)
     {
         return [
             'align' => $meta('bp_3d_align', 'center'),
             'uniqueId' => 'model' . $id,
             'currentViewer' => $meta('currentViewer', 'modelViewer'),
-            'multiple' => $meta('bp_3d_model_type') !== 'msimple',
             'O3DVSettings' => [
                 'isFullscreen' => $meta('bp_3d_fullscreen', '1', true),
-                'isPagination' => $meta('show_thumbs', '0', true),
-                'isNavigation' => $meta('show_arrows', '0', true),
                 'camera' => null,
                 'mouseControl' => $meta('bp_camera_control', '1', true),
                 'zoom' => $meta('bp_3d_zooming', '1', true),
             ],
-            'environmentImage' => $meta('bp_3d_environment_image'),
             'lazyLoad' => $meta('bp_3d_loading', 'lazy') === 'lazy',
             'loading' => $meta('bp_3d_loading'),
-            'autoplay' => $meta('bp_3d_autoplay', '0', true),
-            'shadow' => (int)$meta('3d_shadow_intensity', '1', false),
-            'autoRotate' => $meta('bp_3d_rotate', '0', true),
-            'zoomLevel' => $meta('3d_zoom_level'),
             'zoom' => $meta('bp_3d_zooming', '1', true),
-            'isPagination' => $meta('show_thumbs', '0', true),
-            'isNavigation' => $meta('show_arrows', '0', true),
-            'hotspotStyle' => $meta('hotspot_style', 'style-1'),
             'preload' => 'auto',
-            'rotationPerSecond' => $meta('3d_rotate_speed'),
             'mouseControl' => $meta('bp_camera_control', '1', true),
-            'lockXAxisRotation' => $meta('lockXAxisRotation', '0', true),
-            'lockYAxisRotation' => $meta('lockYAxisRotation', '0', true),
             'fullscreen' => $meta('bp_3d_fullscreen', '1', true),
             'zoomInOutBtn' => $meta('bp_3d_zoom_in_out_btn', '0', true),
             'cameraBtn' => $meta('bp_3d_camera_btn', '0', true),
-            'variant' => false,
             'loadingPercentage' => $meta('bp_model_progress_percent', '0', true),
             'progressBar' => $meta('bp_3d_progressbar', '0', true),
-            'rotate' => $meta('bp_model_angle', '0', true),
-            'rotateDelay' => (int)$meta('3d_rotate_delay', '3000'),
-            'rotateAlongX' => $meta('angle_property', '0', false, 'top'),
-            'rotateAlongY' => $meta('angle_property', '75', false, 'right'),
-            'exposure' => $meta('3d_exposure'),
-            'stylesheet' => null,
-            'additional' => [
-                'ID' => '',
-                'Class' => '',
-                'CSS' => $meta('css'),
-            ],
-            'animation' => false,
             'woo' => false,
-            'selectedAnimation' => '',
             'placement' => 'shortcode',
             'styles' => [
                 'width' => $meta('bp_3d_width', '100', false, 'width') . $meta('bp_3d_width', '%', false, 'unit'),
                 'height' => $meta('bp_3d_height', '100', false, 'height') . $meta('bp_3d_height', '%', false, 'unit'),
                 'bgColor' => $meta('bp_model_bg'),
-                'progressBarColor' => $meta('bp_model_progressbar_color'),
             ],
         ];
     }

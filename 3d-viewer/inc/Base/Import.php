@@ -27,7 +27,7 @@ class Import
     /**
      * Check import version and trigger migration if needed.
      */
-    public function init(): void
+    public function init()
     {
         $imported = get_option('bp3d_imported', 0);
 
@@ -47,7 +47,7 @@ class Import
     {
         $query = new \WP_Query([
             'post_type' => 'bp3d-model-viewer',
-            'posts_per_page' => -1,
+            'posts_per_page' => 500,
         ]);
 
         while ($query->have_posts()) {
@@ -69,13 +69,12 @@ class Import
 
             foreach ($models as $item) {
                 if (
-                is_array($item)
-                && isset($item['model_src']['url'])
-                && $item['model_src']['url'] !== ''
+                    is_array($item)
+                    && isset($item['model_src']['url'])
+                    && $item['model_src']['url'] !== ''
                 ) {
                     $viewers['bp_3d_models'][]['model_link'] = $item['model_src']['url'];
-                }
-                else {
+                } else {
                     $viewers['bp_3d_models'][]['model_link'] = $item['model_link'] ?? '';
                 }
             }

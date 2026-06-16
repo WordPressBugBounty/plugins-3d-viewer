@@ -36,14 +36,11 @@ class PostTypeModelViewer
         add_filter('post_updated_messages', [$this, 'customizeUpdateMessage']);
         add_action('admin_head-post.php', [$this, 'hidePublishingActions']);
         add_action('admin_head-post-new.php', [$this, 'hidePublishingActions']);
-        add_filter('gettext', [$this, 'changePublishButtonText'], 10, 2);
         add_action('edit_form_after_title', [$this, 'renderShortcodeArea']);
         add_filter('post_row_actions', [$this, 'removeRowActions'], 10, 2);
         add_action('admin_init', [$this, 'setMetaData']);
         add_action('use_block_editor_for_post', [$this, 'useBlockEditorForPost'], 999, 2);
         add_filter('filter_block_editor_meta_boxes', [$this, 'removeMetabox']);
-        add_filter('post_row_actions', [$this, 'addDuplicateLink'], 10, 2);
-        add_action('admin_action_bp3d_duplicate_post_as_draft', [$this, 'handleDuplicateAction']);
     }
 
     /**
@@ -51,33 +48,45 @@ class PostTypeModelViewer
      */
     public function setMetaData(): void
     {
-        if (get_option('model_viewer_import_ver', '0') >= $this->import_ver) {
+        $legacy_ver = get_option('model_viewer_import_ver');
+        $import_ver = get_option('bp3d_model_viewer_import_ver', $legacy_ver ? $legacy_ver : '0');
+
+        if ($import_ver >= $this->import_ver) {
             return;
         }
 
         $query = new \WP_Query([
             'post_type' => $this->post_type,
             'post_status' => 'any',
-            'posts_per_page' => -1,
+            'posts_per_page' => 500,
         ]);
 
         while ($query->have_posts()) {
             $query->the_post();
             $id = get_the_ID();
 
-            if (!get_post_meta($id, 'isGutenberg', true)) {
-                update_post_meta($id, 'isGutenberg', false);
+            $is_gutenberg_meta = get_post_meta($id, '_bp3d_is_gutenberg', true);
+            if ($is_gutenberg_meta === '') {
+                $legacy_meta = get_post_meta($id, 'isGutenberg', true);
+                if ($legacy_meta !== '') {
+                    update_post_meta($id, '_bp3d_is_gutenberg', $legacy_meta);
+                } else {
+                    update_post_meta($id, '_bp3d_is_gutenberg', '0');
+                }
             }
         }
 
         wp_reset_postdata();
-        update_option('model_viewer_import_ver', $this->import_ver);
+        update_option('bp3d_model_viewer_import_ver', $this->import_ver);
+        if ($legacy_ver) {
+            delete_option('model_viewer_import_ver');
+        }
     }
 
     /**
      * Control whether to use the block editor for this post type.
      */
-    public function useBlockEditorForPost(bool $use, \WP_Post $post): bool
+    public function useBlockEditorForPost($use, $post)
     {
         if ($this->post_type !== $post->post_type) {
             return $use;
@@ -85,10 +94,15 @@ class PostTypeModelViewer
 
         $option = get_option('_bp3d_settings_', []);
         $gutenberg_enabled = $option['gutenberg_enabled'] ?? false;
-        $is_gutenberg = (bool)get_post_meta($post->ID, 'isGutenberg', true);
+        
+        $is_gutenberg_meta = get_post_meta($post->ID, '_bp3d_is_gutenberg', true);
+        if ($is_gutenberg_meta === '') {
+            $is_gutenberg_meta = get_post_meta($post->ID, 'isGutenberg', true);
+        }
+        $is_gutenberg = (bool) $is_gutenberg_meta;
 
         if ($gutenberg_enabled && $post->post_status === 'auto-draft') {
-            update_post_meta($post->ID, 'isGutenberg', true);
+            update_post_meta($post->ID, '_bp3d_is_gutenberg', '1');
             return true;
         }
 
@@ -103,22 +117,20 @@ class PostTypeModelViewer
     /**
      * Customize the "post updated" message.
      *
-     * @param  array<string, array<int, string>> $messages
      * @return array<string, array<int, string>>
      */
-    public function customizeUpdateMessage(array $messages): array
+    public function customizeUpdateMessage($messages)
     {
-        $messages[$this->post_type][1] = __('Model Updated', 'model-viewer');
+        $messages[$this->post_type][1] = __('Model Updated', '3d-viewer');
         return $messages;
     }
 
     /**
      * Add the shortcode column to the post list table.
      *
-     * @param  array<string, string> $defaults
      * @return array<string, string>
      */
-    public function addShortcodeColumn(array $defaults): array
+    public function addShortcodeColumn($defaults)
     {
         unset($defaults['date']);
         $defaults['shortcode'] = 'ShortCode';
@@ -130,16 +142,16 @@ class PostTypeModelViewer
     /**
      * Render the shortcode column content.
      */
-    public function renderShortcodeColumn(string $column_name, int $post_id): void
+    public function renderShortcodeColumn($column_name, $post_id)
     {
         if ($column_name !== 'shortcode') {
             return;
         }
 
-        $shortcode = '[3d_viewer id=' . esc_attr((string)$post_id) . ']';
+        $shortcode = '[3d_viewer id=' . esc_attr((string) $post_id) . ']';
         echo "<div class='b3dviewer_front_shortcode'>"
             . "<input value='" . esc_attr($shortcode) . "' >"
-            . "<span class='htooltip'>" . esc_html__('Copy To Clipboard', 'model-viewer') . "</span>"
+            . "<span class='htooltip'>" . esc_html__('Copy To Clipboard', '3d-viewer') . "</span>"
             . "<svg class='bp3d_shortcode_copy_icon' data-clipboard-text='" . esc_attr($shortcode) . "' width='22px' height='22px' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>"
             . "<path d='M8 4V16C8 17.1046 8.89543 18 10 18L18 18C19.1046 18 20 17.1046 20 16V7.24162C20 6.7034 19.7831 6.18789 19.3982 5.81161L16.0829 2.56999C15.7092 2.2046 15.2074 2 14.6847 2H10C8.89543 2 8 2.89543 8 4Z' stroke='#000000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/>"
             . "<path d='M16 18V20C16 21.1046 15.1046 22 14 22H6C4.89543 22 4 21.1046 4 20V9C4 7.89543 4.89543 7 6 7H8' stroke='#000000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/>"
@@ -153,24 +165,23 @@ class PostTypeModelViewer
     {
         register_post_type($this->post_type, [
             'labels' => [
-                'name' => __('3D Viewer', 'model-viewer'),
-                'menu_name' => __('3D Viewer', 'model-viewer'),
-                'name_admin_bar' => __('3D Viewer', 'model-viewer'),
-                'add_new' => __('Add New', 'model-viewer'),
-                'add_new_item' => __(' &#8627; Add New', 'model-viewer'),
-                'new_item' => __('New 3D Viewer', 'model-viewer'),
-                'edit_item' => __('Edit 3D Viewer', 'model-viewer'),
-                'search_items' => __('Search Viewers', 'model-viewer'),
-                'view_item' => __('View 3D Viewer', 'model-viewer'),
-                'all_items' => __('All 3D Viewers', 'model-viewer'),
-                'not_found' => __("Sorry, we couldn't find the Feed you are looking for.", 'model-viewer'),
+                'name' => __('3D Viewer', '3d-viewer'),
+                'menu_name' => __('3D Viewer', '3d-viewer'),
+                'name_admin_bar' => __('3D Viewer', '3d-viewer'),
+                'add_new' => __('Add New', '3d-viewer'),
+                'add_new_item' => __(' Add New', '3d-viewer'),
+                'new_item' => __('New 3D Viewer', '3d-viewer'),
+                'edit_item' => __('Edit 3D Viewer', '3d-viewer'),
+                'search_items' => __('Search Viewers', '3d-viewer'),
+                'view_item' => __('View 3D Viewer', '3d-viewer'),
+                'all_items' => __('All 3D Viewers', '3d-viewer'),
+                'not_found' => __("Sorry, we couldn't find the Feed you are looking for.", '3d-viewer'),
             ],
-            'description' => __('3D Viewer Options.', 'model-viewer'),
+            'description' => __('3D Viewer Options.', '3d-viewer'),
             'public' => false,
             'show_ui' => true,
             'menu_icon' => BP3D_DIR . 'admin/images/logo.svg',
             'query_var' => true,
-            'rewrite' => ['slug' => 'model-viewer'],
             'capability_type' => 'post',
             'has_archive' => false,
             'hierarchical' => false,
@@ -201,25 +212,14 @@ class PostTypeModelViewer
         </style>';
     }
 
-    /**
-     * Change the "Publish" button text to "Save".
-     */
-    public function changePublishButtonText(string $translation, string $text): string
-    {
-        if ($this->post_type === get_post_type() && $text === 'Publish') {
-            return 'Save';
-        }
 
-        return $translation;
-    }
 
     /**
      * Remove "View" and "Quick Edit" row actions for this post type.
      *
-     * @param  array<string, string> $actions
      * @return array<string, string>
      */
-    public function removeRowActions(array $actions): array
+    public function removeRowActions($actions)
     {
         global $post;
 
@@ -236,12 +236,12 @@ class PostTypeModelViewer
      * @param  mixed $metaboxes
      * @return mixed
      */
-    public function removeMetabox(mixed $metaboxes): mixed
+    public function removeMetabox($metaboxes)
     {
         $screen = get_current_screen();
 
         if ($screen && $screen->post_type === $this->post_type) {
-            return false;
+            return [];
         }
 
         return $metaboxes;
@@ -250,130 +250,35 @@ class PostTypeModelViewer
     /**
      * Render shortcode display area after the post title.
      */
-    public function renderShortcodeArea(): void
+    public function renderShortcodeArea()
     {
         if ($this->post_type !== get_post_type()) {
             return;
         }
 
         global $post;
-        $shortcode = "[3d_viewer id='" . esc_attr((string)$post->ID) . "']";
-?>
+        $shortcode = "[3d_viewer id='" . esc_attr((string) $post->ID) . "']";
+        ?>
         <div class="bp3d_shortcode_area_after_title">
-            <label><?php esc_html_e('Copy and paste this shortcode into your posts, pages and widget', 'model-viewer'); ?></label>
+            <label><?php esc_html_e('Copy and paste this shortcode into your posts, pages and widget', '3d-viewer'); ?></label>
             <div class="shortcode_area">
-                <button class="button button-bplugins button-large bp3d_shortcode_copy_btn" data-clipboard-text="<?php echo esc_attr($shortcode); ?>">
+                <button class="button button-bplugins button-large bp3d_shortcode_copy_btn"
+                    data-clipboard-text="<?php echo esc_attr($shortcode); ?>">
                     <?php echo esc_html($shortcode); ?>
                 </button>
-                <svg class="bp3d_shortcode_copy_icon" data-clipboard-text='[3d_viewer id="<?php echo esc_attr((string)$post->ID); ?>"]' width="22px" height="22px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8 4V16C8 17.1046 8.89543 18 10 18L18 18C19.1046 18 20 17.1046 20 16V7.24162C20 6.7034 19.7831 6.18789 19.3982 5.81161L16.0829 2.56999C15.7092 2.2046 15.2074 2 14.6847 2H10C8.89543 2 8 2.89543 8 4Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M16 18V20C16 21.1046 15.1046 22 14 22H6C4.89543 22 4 21.1046 4 20V9C4 7.89543 4.89543 7 6 7H8" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <svg class="bp3d_shortcode_copy_icon"
+                    data-clipboard-text='[3d_viewer id="<?php echo esc_attr((string) $post->ID); ?>"]' width="22px"
+                    height="22px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M8 4V16C8 17.1046 8.89543 18 10 18L18 18C19.1046 18 20 17.1046 20 16V7.24162C20 6.7034 19.7831 6.18789 19.3982 5.81161L16.0829 2.56999C15.7092 2.2046 15.2074 2 14.6847 2H10C8.89543 2 8 2.89543 8 4Z"
+                        stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M16 18V20C16 21.1046 15.1046 22 14 22H6C4.89543 22 4 21.1046 4 20V9C4 7.89543 4.89543 7 6 7H8"
+                        stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
             </div>
         </div>
         <?php
     }
 
-    /**
-     * Add a "Duplicate" action link to the post row.
-     *
-     * @param  array<string, string> $actions
-     * @param  \WP_Post              $post
-     * @return array<string, string>
-     */
-    public function addDuplicateLink(array $actions, \WP_Post $post): array
-    {
-        if (!current_user_can('edit_posts') || $post->post_type !== $this->post_type) {
-            return $actions;
-        }
 
-        $url = wp_nonce_url(
-            'admin.php?action=bp3d_duplicate_post_as_draft&post=' . $post->ID,
-            basename(__FILE__),
-            'duplicate_nonce'
-        );
-
-        $actions['duplicate'] = '<a href="' . $url . '" title="Duplicate this item" rel="permalink">Duplicate</a>';
-
-        return $actions;
-    }
-
-    /**
-     * Handle the post duplication action.
-     */
-    public function handleDuplicateAction(): void
-    {
-        $nonce = sanitize_text_field(wp_unslash($_REQUEST['duplicate_nonce'] ?? ''));
-
-        if (!wp_verify_nonce($nonce, basename(__FILE__))) {
-            wp_die('No post to duplicate has been supplied!');
-        }
-
-        global $wpdb;
-
-        $post_id = absint($_GET['post'] ?? $_POST['post'] ?? 0);
-        $action = sanitize_text_field(wp_unslash($_REQUEST['action'] ?? ''));
-
-        if (!$post_id || $action !== 'bp3d_duplicate_post_as_draft') {
-            wp_die('No post to duplicate has been supplied!');
-        }
-
-        $post = get_post($post_id);
-
-        if (!$post) {
-            wp_die('Post creation failed, could not find original post: ' . esc_html((string)$post_id));
-        }
-
-        $current_user = wp_get_current_user();
-
-        $new_post_id = wp_insert_post([
-            'comment_status' => $post->comment_status,
-            'ping_status' => $post->ping_status,
-            'post_author' => $current_user->ID,
-            'post_content' => $post->post_content,
-            'post_excerpt' => $post->post_excerpt,
-            'post_name' => $post->post_name,
-            'post_parent' => $post->post_parent,
-            'post_password' => $post->post_password,
-            'post_status' => 'draft',
-            'post_title' => $post->post_title . ' Copy',
-            'post_type' => $post->post_type,
-            'to_ping' => $post->to_ping,
-            'menu_order' => $post->menu_order,
-        ]);
-
-        if (is_wp_error($new_post_id)) {
-            wp_die('Post duplication failed.');
-        }
-
-        // Copy taxonomies
-        $taxonomies = get_object_taxonomies($post->post_type);
-        foreach ($taxonomies as $taxonomy) {
-            $terms = wp_get_object_terms($post_id, $taxonomy, ['fields' => 'slugs']);
-            wp_set_object_terms($new_post_id, $terms, $taxonomy, false);
-        }
-
-        // Copy all post meta
-        $meta_entries = $wpdb->get_results(
-            $wpdb->prepare(
-            "SELECT meta_key, meta_value FROM $wpdb->postmeta WHERE post_id = %d",
-            $post_id
-        )
-        );
-
-        foreach ($meta_entries as $meta) {
-            if ($meta->meta_key === '_wp_old_slug') {
-                continue;
-            }
-
-            $wpdb->insert($wpdb->postmeta, [
-                'post_id' => $new_post_id,
-                'meta_key' => $meta->meta_key,
-                'meta_value' => $meta->meta_value,
-            ]);
-        }
-
-        wp_safe_redirect(admin_url('post.php?action=edit&post=' . $new_post_id));
-        exit;
-    }
 }

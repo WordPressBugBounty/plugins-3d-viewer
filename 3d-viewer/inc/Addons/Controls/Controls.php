@@ -16,7 +16,7 @@ if (!defined('ABSPATH')) {
  */
 final class Controls
 {
-    private static ?self$_instance = null;
+    private static ?self $_instance = null;
 
     public static function instance(): self
     {
@@ -35,9 +35,8 @@ final class Controls
     /**
      * Register custom Elementor controls.
      *
-     * @param \Elementor\Controls_Manager $controls_manager
      */
-    public function registerControls(object $controls_manager): void
+    public function registerControls($controls_manager)
     {
         require_once __DIR__ . '/b-select-file.php';
         $controls_manager->register(new SelectFile());
