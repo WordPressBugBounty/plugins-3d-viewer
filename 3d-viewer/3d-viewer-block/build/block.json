@@ -78,5 +78,5 @@
   "editorStyle": "file:./index.css",
   "style": "file:./view.css",
   "render": "file:./render.php",
-  "viewScriptModule": "bp3d-lib-model-viewer"
+  "viewScriptModule": "bp3d-model-viewer"
 }
