@@ -2,7 +2,7 @@
 Contributors: bplugins, abuhayat, shehabulislam, freemius, farazi1
 Tags: 3D model viewer, threejs, widget, model viewer, 360° product view
 Tested up to: 7.0
-Stable tag: 1.9.0
+Stable tag: 1.8.13
 Requires PHP: 7.4
 Requires at least: 6.5
 Donate link: https://www.buymeacoffee.com/abuhayat
@@ -18,7 +18,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 [**3D Viewer**](https://bplugins.com/products/3d-viewer/) | [**Documentation**](https://bplugins.com/docs/3d-viewer/) | [**Pricing**](https://bplugins.com/products/3d-viewer/pricing) | [**Support**](https://bplugins.com/support/) | [**Demo**](https://bplugins.com/products/3d-viewer/#demos)
 
-https://youtube.com/watch?v=_9vKv5pEClM
+https://youtube.com/watch?v=gQBAtOOL-tc
 
 [**3D Viewer**](https://bplugins.com/products/3d-viewer/) lets you embed interactive 3D models into posts, pages, widgets, and WooCommerce product pages. Utilizing the Three.js library, it supports various 3D file formats, including GLB, GLTF, OBJ, and STL.
 
@@ -271,12 +271,6 @@ The bundle also includes the following sub-dependencies:
 * Purpose: Shared utility library providing admin dashboard components and common Gutenberg editor controls.
 * External Services: The library may connect to bPlugins, WordPress.org, and Freemius services for product data and checkout functionality. See full details: https://github.com/bPlugins/bpl-tools#external-requests--why-they-are-made
 
-= bp-extension-manager =
-* Source / GitHub: https://github.com/bPlugins/bp-extension-manager
-* License: GPL-2.0-or-later – https://www.gnu.org/licenses/gpl-2.0.html
-* Purpose: Shared library that discovers, gates, licenses, and administers the plugin's add-on extensions from the "Extensions" admin page.
-* External Services: The library may connect to bPlugins, WordPress.org, and Freemius services to list available add-ons, resolve download URLs, and manage licenses. Connections are made only from the plugin's admin dashboard.
-
 
 == Frequently Asked Questions ==
 
@@ -305,14 +299,6 @@ Yes, we have build in Elementor widget and shortcode both.
 
 
 == Changelog ==
-
-= 1.9.0 - 18 July, 2026  =
-New: Added Augmented Reality (AR) support with WebXR, Scene Viewer, and Quick Look modes, including QR code access to view models in AR from mobile devices.
-New: Added an iOS-specific (.usdz) model source for AR Quick Look on Apple devices.
-New: Added Exposure and Shadow Intensity controls for the Model Viewer.
-New: Added a live 3D model preview panel to the editor metabox.
-New: Added an Extensions catalog and manager to the admin dashboard.
-Update: Refactored the admin dashboard with section icons and an improved layout.
 
 = 1.8.13 - 01 June, 2026  =
 Update: Tested with WordPress 7.0 and Updated Product Meta Field.

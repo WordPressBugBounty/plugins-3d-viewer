@@ -1,5 +1,5 @@
 {
-  "name": "bplugins/3d-viewer",
+  "name": "bPlugins/3d-viewer",
   "version": "1.8.12",
   "autoload": {
     "psr-4": {

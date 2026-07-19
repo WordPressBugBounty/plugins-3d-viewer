@@ -25,8 +25,7 @@
         "arEnabled": false,
         "arPlacement": "floor",
         "arMode": "quick-look",
-        "arScale": "fixed",
-        "modelISOSrc": null
+        "arScale": "fixed"
       }
     },
     "currentViewer": {
@@ -112,14 +111,6 @@
     "woo": {
       "type": "boolean",
       "default": false
-    },
-    "exposure": {
-      "type": "number",
-      "default": 1
-    },
-    "shadow": {
-      "type": "boolean",
-      "default": true
     },
     "placement": {
       "type": "string",

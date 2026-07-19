@@ -135,7 +135,7 @@ class ModelViewer extends \Elementor\Widget_Base
             'type' => 'b-select-file',
             'separator' => 'before',
             'placeholder' => esc_html__('Paste bin file URL', '3d-viewer'),
-            'condition' => ['useDecoder' => 'draco', 'currentViewer' => 'modelViewer'],
+            'condition' => ['decoder' => 'draco', 'currentViewer' => 'modelViewer'],
         ]);
 
         $this->add_control('poster', [
@@ -184,127 +184,6 @@ class ModelViewer extends \Elementor\Widget_Base
             'return_value' => 'yes',
             'default' => 'yes',
             'condition' => ['currentViewer' => 'modelViewer'],
-        ]);
-
-        $this->add_control('zoom', [
-            'label' => esc_html__('Enable Zoom', '3d-viewer'),
-            'type' => \Elementor\Controls_Manager::SWITCHER,
-            'label_on' => esc_html__('Enable', '3d-viewer'),
-            'label_off' => esc_html__('Disable', '3d-viewer'),
-            'return_value' => 'yes',
-            'default' => 'yes',
-            'condition' => ['currentViewer' => 'modelViewer'],
-        ]);
-
-        $this->add_control('zoomInOutBtn', [
-            'label' => esc_html__('Zoom In/Out Button', '3d-viewer'),
-            'type' => \Elementor\Controls_Manager::SWITCHER,
-            'label_on' => esc_html__('Show', '3d-viewer'),
-            'label_off' => esc_html__('Hide', '3d-viewer'),
-            'return_value' => 'yes',
-            'default' => 'no',
-            'condition' => ['currentViewer' => 'modelViewer'],
-        ]);
-
-        $this->add_control('cameraBtn', [
-            'label' => esc_html__('Camera/Capture Button', '3d-viewer'),
-            'type' => \Elementor\Controls_Manager::SWITCHER,
-            'label_on' => esc_html__('Show', '3d-viewer'),
-            'label_off' => esc_html__('Hide', '3d-viewer'),
-            'return_value' => 'yes',
-            'default' => 'no',
-            'condition' => ['currentViewer' => 'modelViewer'],
-        ]);
-
-        $this->add_control('loadingPercentage', [
-            'label' => esc_html__('Show Loading Percentage', '3d-viewer'),
-            'type' => \Elementor\Controls_Manager::SWITCHER,
-            'label_on' => esc_html__('Show', '3d-viewer'),
-            'label_off' => esc_html__('Hide', '3d-viewer'),
-            'return_value' => 'yes',
-            'default' => 'no',
-            'condition' => ['currentViewer' => 'modelViewer'],
-        ]);
-
-        $this->add_control('shadow', [
-            'label' => esc_html__('Enable Shadow', '3d-viewer'),
-            'type' => \Elementor\Controls_Manager::SWITCHER,
-            'label_on' => esc_html__('Enable', '3d-viewer'),
-            'label_off' => esc_html__('Disable', '3d-viewer'),
-            'return_value' => 'yes',
-            'default' => 'yes',
-            'condition' => ['currentViewer' => 'modelViewer'],
-        ]);
-
-        $this->add_control('exposure', [
-            'label' => esc_html__('Exposure', '3d-viewer'),
-            'type' => \Elementor\Controls_Manager::SLIDER,
-            'range' => [
-                'px' => [
-                    'min' => 0.1,
-                    'max' => 5,
-                    'step' => 0.1,
-                ],
-            ],
-            'default' => [
-                'size' => 1,
-            ],
-            'condition' => ['currentViewer' => 'modelViewer'],
-        ]);
-
-        // Divider
-        $this->add_control('hr_ar', [
-            'type' => \Elementor\Controls_Manager::DIVIDER,
-            'condition' => ['currentViewer' => 'modelViewer'],
-        ]);
-
-        $this->add_control('enableAr', [
-            'label' => esc_html__('Enable AR', '3d-viewer'),
-            'type' => \Elementor\Controls_Manager::SWITCHER,
-            'label_on' => esc_html__('Enable', '3d-viewer'),
-            'label_off' => esc_html__('Disable', '3d-viewer'),
-            'return_value' => 'yes',
-            'default' => 'no',
-            'condition' => ['currentViewer' => 'modelViewer'],
-        ]);
-
-        $this->add_control('modelIsoSrc', [
-            'label' => esc_html__('3D Source for iOS (Optional)', '3d-viewer'),
-            'type' => 'b-select-file',
-            'placeholder' => esc_html__('Paste USDZ Model URL', '3d-viewer'),
-            'condition' => [
-                'currentViewer' => 'modelViewer',
-                'enableAr' => 'yes',
-            ],
-        ]);
-
-        $this->add_control('arPlacement', [
-            'label' => esc_html__('AR Placement', '3d-viewer'),
-            'type' => \Elementor\Controls_Manager::SELECT,
-            'default' => 'floor',
-            'options' => [
-                'floor' => esc_html__('Floor', '3d-viewer'),
-                'wall' => esc_html__('Wall', '3d-viewer'),
-            ],
-            'condition' => [
-                'currentViewer' => 'modelViewer',
-                'enableAr' => 'yes',
-            ],
-        ]);
-
-        $this->add_control('arMode', [
-            'label' => esc_html__('AR Mode', '3d-viewer'),
-            'type' => \Elementor\Controls_Manager::SELECT,
-            'default' => 'webxr',
-            'options' => [
-                'webxr' => esc_html__('WebXR', '3d-viewer'),
-                'scene-viewer' => esc_html__('Scene Viewer', '3d-viewer'),
-                'quick-look' => esc_html__('Quick Look', '3d-viewer'),
-            ],
-            'condition' => [
-                'currentViewer' => 'modelViewer',
-                'enableAr' => 'yes',
-            ],
         ]);
 
         $this->end_controls_section();
@@ -399,35 +278,23 @@ class ModelViewer extends \Elementor\Widget_Base
             'align' => 'center',
             'uniqueId' => 'b3dviewer' . uniqid(),
             'O3DVSettings' => [
-                'isFullscreen' => ($settings['fullscreen'] ?? '') === 'yes',
+                'isFullscreen' => true,
                 'camera' => null,
-                'mouseControl' => ($settings['mouseControls'] ?? '') === 'yes',
-                'zoom' => ($settings['zoom'] ?? '') === 'yes',
+                'mouseControl' => true,
             ],
             'model' => [
                 'modelUrl' => $settings['modelUrl'] ?? '',
                 'poster' => $settings['poster'] ?? '',
-                // The frontend renderer reads `model.decoder` and the model-viewer
-                // build expects the "Draco"/"none" spelling used by the block editor,
-                // so map the widget's lowercase `useDecoder` value onto that contract.
-                'decoder' => (($settings['useDecoder'] ?? 'none') === 'draco') ? 'Draco' : 'none',
-                'arEnabled' => ($settings['enableAr'] ?? '') === 'yes',
-                'arPlacement' => $settings['arPlacement'] ?? 'floor',
-                'arMode' => $settings['arMode'] ?? 'webxr',
-                'modelISOSrc' => $settings['modelIsoSrc'] ?? '',
+                'useDecoder' => $settings['useDecoder'] ?? 'none',
             ],
             'currentViewer' => $settings['currentViewer'] ?? 'modelViewer',
-            'loading' => ($settings['lazy_load'] ?? '') === 'yes' ? 'lazy' : 'eager',
-            'zoom' => ($settings['zoom'] ?? '') === 'yes',
-            'zoomInOutBtn' => ($settings['zoomInOutBtn'] ?? '') === 'yes',
-            'cameraBtn' => ($settings['cameraBtn'] ?? '') === 'yes',
+            'lazyLoad' => ($settings['lazy_load'] ?? '') === 'yes',
+            'zoom' => true,
             'preload' => 'auto',
             'mouseControl' => ($settings['mouseControls'] ?? '') === 'yes',
             'fullscreen' => ($settings['fullscreen'] ?? '') === 'yes',
-            'loadingPercentage' => ($settings['loadingPercentage'] ?? '') === 'yes',
+            'loadingPercentage' => (bool) ($settings['loadingPercentage'] ?? false),
             'progressBar' => ($settings['progressBar'] ?? '') === 'yes',
-            'exposure' => isset($settings['exposure']['size']) ? (float) $settings['exposure']['size'] : 1.0,
-            'shadow' => ($settings['shadow'] ?? '') === 'yes',
             'styles' => [
                 'width' => '100%',
                 'height' => $get_settings('height', '500', false, 'size') . $get_settings('height', 'px', false, 'unit'),
