@@ -37,6 +37,7 @@ class PostTypeModelViewer
         add_action('admin_head-post.php', [$this, 'hidePublishingActions']);
         add_action('admin_head-post-new.php', [$this, 'hidePublishingActions']);
         add_action('edit_form_after_title', [$this, 'renderShortcodeArea']);
+        add_action('add_meta_boxes_' . $this->post_type, [$this, 'addLivePreviewMetaBox']);
         add_filter('post_row_actions', [$this, 'removeRowActions'], 10, 2);
         add_action('admin_init', [$this, 'setMetaData']);
         add_action('use_block_editor_for_post', [$this, 'useBlockEditorForPost'], 999, 2);
@@ -278,6 +279,33 @@ class PostTypeModelViewer
             </div>
         </div>
         <?php
+    }
+
+    /**
+     * Register the "Live Preview" meta box in the sidebar.
+     *
+     * Uses the `default` priority so it renders directly beneath the core
+     * `submitdiv` (Publish/Save) meta box. Its body provides the mount point
+     * (#bp3d-preview-btn-root) for the React "Live Preview" trigger button.
+     */
+    public function addLivePreviewMetaBox(): void
+    {
+        add_meta_box(
+            'bp3d_live_preview',
+            __('Live Preview', '3d-viewer'),
+            [$this, 'renderLivePreviewMetaBox'],
+            $this->post_type,
+            'side',
+            'default'
+        );
+    }
+
+    /**
+     * Render the Live Preview meta box body.
+     */
+    public function renderLivePreviewMetaBox(): void
+    {
+        echo '<div id="bp3d-preview-btn-root"></div>';
     }
 
 

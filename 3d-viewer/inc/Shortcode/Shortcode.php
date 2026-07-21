@@ -75,16 +75,7 @@ class Shortcode
 
         $meta = Utils::getPostMeta((int) $id, '_bp3dimages_');
 
-        $modelSrc = $meta('bp_3d_src', [], false, 'url');
-
-        $poster = $meta('bp_3d_poster', [], false, 'url');
-
-        $finalData = wp_parse_args([
-            'model' => [
-                'modelUrl' => $modelSrc,
-                'poster' => $poster,
-            ],
-        ], $this->getCommonAttributes($meta, $id));
+        $finalData = Utils::buildViewerAttributes($meta, $id);
 
         /** @var array<string, mixed> $finalData */
         $finalData = apply_filters('bp3d_classic_model_attribute', $finalData);
@@ -164,6 +155,8 @@ class Shortcode
             'cameraBtn' => $meta('bp_3d_camera_btn', '0', true),
             'loadingPercentage' => $meta('bp_model_progress_percent', '0', true),
             'progressBar' => $meta('bp_3d_progressbar', '0', true),
+            'exposure' => $meta('3d_exposure', '1'),
+            'shadow' => (float) $meta('3d_shadow_intensity', '1', false),
             'woo' => false,
             'placement' => 'shortcode',
             'styles' => [

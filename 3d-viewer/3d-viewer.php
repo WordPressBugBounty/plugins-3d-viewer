@@ -5,7 +5,7 @@
  * Plugin Name: 3D Viewer – Display Interactive 3D Models
  * Plugin URI:  https://bplugins.com/
  * Description: Easily display interactive 3D models on the web. Supported File type .glb, .gltf,obj 3ds stl ply off 3dm fbx dae wrl 3mf amf ifc brep step iges fcstd bim
- * Version: 1.8.13
+ * Version: 1.9.0
  * Author: bPlugins
  * Author URI: https://bplugins.com
  * Requires PHP: 7.4
@@ -19,6 +19,25 @@
 if (!defined('ABSPATH')) {
     exit;
 }
+
+/**
+ * plugin is activated, deactivate the premium build automatically.
+ */
+if (!function_exists('bp3d_deactivate_premium_version')) {
+    function bp3d_deactivate_premium_version()
+    {
+        if (!function_exists('is_plugin_active')) {
+            require_once ABSPATH . 'wp-admin/includes/plugin.php';
+        }
+
+        $premium = '3d-viewer-premium/3d-viewer-premium.php';
+
+        if (is_plugin_active($premium)) {
+            deactivate_plugins($premium);
+        }
+    }
+}
+register_activation_hook(__FILE__, 'bp3d_deactivate_premium_version');
 
 if (function_exists('bp3d_fs')) {
     bp3d_fs()->set_basename(true, __FILE__);
@@ -34,7 +53,7 @@ if (function_exists('bp3d_fs')) {
     if (defined('WP_DEBUG') && WP_DEBUG === true) {
         define('BP3D_VERSION', time());
     } else {
-        define('BP3D_VERSION', '1.8.13');
+        define('BP3D_VERSION', '1.9.0');
     }
 
     defined('BP3D_DIR') or define('BP3D_DIR', plugin_dir_url(__FILE__));
@@ -109,6 +128,8 @@ if (function_exists('bp3d_fs')) {
                 }
                 add_action('plugins_loaded', array($this, 'plugins_loaded'));
                 add_action('init', [$this, 'load_plugin_textdomain']);
+                add_filter('fs_is_update_check_enabled', '__return_false');
+
             }
 
             public function load_plugin_textdomain()
@@ -132,7 +153,30 @@ if (function_exists('bp3d_fs')) {
         BP3D::get_instance();
     }
 
-}
+    $bpem_bootstrap = BP3D_PATH . 'vendor/bp-extension-manager/bootstrap.php';
+    if (file_exists($bpem_bootstrap)) {
+        require_once $bpem_bootstrap;
+    }
 
+
+    add_action('bpem_loaded', function () {
+        if (class_exists('\\BPEM\\Manager')) {
+            \BPEM\Manager::boot(array(
+                'slug' => '3d-viewer',           // unique; namespaces everything
+                'name' => '3D Viewer',
+                'version' => (string) BP3D_VERSION,
+                'menu_parent' => 'edit.php?post_type=bp3d-model-viewer',
+                'freemius' => function_exists('bp3d_fs') ? bp3d_fs() : null,
+                'max_plan_id' => 'max',
+                'catalog_file' => __DIR__ . '/public/extensions.php', // Explicit PHP path
+                'menu_badge' => true,
+                'menu_badge_persist' => true,
+                'enable_freemius_checkout' => true
+
+            ));
+        }
+    });
+
+}
 
 

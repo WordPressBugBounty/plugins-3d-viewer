@@ -1,34 +1,34 @@
 <?php
 if ( !defined( 'ABSPATH' ) ) { exit; }
 
-$bp3dbSrcType		= $attributes['sourceType'] ?? 'upload';
-$bp3dbModelUrl		= 'upload' === $bp3dbSrcType ? ( $attributes['model']['url'] ?? '' ) : ( $attributes['modelLink'] ?? '' );
-$bp3dbModelTitle		= 'upload' === $bp3dbSrcType ? ( $attributes['model']['title'] ?? '' ) : '';
-$bp3dbIsTouchMove	= $attributes['isTouchMove'] ?? true;
-$bp3dbIsZoom			= $attributes['isZoom'] ?? true;
-$bp3dbWidth			= $attributes['width'] ?? '100%';
-$bp3dbHeight			= $attributes['height'] ?? '350px';
+$tdvbSrcType		= $attributes['sourceType'] ?? 'upload';
+$tdvbModelUrl		= 'upload' === $tdvbSrcType ? ( $attributes['model']['url'] ?? '' ) : ( $attributes['modelLink'] ?? '' );
+$tdvbModelTitle		= 'upload' === $tdvbSrcType ? ( $attributes['model']['title'] ?? '' ) : '';
+$tdvbIsTouchMove	= $attributes['isTouchMove'] ?? true;
+$tdvbIsZoom			= $attributes['isZoom'] ?? true;
+$tdvbWidth			= $attributes['width'] ?? '100%';
+$tdvbHeight			= $attributes['height'] ?? '350px';
 
-$bp3dbWidthStr		= intval( $bp3dbWidth ) ? $bp3dbWidth : 'auto';
-$bp3dbHeightStr		= intval( $bp3dbHeight ) ? $bp3dbHeight : '350px';
+$tdvbWidthStr		= intval( $tdvbWidth ) ? $tdvbWidth : 'auto';
+$tdvbHeightStr		= intval( $tdvbHeight ) ? $tdvbHeight : '350px';
 
-$bp3dbModelStyles	= sprintf( 'width: %s; height: %s;', esc_attr( $bp3dbWidthStr ), esc_attr( $bp3dbHeightStr ) );
-$bp3dbWrapperStyles	= sprintf( 'text-align: %s;', esc_attr( $attributes['alignment'] ?? 'center' ) );
+$tdvbModelStyles	= sprintf( 'width: %s; height: %s;', esc_attr( $tdvbWidthStr ), esc_attr( $tdvbHeightStr ) );
+$tdvbWrapperStyles	= sprintf( 'text-align: %s;', esc_attr( $attributes['alignment'] ?? 'center' ) );
 
-$bp3dbWrapperAttributes = get_block_wrapper_attributes( [
-	'style' => $bp3dbWrapperStyles,
+$tdvbWrapperAttributes = get_block_wrapper_attributes( [
+	'style' => $tdvbWrapperStyles,
 ] );
 ?>
-<div <?php echo $bp3dbWrapperAttributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+<div <?php echo $tdvbWrapperAttributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 	<div class='tdvb3DViewerBlock'>
 		<model-viewer
-			src='<?php echo esc_url( $bp3dbModelUrl ); ?>'
-			alt='<?php echo esc_attr( $bp3dbModelTitle ); ?>'
-			<?php if ( $bp3dbIsTouchMove ) echo 'camera-controls'; ?>
-			<?php if ( ! $bp3dbIsZoom ) echo 'disable-zoom'; ?>
+			src='<?php echo esc_url( $tdvbModelUrl ); ?>'
+			alt='<?php echo esc_attr( $tdvbModelTitle ); ?>'
+			<?php if ( $tdvbIsTouchMove ) echo 'camera-controls'; ?>
+			<?php if ( ! $tdvbIsZoom ) echo 'disable-zoom'; ?>
 			loading='<?php echo esc_attr( $attributes['loadingType'] ?? 'auto' ); ?>'
 			auto-rotate
-			style='<?php echo esc_attr( $bp3dbModelStyles ); ?>'
+			style='<?php echo esc_attr( $tdvbModelStyles ); ?>'
 		></model-viewer>
 	</div>
 </div>
