@@ -100,6 +100,32 @@ class ModelViewer extends \Elementor\Widget_Base
             'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
         ]);
 
+        // Allowed upload formats notice
+        $allowed_mimes = \BP3D\Helper\Utils::getAllowedMimeTypes();
+        $settings_url = admin_url('edit.php?post_type=bp3d-model-viewer&page=3dviewer-settings');
+
+        if (empty($allowed_mimes)) {
+            $format_notice = sprintf(
+                /* translators: %s: URL to the settings page. */
+                __('<strong>Notice:</strong> All 3D file formats are currently disabled for upload. Please enable the formats you need in the <a href="%s" target="_blank">3D Viewer Settings</a>.', '3d-viewer'),
+                esc_url($settings_url)
+            );
+            $notice_type = 'danger';
+        } else {
+            $format_notice = sprintf(
+                /* translators: %s: URL to the settings page. */
+                __('<strong>GLB</strong> and <strong>GLTF</strong> files are enabled by default. To upload other 3D formats (OBJ, STL, FBX, etc.), enable them in the <a href="%s" target="_blank">3D Viewer Settings</a>.', '3d-viewer'),
+                esc_url($settings_url)
+            );
+            $notice_type = 'info';
+        }
+
+        $this->add_control('format_notice', [
+            'type' => \Elementor\Controls_Manager::RAW_HTML,
+            'raw' => $format_notice,
+            'content_classes' => 'elementor-panel-alert elementor-panel-alert-' . $notice_type,
+        ]);
+
         // Viewer type
         $this->add_control('currentViewer', [
             'label' => esc_html__('Viewer', '3d-viewer'),
@@ -114,7 +140,7 @@ class ModelViewer extends \Elementor\Widget_Base
         // Single model controls
         $this->add_control('modelUrl', [
             'label' => esc_html__('Select Model', '3d-viewer'),
-            'type' => 'b-select-file',
+            'type' => 'bp3d-select-file',
             'separator' => 'before',
             'placeholder' => esc_html__('Paste Model URL', '3d-viewer'),
         ]);
@@ -132,7 +158,7 @@ class ModelViewer extends \Elementor\Widget_Base
 
         $this->add_control('bin_file', [
             'label' => esc_html__('Upload bin file', '3d-viewer'),
-            'type' => 'b-select-file',
+            'type' => 'bp3d-select-file',
             'separator' => 'before',
             'placeholder' => esc_html__('Paste bin file URL', '3d-viewer'),
             'condition' => ['useDecoder' => 'draco', 'currentViewer' => 'modelViewer'],
@@ -140,7 +166,7 @@ class ModelViewer extends \Elementor\Widget_Base
 
         $this->add_control('poster', [
             'label' => esc_html__('Select Poster', '3d-viewer'),
-            'type' => 'b-select-file',
+            'type' => 'bp3d-select-file',
             'separator' => 'after',
             'placeholder' => esc_html__('Paste Poster URL', '3d-viewer'),
             'condition' => ['currentViewer' => 'modelViewer'],
@@ -216,6 +242,15 @@ class ModelViewer extends \Elementor\Widget_Base
             'condition' => ['currentViewer' => 'modelViewer'],
         ]);
 
+        $this->add_control('downloadBtn', [
+            'label' => esc_html__('3D File Download Button', '3d-viewer'),
+            'type' => \Elementor\Controls_Manager::SWITCHER,
+            'label_on' => esc_html__('Show', '3d-viewer'),
+            'label_off' => esc_html__('Hide', '3d-viewer'),
+            'return_value' => 'yes',
+            'default' => 'no',
+        ]);
+
         $this->add_control('loadingPercentage', [
             'label' => esc_html__('Show Loading Percentage', '3d-viewer'),
             'type' => \Elementor\Controls_Manager::SWITCHER,
@@ -270,7 +305,7 @@ class ModelViewer extends \Elementor\Widget_Base
 
         $this->add_control('modelIsoSrc', [
             'label' => esc_html__('3D Source for iOS (Optional)', '3d-viewer'),
-            'type' => 'b-select-file',
+            'type' => 'bp3d-select-file',
             'placeholder' => esc_html__('Paste USDZ Model URL', '3d-viewer'),
             'condition' => [
                 'currentViewer' => 'modelViewer',
@@ -421,6 +456,7 @@ class ModelViewer extends \Elementor\Widget_Base
             'zoom' => ($settings['zoom'] ?? '') === 'yes',
             'zoomInOutBtn' => ($settings['zoomInOutBtn'] ?? '') === 'yes',
             'cameraBtn' => ($settings['cameraBtn'] ?? '') === 'yes',
+            'downloadBtn' => ($settings['downloadBtn'] ?? '') === 'yes',
             'preload' => 'auto',
             'mouseControl' => ($settings['mouseControls'] ?? '') === 'yes',
             'fullscreen' => ($settings['fullscreen'] ?? '') === 'yes',
@@ -437,19 +473,68 @@ class ModelViewer extends \Elementor\Widget_Base
             ],
         ];
 
-        if ($finalData['currentViewer'] === 'O3DViewer') {
-            wp_enqueue_script('bp3d-lib-o3dviewer');
-        } else {
-            wp_enqueue_script_module('bp3d-lib-model-viewer');
+        // Without a model the renderer outputs nothing, which collapses the
+        // widget to Elementor's icon placeholder. Hold the configured height
+        // in the editor instead; visitors still get no empty box.
+        if (empty($finalData['model']['modelUrl'])) {
+            if ($this->isElementorEditor()) {
+                $this->renderEmptyPlaceholder($finalData['styles']['height']);
+            }
+
+            return;
         }
+
+        Addons::ensureElementorDependencies();
+        Addons::enqueueViewerLibrary($finalData['currentViewer']);
         ?>
 
         <div class="modelViewerBlock elementor" data-attributes='<?php echo esc_attr(wp_json_encode($finalData)); ?>'></div>
 
         <?php
-        if (is_admin()) {
-            wp_enqueue_script('bp3d-lib-o3dviewer');
-            wp_enqueue_script_module('bp3d-lib-model-viewer');
+    }
+
+    /**
+     * Whether this render happens inside the Elementor editor.
+     *
+     * Covers both the preview iframe (which is not "edit mode") and the AJAX
+     * re-render Elementor performs after a control changes.
+     */
+    private function isElementorEditor(): bool
+    {
+        $plugin = \Elementor\Plugin::$instance;
+
+        if (isset($plugin->editor) && $plugin->editor->is_edit_mode()) {
+            return true;
         }
+
+        return isset($plugin->preview) && $plugin->preview->is_preview_mode();
+    }
+
+    /**
+     * Render the editor-only placeholder shown while no model is selected.
+     *
+     * Styles are inline: the placeholder never reaches the frontend, so it is
+     * not worth a stylesheet the preview would have to load.
+     */
+    private function renderEmptyPlaceholder(string $height): void
+    {
+        if (!preg_match('/^\d+(\.\d+)?(px|vh|vw|em|rem|%)$/', $height)) {
+            $height = '500px';
+        }
+
+        $box = 'display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;'
+            . 'box-sizing:border-box;padding:20px;text-align:center;'
+            . 'border:1px dashed #c5cad1;border-radius:4px;background:#f7f8f9;'
+            . 'min-height:' . $height . ';';
+        ?>
+        <div class="bp3d-elementor-placeholder" style="<?php echo esc_attr($box); ?>">
+            <span style="font-size:13px;font-weight:600;color:#515962;">
+                <?php echo esc_html__('3D Model Viewer', '3d-viewer'); ?>
+            </span>
+            <span style="font-size:12px;color:#818a91;">
+                <?php echo esc_html__('Select a model to preview it here.', '3d-viewer'); ?>
+            </span>
+        </div>
+        <?php
     }
 }

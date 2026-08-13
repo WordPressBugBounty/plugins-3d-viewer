@@ -18,6 +18,15 @@ class Utils
 {
     public static ?string $theme_name = null;
 
+    /**
+     * 3D file formats enabled for upload out of the box.
+     *
+     * Any other format must be enabled from the 3D Viewer settings page.
+     *
+     * @var array<int, string>
+     */
+    public const DEFAULT_ALLOWED_MIME_TYPES = ['glb', 'gltf'];
+
     public function __construct()
     {
         self::$theme_name = wp_get_theme()->name;
@@ -206,6 +215,29 @@ class Utils
     }
 
     /**
+     * Get the list of 3D file extensions allowed for upload.
+     *
+     * GLB and GLTF are enabled by default. Any other format must be
+     * enabled from the 3D Viewer settings page. Once the setting has
+     * been saved the stored list is respected verbatim, so an explicitly
+     * empty list disables every format.
+     *
+     * @return array<int, string>
+     */
+    public static function getAllowedMimeTypes(): array
+    {
+        $settings = get_option('_bp3d_settings_', []);
+
+        if (!is_array($settings) || !isset($settings['allowed_mime_types'])) {
+            return self::DEFAULT_ALLOWED_MIME_TYPES;
+        }
+
+        $allowed = $settings['allowed_mime_types'];
+
+        return is_array($allowed) ? $allowed : [];
+    }
+
+    /**
      * Build the full viewer attributes array from a meta accessor.
      *
      * Shared between the frontend renderer (shortcode/block) and the
@@ -243,6 +275,7 @@ class Utils
             'fullscreen' => $meta('bp_3d_fullscreen', '1', true),
             'zoomInOutBtn' => $meta('bp_3d_zoom_in_out_btn', '0', true),
             'cameraBtn' => $meta('bp_3d_camera_btn', '0', true),
+            'downloadBtn' => $meta('bp_3d_download_btn', '0', true),
             'loadingPercentage' => $meta('bp_model_progress_percent', '0', true),
             'progressBar' => $meta('bp_3d_progressbar', '0', true),
             'exposure' => $meta('3d_exposure', '1'),
