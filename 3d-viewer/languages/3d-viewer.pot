@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: 3D Viewer – Display Interactive 3D Models 1.9.2\n"
+"Project-Id-Version: 3D Viewer – Display Interactive 3D Models 1.9.3\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/3d-viewer\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-08-12T03:18:47+00:00\n"
+"POT-Creation-Date: 2026-09-10T03:10:04+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: 3d-viewer\n"
@@ -50,21 +50,21 @@ msgid "Model Viewer"
 msgstr ""
 
 #: inc/Addons/BP3DProductModel.php:97
-#: inc/Addons/ModelViewer.php:354
-#: inc/Field/Viewer.php:167
+#: inc/Addons/ModelViewer.php:381
+#: inc/Field/Viewer.php:199
 #: build/blocks/3d-viewer/index.js:1
 msgid "Model"
 msgstr ""
 
 #: inc/Addons/BP3DProductModel.php:102
-#: inc/Addons/ModelViewer.php:360
-#: inc/Field/Viewer.php:356
+#: inc/Addons/ModelViewer.php:387
+#: inc/Field/Viewer.php:388
 msgid "Width"
 msgstr ""
 
 #: inc/Addons/BP3DProductModel.php:117
-#: inc/Addons/ModelViewer.php:377
-#: inc/Field/Viewer.php:367
+#: inc/Addons/ModelViewer.php:404
+#: inc/Field/Viewer.php:399
 msgid "Height"
 msgstr ""
 
@@ -99,7 +99,7 @@ msgstr ""
 #: inc/Field/Viewer.php:103
 #: inc/Woocommerce/ProductMeta.php:106
 #, php-format
-msgid "<strong>GLB</strong> and <strong>GLTF</strong> files are enabled by default. To upload other 3D formats (OBJ, STL, FBX, etc.), enable them in the <a href=\"%s\" target=\"_blank\">3D Viewer Settings</a>."
+msgid "All supported 3D formats (GLB, GLTF, OBJ, STL, FBX, HDR, etc.) are enabled for upload by default. You can turn any of them off in the <a href=\"%s\" target=\"_blank\">3D Viewer Settings</a>."
 msgstr ""
 
 #: inc/Addons/ModelViewer.php:131
@@ -150,172 +150,222 @@ msgstr ""
 msgid "Select Poster"
 msgstr ""
 
-#: inc/Addons/ModelViewer.php:171
+#: inc/Addons/ModelViewer.php:170
 msgid "Paste Poster URL"
 msgstr ""
 
+#: inc/Addons/ModelViewer.php:175
+#: inc/Field/Viewer.php:167
+#: build/blocks/3d-viewer/index.js:1
+msgid "Environment Image"
+msgstr ""
+
+#: inc/Addons/ModelViewer.php:176
+msgid "Improves lighting and reflections on the model."
+msgstr ""
+
+#: inc/Addons/ModelViewer.php:180
+#: inc/Field/Viewer.php:171
+msgid "Neutral"
+msgstr ""
+
+#: inc/Addons/ModelViewer.php:181
+#: inc/Field/Viewer.php:172
+msgid "Legacy"
+msgstr ""
+
 #: inc/Addons/ModelViewer.php:182
+#: inc/Field/Viewer.php:173
+#: build/blocks/3d-viewer/index.js:1
+msgid "Custom"
+msgstr ""
+
+#: inc/Addons/ModelViewer.php:188
+#: inc/Field/Viewer.php:182
+#: build/blocks/3d-viewer/index.js:1
+msgid "Custom Environment Image"
+msgstr ""
+
+#: inc/Addons/ModelViewer.php:190
+msgid "Paste Image URL"
+msgstr ""
+
+#: inc/Addons/ModelViewer.php:195
+#: inc/Field/Viewer.php:191
+#: build/blocks/3d-viewer/index.js:1
+msgid "HDR Skybox Image"
+msgstr ""
+
+#: inc/Addons/ModelViewer.php:196
+msgid "Shown as the background and used for environmental lighting. Accepts .hdr as well as JPG and PNG."
+msgstr ""
+
+#: inc/Addons/ModelViewer.php:198
+msgid "Paste Skybox Image URL"
+msgstr ""
+
+#: inc/Addons/ModelViewer.php:209
 msgid "Fullscreen Button"
 msgstr ""
 
-#: inc/Addons/ModelViewer.php:189
+#: inc/Addons/ModelViewer.php:216
 #: build/blocks/3d-viewer/index.js:1
 msgid "Mouse Control"
 msgstr ""
 
-#: inc/Addons/ModelViewer.php:191
-#: inc/Addons/ModelViewer.php:200
 #: inc/Addons/ModelViewer.php:218
-#: inc/Addons/ModelViewer.php:267
-#: inc/Addons/ModelViewer.php:299
+#: inc/Addons/ModelViewer.php:227
+#: inc/Addons/ModelViewer.php:245
+#: inc/Addons/ModelViewer.php:294
+#: inc/Addons/ModelViewer.php:326
 msgid "Enable"
 msgstr ""
 
-#: inc/Addons/ModelViewer.php:192
-#: inc/Addons/ModelViewer.php:201
 #: inc/Addons/ModelViewer.php:219
-#: inc/Addons/ModelViewer.php:268
-#: inc/Addons/ModelViewer.php:300
+#: inc/Addons/ModelViewer.php:228
+#: inc/Addons/ModelViewer.php:246
+#: inc/Addons/ModelViewer.php:295
+#: inc/Addons/ModelViewer.php:327
 msgid "Disable"
 msgstr ""
 
-#: inc/Addons/ModelViewer.php:198
+#: inc/Addons/ModelViewer.php:225
 #: build/blocks/3d-viewer/index.js:1
 msgid "Lazy Load"
 msgstr ""
 
-#: inc/Addons/ModelViewer.php:208
+#: inc/Addons/ModelViewer.php:235
 msgid "Show Progress Bar"
 msgstr ""
 
-#: inc/Addons/ModelViewer.php:216
-#: inc/Field/Settings.php:134
-#: inc/Field/Viewer.php:193
+#: inc/Addons/ModelViewer.php:243
+#: inc/Field/Settings.php:124
+#: inc/Field/Viewer.php:225
 msgid "Enable Zoom"
 msgstr ""
 
-#: inc/Addons/ModelViewer.php:226
-#: inc/Field/Viewer.php:216
+#: inc/Addons/ModelViewer.php:253
+#: inc/Field/Viewer.php:248
 #: build/blocks/3d-viewer/index.js:1
 msgid "Zoom In/Out Button"
 msgstr ""
 
-#: inc/Addons/ModelViewer.php:228
-#: inc/Addons/ModelViewer.php:238
-#: inc/Addons/ModelViewer.php:248
-#: inc/Addons/ModelViewer.php:257
+#: inc/Addons/ModelViewer.php:255
+#: inc/Addons/ModelViewer.php:265
+#: inc/Addons/ModelViewer.php:275
+#: inc/Addons/ModelViewer.php:284
 msgid "Show"
 msgstr ""
 
-#: inc/Addons/ModelViewer.php:229
-#: inc/Addons/ModelViewer.php:239
-#: inc/Addons/ModelViewer.php:249
-#: inc/Addons/ModelViewer.php:258
+#: inc/Addons/ModelViewer.php:256
+#: inc/Addons/ModelViewer.php:266
+#: inc/Addons/ModelViewer.php:276
+#: inc/Addons/ModelViewer.php:285
 msgid "Hide"
 msgstr ""
 
-#: inc/Addons/ModelViewer.php:236
+#: inc/Addons/ModelViewer.php:263
 #: build/blocks/3d-viewer/index.js:1
 msgid "Camera/Capture Button"
 msgstr ""
 
-#: inc/Addons/ModelViewer.php:246
-#: inc/Field/Viewer.php:239
+#: inc/Addons/ModelViewer.php:273
+#: inc/Field/Viewer.php:271
 #: build/blocks/3d-viewer/index.js:1
 msgid "3D File Download Button"
 msgstr ""
 
-#: inc/Addons/ModelViewer.php:255
+#: inc/Addons/ModelViewer.php:282
 #: build/blocks/3d-viewer/index.js:1
 msgid "Show Loading Percentage"
 msgstr ""
 
-#: inc/Addons/ModelViewer.php:265
+#: inc/Addons/ModelViewer.php:292
 #: build/blocks/3d-viewer/index.js:1
 msgid "Enable Shadow"
 msgstr ""
 
-#: inc/Addons/ModelViewer.php:275
-#: inc/Field/Viewer.php:280
+#: inc/Addons/ModelViewer.php:302
+#: inc/Field/Viewer.php:312
 #: build/blocks/3d-viewer/index.js:1
 msgid "Exposure"
 msgstr ""
 
-#: inc/Addons/ModelViewer.php:297
-#: inc/Field/Viewer.php:302
+#: inc/Addons/ModelViewer.php:324
+#: inc/Field/Viewer.php:334
 #: build/blocks/3d-viewer/index.js:1
 msgid "Enable AR"
 msgstr ""
 
-#: inc/Addons/ModelViewer.php:307
-#: inc/Field/Viewer.php:312
+#: inc/Addons/ModelViewer.php:334
+#: inc/Field/Viewer.php:344
 msgid "3D Source for iOS (Optional)"
 msgstr ""
 
-#: inc/Addons/ModelViewer.php:309
+#: inc/Addons/ModelViewer.php:336
 msgid "Paste USDZ Model URL"
 msgstr ""
 
-#: inc/Addons/ModelViewer.php:317
-#: inc/Field/Viewer.php:321
+#: inc/Addons/ModelViewer.php:344
+#: inc/Field/Viewer.php:353
 #: build/blocks/3d-viewer/index.js:1
 msgid "AR Placement"
 msgstr ""
 
-#: inc/Addons/ModelViewer.php:321
+#: inc/Addons/ModelViewer.php:348
 msgid "Floor"
 msgstr ""
 
-#: inc/Addons/ModelViewer.php:322
+#: inc/Addons/ModelViewer.php:349
 msgid "Wall"
 msgstr ""
 
-#: inc/Addons/ModelViewer.php:331
-#: inc/Field/Viewer.php:333
+#: inc/Addons/ModelViewer.php:358
+#: inc/Field/Viewer.php:365
 #: build/blocks/3d-viewer/index.js:1
 msgid "AR Mode"
 msgstr ""
 
-#: inc/Addons/ModelViewer.php:335
+#: inc/Addons/ModelViewer.php:362
 msgid "WebXR"
 msgstr ""
 
-#: inc/Addons/ModelViewer.php:336
+#: inc/Addons/ModelViewer.php:363
 msgid "Scene Viewer"
 msgstr ""
 
-#: inc/Addons/ModelViewer.php:337
+#: inc/Addons/ModelViewer.php:364
 msgid "Quick Look"
 msgstr ""
 
-#: inc/Addons/ModelViewer.php:393
-#: inc/Field/Viewer.php:392
+#: inc/Addons/ModelViewer.php:420
+#: inc/Field/Viewer.php:424
 #: build/blocks/3d-viewer/index.js:1
 msgid "Background Color"
 msgstr ""
 
-#: inc/Addons/ModelViewer.php:532
+#: inc/Addons/ModelViewer.php:567
 msgid "3D Model Viewer"
 msgstr ""
 
-#: inc/Addons/ModelViewer.php:535
+#: inc/Addons/ModelViewer.php:570
 msgid "Select a model to preview it here."
 msgstr ""
 
-#: inc/admin.php:154
+#: inc/admin.php:156
 msgid "Demo and Help - 3D Viewer"
 msgstr ""
 
-#: inc/admin.php:155
+#: inc/admin.php:157
 msgid "Help & Demos"
 msgstr ""
 
-#: inc/admin.php:171
-#: inc/admin.php:185
+#: inc/admin.php:173
+#: inc/admin.php:187
 msgid "Guided Setup - 3D Viewer"
 msgstr ""
 
-#: inc/admin.php:172
+#: inc/admin.php:174
 msgid "Guided Setup"
 msgstr ""
 
@@ -391,163 +441,163 @@ msgstr ""
 msgid "3D Viewer Settings"
 msgstr ""
 
-#: inc/Field/Settings.php:48
+#: inc/Field/Settings.php:53
 msgid "General Settings"
 msgstr ""
 
-#: inc/Field/Settings.php:54
+#: inc/Field/Settings.php:59
 msgid "Allowed Mime Types"
 msgstr ""
 
-#: inc/Field/Settings.php:55
-msgid "Select which 3D model file types can be uploaded to the media library. GLB and GLTF are enabled by default; enable any other format you need here."
+#: inc/Field/Settings.php:60
+msgid "Select which 3D model and HDR file types can be uploaded to the media library. All supported formats are enabled by default; uncheck any you want to block."
 msgstr ""
 
-#: inc/Field/Settings.php:78
-#: inc/Field/Settings.php:79
+#: inc/Field/Settings.php:68
+#: inc/Field/Settings.php:69
 msgid "Delete data on uninstall"
 msgstr ""
 
-#: inc/Field/Settings.php:80
+#: inc/Field/Settings.php:70
+#: inc/Field/Settings.php:117
 #: inc/Field/Settings.php:127
-#: inc/Field/Settings.php:137
-#: inc/Field/Viewer.php:196
-#: inc/Field/Viewer.php:209
-#: inc/Field/Viewer.php:219
-#: inc/Field/Viewer.php:230
-#: inc/Field/Viewer.php:242
-#: inc/Field/Viewer.php:267
+#: inc/Field/Viewer.php:228
+#: inc/Field/Viewer.php:241
+#: inc/Field/Viewer.php:251
+#: inc/Field/Viewer.php:262
+#: inc/Field/Viewer.php:274
+#: inc/Field/Viewer.php:299
 msgid "Yes"
 msgstr ""
 
-#: inc/Field/Settings.php:81
+#: inc/Field/Settings.php:71
+#: inc/Field/Settings.php:118
 #: inc/Field/Settings.php:128
-#: inc/Field/Settings.php:138
 msgid "No"
 msgstr ""
 
-#: inc/Field/Settings.php:96
+#: inc/Field/Settings.php:86
 msgid "Woocommerce Settings"
 msgstr ""
 
-#: inc/Field/Settings.php:102
+#: inc/Field/Settings.php:92
 msgid "Woocommerce"
 msgstr ""
 
-#: inc/Field/Settings.php:103
+#: inc/Field/Settings.php:93
 msgid "Enable / Disable Woocommerce Feature for 3D Viewer."
 msgstr ""
 
-#: inc/Field/Settings.php:104
+#: inc/Field/Settings.php:94
 msgid "Enable / Disable. Default is Enable."
 msgstr ""
 
-#: inc/Field/Settings.php:110
+#: inc/Field/Settings.php:100
 msgid "3D Viewer is not Compatible with this Theme"
 msgstr ""
 
-#: inc/Field/Settings.php:111
+#: inc/Field/Settings.php:101
 msgid "Enable if 3D Viewer is not compatible with this theme"
 msgstr ""
 
-#: inc/Field/Settings.php:125
-#: inc/Field/Viewer.php:182
+#: inc/Field/Settings.php:115
+#: inc/Field/Viewer.php:214
 msgid "Moving Controls"
 msgstr ""
 
-#: inc/Field/Settings.php:126
+#: inc/Field/Settings.php:116
 msgid "Use The Moving controls to enable user interaction"
 msgstr ""
 
-#: inc/Field/Settings.php:135
+#: inc/Field/Settings.php:125
 msgid "Enable or Disable Zoom Behaviour"
 msgstr ""
 
-#: inc/Field/Settings.php:136
+#: inc/Field/Settings.php:126
 msgid "If you wish to disable zooming behaviour please choose No."
 msgstr ""
 
-#: inc/Field/Settings.php:146
-#: inc/Field/Viewer.php:250
+#: inc/Field/Settings.php:136
+#: inc/Field/Viewer.php:282
 msgid "Loading Type"
 msgstr ""
 
-#: inc/Field/Settings.php:147
-#: inc/Field/Viewer.php:251
+#: inc/Field/Settings.php:137
+#: inc/Field/Viewer.php:283
 msgid "Choose Loading type, default:  'Auto' "
 msgstr ""
 
-#: inc/Field/Settings.php:149
-#: inc/Field/Viewer.php:253
+#: inc/Field/Settings.php:139
+#: inc/Field/Viewer.php:285
 #: 3d-viewer-block/build/index.js:1
 msgid "Auto"
 msgstr ""
 
-#: inc/Field/Settings.php:150
-#: inc/Field/Viewer.php:254
+#: inc/Field/Settings.php:140
+#: inc/Field/Viewer.php:286
 #: 3d-viewer-block/build/index.js:1
 msgid "Lazy"
 msgstr ""
 
-#: inc/Field/Settings.php:151
-#: inc/Field/Viewer.php:255
+#: inc/Field/Settings.php:141
+#: inc/Field/Viewer.php:287
 #: 3d-viewer-block/build/index.js:1
 msgid "Eager"
 msgstr ""
 
-#: inc/Field/Settings.php:164
+#: inc/Field/Settings.php:154
 msgid "Woocommerce Selectors"
 msgstr ""
 
-#: inc/Field/Settings.php:171
+#: inc/Field/Settings.php:161
 msgid "Gallery Selector"
 msgstr ""
 
-#: inc/Field/Settings.php:172
+#: inc/Field/Settings.php:162
 msgid "Write here the gallery selector"
 msgstr ""
 
-#: inc/Field/Settings.php:178
+#: inc/Field/Settings.php:168
 msgid "Gallery Item Selector"
 msgstr ""
 
-#: inc/Field/Settings.php:179
+#: inc/Field/Settings.php:169
 msgid "Write here the gallery item selector"
 msgstr ""
 
-#: inc/Field/Settings.php:185
+#: inc/Field/Settings.php:175
 msgid "Gallery Item Active Selector"
 msgstr ""
 
-#: inc/Field/Settings.php:186
+#: inc/Field/Settings.php:176
 msgid "Write here the gallery item active selector"
 msgstr ""
 
-#: inc/Field/Settings.php:192
+#: inc/Field/Settings.php:182
 msgid "Gallery Thumbnail Item Selector"
 msgstr ""
 
-#: inc/Field/Settings.php:193
+#: inc/Field/Settings.php:183
 msgid "Write here the gallery thumbnail item selector"
 msgstr ""
 
-#: inc/Field/Settings.php:199
+#: inc/Field/Settings.php:189
 msgid "Gallery Trigger Selector"
 msgstr ""
 
-#: inc/Field/Settings.php:200
+#: inc/Field/Settings.php:190
 msgid "Write here the gallery trigger selector"
 msgstr ""
 
-#: inc/Field/Settings.php:210
+#: inc/Field/Settings.php:200
 msgid "Shortcode Generator"
 msgstr ""
 
-#: inc/Field/Settings.php:217
+#: inc/Field/Settings.php:207
 msgid "Enable Gutenberg"
 msgstr ""
 
-#: inc/Field/Settings.php:218
+#: inc/Field/Settings.php:208
 msgid "Enable / Disable Gutenberg Shortcode Generator."
 msgstr ""
 
@@ -630,163 +680,195 @@ msgstr ""
 msgid "Upload or Select 3d Poster Image.  if you don't want to use just leave it empty"
 msgstr ""
 
-#: inc/Field/Viewer.php:176
+#: inc/Field/Viewer.php:168
+msgid "Lighting and reflections"
+msgstr ""
+
+#: inc/Field/Viewer.php:169
+#: build/blocks/3d-viewer/index.js:1
+msgid "Sets an environment image to improve lighting and reflections on the model."
+msgstr ""
+
+#: inc/Field/Viewer.php:181
+#: inc/Field/Viewer.php:190
+#: 3d-viewer-block/build/index.js:1
+msgid "Upload"
+msgstr ""
+
+#: inc/Field/Viewer.php:183
+msgid "Your own image"
+msgstr ""
+
+#: inc/Field/Viewer.php:184
+msgid "Upload or paste the URL of the image to use for lighting and reflections."
+msgstr ""
+
+#: inc/Field/Viewer.php:192
+msgid "Background and environmental lighting"
+msgstr ""
+
+#: inc/Field/Viewer.php:193
+#: build/blocks/3d-viewer/index.js:1
+msgid "Sets a skybox image that appears as the background and provides environmental lighting for the model. Accepts .hdr as well as JPG and PNG."
+msgstr ""
+
+#: inc/Field/Viewer.php:208
 #: build/blocks/3d-viewer/index.js:1
 msgid "Settings"
 msgstr ""
 
-#: inc/Field/Viewer.php:183
+#: inc/Field/Viewer.php:215
 #: build/blocks/3d-viewer/index.js:1
 msgid "Allows users to rotate, pan, and interact with the model using a mouse or touch input."
 msgstr ""
 
-#: inc/Field/Viewer.php:194
+#: inc/Field/Viewer.php:226
 msgid "Enable or Disable Zooming Behaviour"
 msgstr ""
 
-#: inc/Field/Viewer.php:195
+#: inc/Field/Viewer.php:227
 #: build/blocks/3d-viewer/index.js:1
 msgid "Enables zooming in and out of the 3D model using mouse scroll or touch gestures."
 msgstr ""
 
-#: inc/Field/Viewer.php:197
-#: inc/Field/Viewer.php:210
-#: inc/Field/Viewer.php:220
-#: inc/Field/Viewer.php:231
-#: inc/Field/Viewer.php:243
-#: inc/Field/Viewer.php:268
+#: inc/Field/Viewer.php:229
+#: inc/Field/Viewer.php:242
+#: inc/Field/Viewer.php:252
+#: inc/Field/Viewer.php:263
+#: inc/Field/Viewer.php:275
+#: inc/Field/Viewer.php:300
 msgid "NO"
 msgstr ""
 
-#: inc/Field/Viewer.php:206
+#: inc/Field/Viewer.php:238
 msgid "Full Screen Button"
 msgstr ""
 
-#: inc/Field/Viewer.php:207
+#: inc/Field/Viewer.php:239
 msgid "Show/Hide Full Screen Button"
 msgstr ""
 
-#: inc/Field/Viewer.php:208
+#: inc/Field/Viewer.php:240
 msgid "Show/Hide Full Screen Button in the 3D model viewer."
 msgstr ""
 
-#: inc/Field/Viewer.php:217
+#: inc/Field/Viewer.php:249
 msgid "Show/Hide Zoom In/Out Button"
 msgstr ""
 
-#: inc/Field/Viewer.php:218
+#: inc/Field/Viewer.php:250
 msgid "Show/Hide Zoom In/Out Button in the 3D model viewer."
 msgstr ""
 
-#: inc/Field/Viewer.php:227
+#: inc/Field/Viewer.php:259
 msgid "Camera Button"
 msgstr ""
 
-#: inc/Field/Viewer.php:228
+#: inc/Field/Viewer.php:260
 msgid "Show/Hide Camera Button"
 msgstr ""
 
-#: inc/Field/Viewer.php:229
+#: inc/Field/Viewer.php:261
 msgid "Show/Hide Camera Button in the 3D model viewer."
 msgstr ""
 
-#: inc/Field/Viewer.php:240
+#: inc/Field/Viewer.php:272
 msgid "Show/Hide 3D File Download Button"
 msgstr ""
 
-#: inc/Field/Viewer.php:241
+#: inc/Field/Viewer.php:273
 msgid "Show/Hide 3D File Download Button in the 3D model viewer."
 msgstr ""
 
-#: inc/Field/Viewer.php:264
+#: inc/Field/Viewer.php:296
 msgid "Progressbar"
 msgstr ""
 
-#: inc/Field/Viewer.php:265
+#: inc/Field/Viewer.php:297
 msgid "Show/Hide Progressbar"
 msgstr ""
 
-#: inc/Field/Viewer.php:266
+#: inc/Field/Viewer.php:298
 #: build/blocks/3d-viewer/index.js:1
 msgid "Displays a progress bar during model loading to indicate loading status."
 msgstr ""
 
-#: inc/Field/Viewer.php:281
+#: inc/Field/Viewer.php:313
 msgid "Brightness for Model"
 msgstr ""
 
-#: inc/Field/Viewer.php:282
+#: inc/Field/Viewer.php:314
 #: build/blocks/3d-viewer/index.js:1
 msgid "Adjusts the brightness of the model scene. Higher values make the model brighter."
 msgstr ""
 
-#: inc/Field/Viewer.php:290
+#: inc/Field/Viewer.php:322
 msgid "shadow Intensity"
 msgstr ""
 
-#: inc/Field/Viewer.php:291
+#: inc/Field/Viewer.php:323
 msgid "Shadow Intensity for Model"
 msgstr ""
 
-#: inc/Field/Viewer.php:292
+#: inc/Field/Viewer.php:324
 msgid "Controls how dark or light the model’s shadow appears. Higher values create darker, more visible shadows."
 msgstr ""
 
-#: inc/Field/Viewer.php:303
+#: inc/Field/Viewer.php:335
 msgid "Enables AR (Augmented Reality) so visitors can view the 3D model in their real environment on supported devices."
 msgstr ""
 
-#: inc/Field/Viewer.php:313
+#: inc/Field/Viewer.php:345
 #: inc/Woocommerce/ProductMeta.php:127
 msgid "Upload Model Or Input Valid Model url"
 msgstr ""
 
-#: inc/Field/Viewer.php:314
+#: inc/Field/Viewer.php:346
 msgid "Specifies the iOS-specific model file (.usdz) used for viewing the 3D model in AR on Apple devices."
 msgstr ""
 
-#: inc/Field/Viewer.php:322
+#: inc/Field/Viewer.php:354
 msgid "Defines how the model is placed in AR. Choose 'floor' to place the model on the ground or 'wall' to attach it to a vertical surface."
 msgstr ""
 
-#: inc/Field/Viewer.php:334
+#: inc/Field/Viewer.php:366
 msgid "Selects the AR viewing mode. 'Quick Look' is used for iOS devices, while other modes enable AR on supported Android devices."
 msgstr ""
 
-#: inc/Field/Viewer.php:350
+#: inc/Field/Viewer.php:382
 #: build/blocks/3d-viewer/index.js:1
 msgid "Style"
 msgstr ""
 
-#: inc/Field/Viewer.php:357
+#: inc/Field/Viewer.php:389
 #: build/blocks/3d-viewer/index.js:1
 msgid "Sets the width of the 3D viewer. You can use values like %, px, or vw for responsive layouts."
 msgstr ""
 
-#: inc/Field/Viewer.php:368
+#: inc/Field/Viewer.php:400
 #: build/blocks/3d-viewer/index.js:1
 msgid "Sets the height of the 3D viewer. Adjust this to control how much vertical space the model occupies."
 msgstr ""
 
-#: inc/Field/Viewer.php:379
+#: inc/Field/Viewer.php:411
 msgid "Align"
 msgstr ""
 
-#: inc/Field/Viewer.php:380
+#: inc/Field/Viewer.php:412
 #: build/blocks/3d-viewer/index.js:1
 msgid "Controls the alignment of the 3D viewer within its container, such as left, center, or right."
 msgstr ""
 
-#: inc/Field/Viewer.php:393
+#: inc/Field/Viewer.php:425
 msgid "Set Background Color For 3d Model.If You don't need just leave blank. Default : 'transparent color'"
 msgstr ""
 
-#: inc/Field/Viewer.php:394
+#: inc/Field/Viewer.php:426
 #: build/blocks/3d-viewer/index.js:1
 msgid "Sets the background color of the 3D viewer. Use transparent or any valid CSS color value."
 msgstr ""
 
-#: inc/Field/Viewer.php:405
+#: inc/Field/Viewer.php:437
 msgid "Preview"
 msgstr ""
 
@@ -795,7 +877,7 @@ msgid "3D Product Settings"
 msgstr ""
 
 #: inc/Woocommerce/ProductMeta.php:128
-msgid "Upload / Paste Model url. Supported file type: glb, glTF"
+msgid "Upload / Paste Model url. Supported file types: glb, gltf, obj, stl, fbx, dae, 3ds, 3mf, step, wrl, usdz."
 msgstr ""
 
 #: inc/Woocommerce/ProductMeta.php:129
@@ -844,10 +926,6 @@ msgstr ""
 
 #: inc/Woocommerce/SingleProduct.php:183
 msgid "Awaiting product image"
-msgstr ""
-
-#: 3d-viewer-block/build/index.js:1
-msgid "Upload"
 msgstr ""
 
 #: 3d-viewer-block/build/index.js:1
@@ -918,6 +996,14 @@ msgstr ""
 msgid "Please, upload Model or enter Model Link first!"
 msgstr ""
 
+#: build/admin-preview.js:1
+#: build/blocks/3d-viewer/index.js:1
+#: build/blocks/3d-viewer/view.js:1
+#: build/frontend.js:1
+#: build/public.js:2
+msgid "The 3D model could not be loaded."
+msgstr ""
+
 #: build/blocks/3d-viewer/index.js:1
 msgid "Sets a placeholder image that is shown before the 3D model finishes loading."
 msgstr ""
@@ -975,7 +1061,7 @@ msgid "Enable in settings"
 msgstr ""
 
 #: build/blocks/3d-viewer/index.js:1
-msgid "GLB & GLTF are enabled by default. To upload other 3D formats, enable them in "
+msgid "All supported 3D formats are enabled for upload by default. You can turn any of them off in "
 msgstr ""
 
 #: build/blocks/3d-viewer/index.js:1
@@ -984,6 +1070,14 @@ msgstr ""
 
 #: build/blocks/3d-viewer/index.js:1
 msgid "Model Poster"
+msgstr ""
+
+#: build/blocks/3d-viewer/index.js:1
+msgid "Environment Image URL"
+msgstr ""
+
+#: build/blocks/3d-viewer/index.js:1
+msgid "HDR Image URL"
 msgstr ""
 
 #: build/blocks/3d-viewer/index.js:1
@@ -1003,7 +1097,7 @@ msgid "Premium Features"
 msgstr ""
 
 #: build/blocks/3d-viewer/index.js:1
-msgid "Multople models, HDR skybox image, Enviroment Image, Ton Mapping and Apply Textures available in premmium version"
+msgid "Multiple models, tone mapping and applying textures are available in the premium version"
 msgstr ""
 
 #: build/blocks/3d-viewer/index.js:1
