@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: 3D Viewer – Display Interactive 3D Models 1.9.3\n"
+"Project-Id-Version: 3D Viewer – Display Interactive 3D Models 1.9.4\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/3d-viewer\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-09-10T03:10:04+00:00\n"
+"POT-Creation-Date: 2026-09-26T05:56:28+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: 3d-viewer\n"
@@ -53,6 +53,7 @@ msgstr ""
 #: inc/Addons/ModelViewer.php:381
 #: inc/Field/Viewer.php:199
 #: build/blocks/3d-viewer/index.js:1
+#: build/onboarding.js:1
 msgid "Model"
 msgstr ""
 
@@ -352,20 +353,20 @@ msgstr ""
 msgid "Select a model to preview it here."
 msgstr ""
 
-#: inc/admin.php:156
+#: inc/admin.php:204
 msgid "Demo and Help - 3D Viewer"
 msgstr ""
 
-#: inc/admin.php:157
+#: inc/admin.php:205
 msgid "Help & Demos"
 msgstr ""
 
-#: inc/admin.php:173
-#: inc/admin.php:187
+#: inc/admin.php:221
+#: inc/admin.php:235
 msgid "Guided Setup - 3D Viewer"
 msgstr ""
 
-#: inc/admin.php:174
+#: inc/admin.php:222
 msgid "Guided Setup"
 msgstr ""
 
@@ -389,6 +390,7 @@ msgstr ""
 #: inc/Base/PostTypeModelViewer.php:170
 #: inc/Base/PostTypeModelViewer.php:171
 #: build/blocks/3d-viewer/index.js:1
+#: build/onboarding.js:1
 msgid "3D Viewer"
 msgstr ""
 
@@ -1000,7 +1002,6 @@ msgstr ""
 #: build/blocks/3d-viewer/index.js:1
 #: build/blocks/3d-viewer/view.js:1
 #: build/frontend.js:1
-#: build/public.js:2
 msgid "The 3D model could not be loaded."
 msgstr ""
 
@@ -1140,68 +1141,65 @@ msgstr ""
 msgid "3D file is not valid"
 msgstr ""
 
-#: build/onboarding.js:1
-msgid "Adding a model with Gutenberg:"
+#: build/blocks/3d-viewer/index.js:1
+msgid "Add Your 3D Model"
+msgstr ""
+
+#: build/blocks/3d-viewer/index.js:1
+msgid "Paste a model URL or upload a file to get started."
 msgstr ""
 
 #: build/onboarding.js:1
-msgid "Edit any post or page, then click <strong>+</strong> or type <strong>/3D Model Viewer</strong> to insert the block"
+msgid "Customize"
 msgstr ""
 
 #: build/onboarding.js:1
-msgid "Upload your model file and set size, camera controls, and auto-rotate in the block sidebar"
+msgid "Publish"
 msgstr ""
 
 #: build/onboarding.js:1
-msgid "Preview the model, then publish"
+msgid "Setup progress"
 msgstr ""
 
 #: build/onboarding.js:1
-msgid "Adding a model with Elementor:"
+msgid "Exit Setup"
 msgstr ""
 
 #: build/onboarding.js:1
-msgid "Edit a page with Elementor and search the widget panel for <strong>Model Viewer</strong>"
+msgid "Easy Setup"
 msgstr ""
 
 #: build/onboarding.js:1
-msgid "Drag the widget onto your layout and upload your model file"
+msgid "Upload your 3D model and configure in minutes."
 msgstr ""
 
 #: build/onboarding.js:1
-msgid "Adjust size, camera controls, and auto-rotate, then publish"
+msgid "Interactive Experience"
 msgstr ""
 
 #: build/onboarding.js:1
-msgid "Adding a model with a shortcode:"
+msgid "Let your visitors rotate, zoom and explore."
 msgstr ""
 
 #: build/onboarding.js:1
-msgid "Go to <strong>3D Viewer &rsaquo; Add New</strong>, upload your file, and publish the model"
+msgid "Works Everywhere"
 msgstr ""
 
 #: build/onboarding.js:1
-msgid "Copy its <code>[3d_viewer id=\"…\"]</code> shortcode from the edit screen or the models list"
+msgid "Built for WordPress, works on all devices."
 msgstr ""
 
 #: build/onboarding.js:1
-msgid "Paste the shortcode into any post, page, or widget"
+msgid "3D Viewer tutorial video"
 msgstr ""
 
 #: build/onboarding.js:1
-msgid "Three ways to add a model — pick one above for step-by-step instructions:"
+msgid "Close video"
 msgstr ""
 
 #: build/onboarding.js:1
-msgid "<strong>Gutenberg</strong> — insert the 3D Model Viewer block in any post or page"
-msgstr ""
-
-#: build/onboarding.js:1
-msgid "<strong>Elementor</strong> — drag the Model Viewer widget into a section"
-msgstr ""
-
-#: build/onboarding.js:1
-msgid "<strong>Shortcode</strong> — publish a model under 3D Viewer, then paste its shortcode anywhere"
+#, js-format
+msgid "Hello %s 👋"
 msgstr ""
 
 #: build/onboarding.js:1
@@ -1209,35 +1207,35 @@ msgid "Welcome to 3D Viewer"
 msgstr ""
 
 #: build/onboarding.js:1
-msgid "3D Viewer — short tutorial"
+msgid "Bring your products to life with interactive 3D models. Let's set up your first model and get started in just a few steps."
 msgstr ""
 
 #: build/onboarding.js:1
-msgid "Let’s get your first 3D model on the page. It takes about a minute, and everything you set here can be changed later."
+msgid "A 3D model of a lounge chair with rotate, zoom, pan and AR view controls"
 msgstr ""
 
 #: build/onboarding.js:1
-msgid "Display GLB, GLTF, OBJ, STL, FBX, DAE, and more — no conversion needed"
+msgid "Need help?"
 msgstr ""
 
 #: build/onboarding.js:1
-msgid "Add models with a Gutenberg block, the Elementor widget, or a shortcode"
+msgid "Watch the 2-minute tutorial"
 msgstr ""
 
 #: build/onboarding.js:1
-msgid "Let visitors rotate, zoom, and pan the model right in the browser"
+msgid "Let's Get Started"
 msgstr ""
 
 #: build/onboarding.js:1
-msgid "Show a 3D model in place of a WooCommerce product image"
+msgid "2nd step"
 msgstr ""
 
 #: build/onboarding.js:1
-msgid "Let’s Get Started"
+msgid "What's included with 3D Viewer?"
 msgstr ""
 
 #: build/onboarding.js:1
-msgid "What’s included with 3D Viewer"
+msgid "Everything you need to create interactive 3D experiences on your WordPress site. Your licence is active, so every feature below is unlocked."
 msgstr ""
 
 #: build/onboarding.js:1
@@ -1245,19 +1243,7 @@ msgid "Everything marked Included works right now on the free version. Pro unloc
 msgstr ""
 
 #: build/onboarding.js:1
-msgid "Skip"
-msgstr ""
-
-#: build/onboarding.js:1
-msgid "Upgrade to Pro"
-msgstr ""
-
-#: build/onboarding.js:1
 msgid "Wide Format Support"
-msgstr ""
-
-#: build/onboarding.js:1
-msgid "Included"
 msgstr ""
 
 #: build/onboarding.js:1
@@ -1265,7 +1251,7 @@ msgid "GLB, GLTF, OBJ, STL, FBX, DAE, 3DS, and more — upload the file you alre
 msgstr ""
 
 #: build/onboarding.js:1
-msgid "Gutenberg, Elementor & Shortcodes"
+msgid "Gutenberg & Elementor"
 msgstr ""
 
 #: build/onboarding.js:1
@@ -1273,7 +1259,7 @@ msgid "Place a model with a block, the Elementor widget, or a shortcode anywhere
 msgstr ""
 
 #: build/onboarding.js:1
-msgid "WooCommerce Product Viewers"
+msgid "WooCommerce Viewers"
 msgstr ""
 
 #: build/onboarding.js:1
@@ -1293,11 +1279,7 @@ msgid "Augmented Reality"
 msgstr ""
 
 #: build/onboarding.js:1
-msgid "Pro"
-msgstr ""
-
-#: build/onboarding.js:1
-msgid "View models in the room with WebXR, Scene Viewer, and iOS Quick Look, plus QR access from mobile."
+msgid "View models in the room with WebXR, Scene Viewer, and iOS Quick Look."
 msgstr ""
 
 #: build/onboarding.js:1
@@ -1317,15 +1299,35 @@ msgid "Lighting, shadow and exposure control, axis locking, auto-rotate and full
 msgstr ""
 
 #: build/onboarding.js:1
-msgid "Last step — how will you add models?"
+msgid "Axis locking, auto-rotate, custom camera angle and hotspot annotations."
 msgstr ""
 
 #: build/onboarding.js:1
-msgid "Pick how you usually build pages and the steps below will match. You can still use any of the other methods later."
+msgid "Included"
 msgstr ""
 
 #: build/onboarding.js:1
-msgid "Preferred method"
+msgid "Pro"
+msgstr ""
+
+#: build/onboarding.js:1
+msgid "Back"
+msgstr ""
+
+#: build/onboarding.js:1
+msgid "Upgrade to Pro"
+msgstr ""
+
+#: build/onboarding.js:1
+msgid "Next"
+msgstr ""
+
+#: build/onboarding.js:1
+msgid "Shortcode"
+msgstr ""
+
+#: build/onboarding.js:1
+msgid "Paste [3d_viewer id=\"…\"] into any post or widget"
 msgstr ""
 
 #: build/onboarding.js:1
@@ -1345,16 +1347,95 @@ msgid "Drag the Model Viewer widget into a section"
 msgstr ""
 
 #: build/onboarding.js:1
-msgid "Shortcode"
+msgid "Last step"
 msgstr ""
 
 #: build/onboarding.js:1
-msgid "Paste [3d_viewer id=\"…\"] into any post or widget"
+msgid "How will you add models?"
 msgstr ""
 
 #: build/onboarding.js:1
-#, js-format
-msgid "Visit <a href=\"%s\">3D Viewer &rsaquo; Help & Demos</a> any time for live demos and documentation"
+msgid "Pick how you usually build pages and the steps below will match. You can still use any of the other methods later."
+msgstr ""
+
+#: build/onboarding.js:1
+msgid "Preferred method"
+msgstr ""
+
+#: build/onboarding.js:1
+msgid "Three ways to add a model — pick one above for step-by-step instructions:"
+msgstr ""
+
+#: build/onboarding.js:1
+msgid "Edit with Elementor"
+msgstr ""
+
+#: build/onboarding.js:1
+msgid "Open any page in the editor."
+msgstr ""
+
+#: build/onboarding.js:1
+msgid "Drag the widget"
+msgstr ""
+
+#: build/onboarding.js:1
+msgid "Find Model Viewer in the widget panel."
+msgstr ""
+
+#: build/onboarding.js:1
+msgid "Set the model file"
+msgstr ""
+
+#: build/onboarding.js:1
+msgid "Pick a model and publish."
+msgstr ""
+
+#: build/onboarding.js:1
+msgid "Add a 3D model"
+msgstr ""
+
+#: build/onboarding.js:1
+msgid "3D Viewer → Add New, then save."
+msgstr ""
+
+#: build/onboarding.js:1
+msgid "Copy the shortcode"
+msgstr ""
+
+#: build/onboarding.js:1
+msgid "Shown after saving the model."
+msgstr ""
+
+#: build/onboarding.js:1
+msgid "Paste it anywhere"
+msgstr ""
+
+#: build/onboarding.js:1
+msgid "Any post, page, widget or builder."
+msgstr ""
+
+#: build/onboarding.js:1
+msgid "Add the block"
+msgstr ""
+
+#: build/onboarding.js:1
+msgid "Search for \"3D Model Viewer\" in the editor."
+msgstr ""
+
+#: build/onboarding.js:1
+msgid "Paste the model URL"
+msgstr ""
+
+#: build/onboarding.js:1
+msgid "Or upload a file from the Media Library."
+msgstr ""
+
+#: build/onboarding.js:1
+msgid "The viewer renders on the page."
+msgstr ""
+
+#: build/onboarding.js:1
+msgid "Go to Dashboard"
 msgstr ""
 
 #: build/onboarding.js:1
