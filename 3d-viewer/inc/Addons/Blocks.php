@@ -8,6 +8,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+use BP3D\Base\EnqueueAssets;
 use BP3D\Helper\Utils;
 
 /**
@@ -26,6 +27,7 @@ class Blocks
     {
         add_action('init', [$this, 'init'], 1);
         add_action('init', [$this, 'registerBlockAssets'], 0);
+        add_filter('block_type_metadata', [$this, 'styleVersion']);
         add_action('enqueue_block_editor_assets', [$this, 'enqueueEditorAssets']);
         add_action('enqueue_block_assets', [$this, 'enqueueBlockAssets']);
 
@@ -41,15 +43,7 @@ class Blocks
             'bp3d-frontend',
             BP3D_DIR . 'build/frontend.css',
             [],
-            BP3D_VERSION,
-            'all'
-        );
-
-        wp_register_style(
-            'bp3d-custom-style',
-            BP3D_DIR . 'public/css/custom-style.css',
-            [],
-            BP3D_VERSION,
+            EnqueueAssets::styleVersion('build/frontend.css'),
             'all'
         );
 
@@ -58,7 +52,7 @@ class Blocks
             'bp3d-public',
             BP3D_DIR . 'build/frontend.js',
             ['react', 'react-dom', 'wp-i18n'],
-            BP3D_VERSION,
+            EnqueueAssets::buildVersion('frontend'),
             true
         );
 
@@ -71,12 +65,23 @@ class Blocks
             'o3dviewerSrc' => BP3D_DIR . 'public/js/o3dv.min.js',
             'selectors' => [
                 'gallery' => $this->get_default_selector($settings('gallery', $settings('product_gallery_selector')), '.woocommerce-product-gallery'),
-                'gallery_item' => $this->get_default_selector($settings('gallery_item'), '.woocommerce-product-gallery__image'),
-                'gallery_item_active' => $this->get_default_selector($settings('gallery_item_active'), '.woocommerce-product-gallery__image.flex-active-slide'),
-                'gallery_thumbnail_item' => $this->get_default_selector($settings('gallery_thumbnail_item'), '.flex-control-thumbs li'),
                 'gallery_trigger' => $this->get_default_selector($settings('gallery_trigger'), '.woocommerce-product-gallery__trigger'),
             ]
         ]);
+    }
+
+    /**
+     * WordPress versions a block's `file:` styles with block.json's "version", which never changed,
+     * so browsers kept the old view.css/index.css. Version them by build time instead.
+     */
+    public function styleVersion($metadata)
+    {
+        if (is_array($metadata) && 'b3dviewer/modelviewer' === ($metadata['name'] ?? '')) {
+            $mtime = max((int) @filemtime(BP3D_PATH . 'build/blocks/3d-viewer/view.css'), (int) @filemtime(BP3D_PATH . 'build/blocks/3d-viewer/index.css'));
+            $metadata['version'] = BP3D_VERSION . ($mtime ? '-' . $mtime : '');
+        }
+
+        return $metadata;
     }
 
     /**
@@ -98,21 +103,6 @@ class Blocks
      */
     public function enqueueEditorAssets()
     {
-        $presets_raw = get_posts([
-            'post_type' => 'bp3d-preset',
-            'posts_per_page' => -1,
-        ]);
-
-        $presets = [];
-        foreach ($presets_raw as $preset) {
-            $block_content = \BP3D\Helper\Block::getBlock($preset->ID);
-            $presets[] = [
-                'id' => $preset->ID,
-                'title' => $preset->post_title,
-                'attributes' => $block_content['attrs'] ?? [],
-            ];
-        }
-
         wp_localize_script('b3dviewer-modelviewer-editor-script', 'bp3dBlock', [
             'admin_url' => admin_url(),
             'allowedMimeTypes' => Utils::getAllowedMimeTypes(),

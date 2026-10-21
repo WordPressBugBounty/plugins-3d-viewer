@@ -2,7 +2,7 @@
 Contributors: bplugins, abuhayat, shehabulislam, freemius, farazi1
 Tags: 3d model viewer, 360 product view, augmented reality, woocommerce, glb
 Tested up to: 7.1
-Stable tag: 1.9.4
+Stable tag: 2.0.0
 Requires PHP: 7.4
 Requires at least: 6.5
 Donate link: https://www.buymeacoffee.com/abuhayat
@@ -182,7 +182,7 @@ You can find the source code, report bugs, and contribute to the development of 
 
 == External Services ==
 
-This plugin connects to the following external services. Connections are made only from the plugin's admin dashboard pages and are not triggered for your site's visitors on the front end.
+This plugin connects to the following external services. Apart from the decoder downloads listed under "Google Hosted Libraries" and "jsDelivr", connections are made only from the plugin's admin dashboard pages and are not triggered for your site's visitors on the front end.
 
 = bPlugins API =
 
@@ -202,6 +202,33 @@ This plugin connects to the following external services. Connections are made on
 * **Terms of Service:** [https://wordpress.org/about/privacy/](https://wordpress.org/about/privacy/)
 * **Privacy Policy:** [https://wordpress.org/about/privacy/](https://wordpress.org/about/privacy/)
 
+= Freemius Checkout =
+
+* **Service:** Freemius Checkout – `https://checkout.freemius.com`
+* **What it does:** When an administrator clicks "Buy" or "Upgrade" in the plugin's dashboard, the Freemius checkout overlay is loaded so the purchase can be completed without leaving wp-admin.
+* **What data is sent:** The product and plan identifiers, and the current administrator's email address and display name, to pre-fill the checkout form.
+* **When:** Only when an administrator opens the checkout from the plugin's dashboard in wp-admin.
+* **Terms of Service:** [https://freemius.com/terms/](https://freemius.com/terms/)
+* **Privacy Policy:** [https://freemius.com/privacy/](https://freemius.com/privacy/)
+
+= Google Hosted Libraries (Draco and Basis decoders) =
+
+* **Service:** `https://www.gstatic.com`
+* **What it does:** The bundled `<model-viewer>` library downloads the Draco mesh decoder and the Basis Universal texture decoder from Google's CDN, but only when a model actually uses Draco compression or KTX2/Basis textures.
+* **What data is sent:** A plain file request; no personal data or site content is sent.
+* **When:** On the front end, when a visitor views a compressed model that needs one of these decoders.
+* **Terms of Service:** [https://developers.google.com/speed/libraries/terms](https://developers.google.com/speed/libraries/terms)
+* **Privacy Policy:** [https://policies.google.com/privacy](https://policies.google.com/privacy)
+
+= jsDelivr (Advanced viewer format decoders) =
+
+* **Service:** `https://cdn.jsdelivr.net`
+* **What it does:** The bundled Online 3D Viewer library (the "Advanced" viewer) downloads the `occt-import-js`, `rhino3dm`, `web-ifc` and `draco3d` decoders from jsDelivr, but only when a model in a format that needs them (STEP, IGES, BREP, 3DM, IFC or Draco-compressed) is viewed.
+* **What data is sent:** A plain file request; no personal data or site content is sent.
+* **When:** On the front end, when a visitor views a model in one of those formats with the Advanced viewer.
+* **Terms of Service:** [https://www.jsdelivr.com/terms](https://www.jsdelivr.com/terms)
+* **Privacy Policy:** [https://www.jsdelivr.com/terms/privacy-policy-jsdelivr-net](https://www.jsdelivr.com/terms/privacy-policy-jsdelivr-net)
+
 == Third-Party Libraries ==
 
 This plugin bundles the following third-party JavaScript/PHP libraries.
@@ -212,6 +239,24 @@ This plugin bundles the following third-party JavaScript/PHP libraries.
 * **GitHub:** [https://github.com/Codestar/codestar-framework](https://github.com/Codestar/codestar-framework)
 * **License:** GPLv2 or later – [https://github.com/Codestar/codestar-framework/blob/master/LICENSE.md](https://github.com/Codestar/codestar-framework/blob/master/LICENSE.md)
 * **Purpose:** Provides the options framework for the plugin's settings and shortcode generator.
+
+= bfields =
+
+* **Folder:** `lib/bfields/`
+* **Author:** bPlugins
+* **GitHub:** [https://github.com/bPlugins/bfields](https://github.com/bPlugins/bfields) (this plugin ships release `v1.1.1`)
+* **Download:** [bfields 1.1.1 (zip)](https://github.com/bPlugins/bfields/releases/download/v1.1.1/bfields.zip) – the same `php/`, `build/` and `languages/` this plugin bundles in `lib/bfields/`.
+* **Source:** The compiled files in `lib/bfields/build/` are built from the TypeScript/CSS in the `ui/` folder of the repository above with `npm ci && npm run build`. Build steps and a file-by-file source map are in the repository's README.
+* **License:** GPLv2 or later – [https://www.gnu.org/licenses/gpl-2.0.html](https://www.gnu.org/licenses/gpl-2.0.html)
+* **Purpose:** Draws the new admin interface for the settings page and the viewer and product meta boxes.
+
+= Inter (font) =
+
+* **Files:** `build/fonts/inter-*.woff2`, `lib/bfields/build/fonts/inter-*.woff2`
+* **Author:** Rasmus Andersson
+* **GitHub:** [https://github.com/rsms/inter](https://github.com/rsms/inter)
+* **License:** SIL Open Font License 1.1 – [https://github.com/rsms/inter/blob/master/LICENSE.txt](https://github.com/rsms/inter/blob/master/LICENSE.txt)
+* **Purpose:** The typeface of the Help & Demos, onboarding and new admin interface screens. Self-hosted; no requests to Google Fonts.
 
 = Freemius SDK =
 
@@ -260,6 +305,22 @@ The bundle also includes the following sub-dependencies:
 * External Services: The library may connect to bPlugins, WordPress.org, and Freemius services to list available add-ons, resolve download URLs, and manage licenses. Connections are made only from the plugin's admin dashboard.
 
 == Changelog ==
+
+= 2.0.0 - 18 October, 2026 =
+* New: New admin interface for Settings, viewers and WooCommerce products; switch back to the classic interface any time from Settings.
+* New: Redesigned Help & Demos dashboard.
+* New: Exit fullscreen button.
+* Changed: Model pickers show only 3D files.
+* Changed: Viewer controls are now buttons; custom CSS that targets `svg.control-btn` should use `.control-btn`.
+* Fixed: Saving in the free version no longer drops data added with the Pro version.
+* Fixed: Lazy Load now works for blocks and WooCommerce products.
+* Fixed: Theme Compatibility Mode works with more themes.
+* Fixed: The Advanced viewer no longer downloads the model twice.
+* Fixed: Multi-model viewers made with Pro show their first model, as Pro does without a licence.
+* Fixed: Re-saving an older viewer no longer turns on zoom buttons, the progress bar, or a different environment image.
+* Fixed: The download button icon no longer goes blank on some themes and in the Live Preview.
+* Fixed: The model picker notes list the formats actually enabled for upload.
+* Fixed: `[3d_viewer_product id="…"]` shows that product's model on any page.
 
 = 1.9.4 - 26 September, 2026  =
 * Changed: Redesigned the guided setup as a three-step onboarding.
@@ -581,3 +642,9 @@ The bundle also includes the following sub-dependencies:
 
 = 1.0.0 =
 * Initial Release
+
+
+== Upgrade Notice ==
+
+= 2.0.0 =
+New admin interface; the classic one stays available in Settings. Viewer controls are now buttons: custom CSS that targets `svg.control-btn` should use `.control-btn`.

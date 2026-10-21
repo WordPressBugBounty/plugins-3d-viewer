@@ -2,10 +2,10 @@
 
 
 /*
- * Plugin Name: 3D Viewer – Display Interactive 3D Models
+ * Plugin Name: 3D Viewer – Turn Product Pages into Interactive 3D Experiences
  * Plugin URI:  https://bplugins.com/
  * Description: Easily display interactive 3D models on the web. Supported File type .glb, .gltf,obj 3ds stl ply off 3dm fbx dae wrl 3mf amf ifc brep step iges fcstd bim
- * Version: 1.9.4
+ * Version: 2.0.0
  * Author: bPlugins
  * Author URI: https://bplugins.com
  * Requires PHP: 7.4
@@ -66,12 +66,11 @@ if (function_exists('bp3d_fs')) {
     if (defined('WP_DEBUG') && WP_DEBUG === true) {
         define('BP3D_VERSION', time());
     } else {
-        define('BP3D_VERSION', '1.9.4');
+        define('BP3D_VERSION', '2.0.0');
     }
 
     defined('BP3D_DIR') or define('BP3D_DIR', plugin_dir_url(__FILE__));
     defined('BP3D_PATH') or define('BP3D_PATH', plugin_dir_path(__FILE__));
-    defined('BP3D_TEMPLATE_PATH') or define('BP3D_TEMPLATE_PATH', plugin_dir_path(__FILE__) . 'inc/Template/');
     defined('BP3D__FILE__') or define('BP3D__FILE__', __FILE__);
     define('BP3D_IMPORT_VER', '1.0.0');
 
@@ -94,10 +93,6 @@ if (function_exists('bp3d_fs')) {
                 'has_affiliation' => 'selected',
                 'menu' => array(
                     'slug' => 'edit.php?post_type=bp3d-model-viewer',
-                    // Deliberately the dashboard, not the guided setup: the
-                    // setup screen is not registered for Pro, and first-path
-                    // has no way to branch. Free users still reach the wizard —
-                    // Onboarding::maybe_redirect() picks them up from here.
                     'first-path' => 'edit.php?post_type=bp3d-model-viewer&page=3d-viewer',
                     'support' => false,
                     'affiliation' => false,
@@ -118,6 +113,10 @@ if (function_exists('bp3d_fs')) {
     // External files Inclusion
     if (file_exists(BP3D_PATH . 'vendor/codestar-framework/codestar-framework.php')) {
         require_once BP3D_PATH . 'vendor/codestar-framework/codestar-framework.php';
+    }
+    // bfields, the new admin interface (inc/Base/AdminUi.php picks it or Codestar per screen).
+    if (file_exists(__DIR__ . '/lib/bfields/php/bootstrap.php')) {
+        require_once __DIR__ . '/lib/bfields/php/bootstrap.php';
     }
 
 
@@ -188,8 +187,8 @@ if (function_exists('bp3d_fs')) {
                 'catalog_file' => __DIR__ . '/public/extensions.php', // Explicit PHP path
                 'menu_badge' => true,
                 'menu_badge_persist' => true,
+                'enable_modules' => false,
                 'enable_freemius_checkout' => true
-
             ));
         }
     });

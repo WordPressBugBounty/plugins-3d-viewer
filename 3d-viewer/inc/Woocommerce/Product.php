@@ -35,13 +35,13 @@ class Product
     /**
      * Build the full model viewer attributes array for a WooCommerce product.
      *
-     * @param  array<string, mixed> $modelData  Raw model data from post meta
+     * @param  mixed $modelData  Raw model data from post meta (non-arrays are treated as empty)
      * @return array<string, mixed> Formatted attributes array
      */
-    public static function getProductAttributes(array $modelData = []): array
+    public static function getProductAttributes($modelData = []): array
     {
         if (!is_array($modelData)) {
-            return [];
+            $modelData = [];
         }
 
         global $product;
@@ -55,13 +55,12 @@ class Product
 
         $get_option = Utils::getSettings('_bp3d_settings_');
 
-        $model_src = $modelData['bp3d_model_src'] ?? $modelData['bp3d_models']['0']['model_src'] ?? '';
+        $model_src = self::effectiveModelUrl($modelData);
         $poster = $modelData['bp3d_poster_src'] ?? $modelData['bp3d_models']['0']['poster_src'] ?? '';
-        
 
         return [
             'align' => 'center',
-            'uniqueId' => 'model' . get_the_ID(),
+            'uniqueId' => 'model' . ($product_id ?: get_the_ID()),
             'O3DVSettings' => [
                 'isFullscreen' => true,
                 'mouseControl' => true,
@@ -73,6 +72,7 @@ class Product
             ],
             'zoom' => $meta('bp_3d_zooming', $get_option('bp_3d_zooming', '1'), true),
             'lazyLoad' => $get_option('bp_3d_loading', 'lazy') === 'lazy',
+            'loading' => $get_option('bp_3d_loading', 'lazy') === 'lazy' ? 'lazy' : 'eager',
             'preload' => 'auto',
             'mouseControl' => $get_option('bp_camera_control', '1', true),
             'fullscreen' => $get_option('bp_3d_fullscreen', '1', true),
@@ -89,32 +89,25 @@ class Product
     }
 
     /**
-     * Extract variant attribute keys from a variable product.
+     * Model URL as the front end resolves it: flat key first, then row 0.
      *
-     * @param  \WC_Product|null $product
-     * @return array<int, string>
+     * @param array<string, mixed> $modelData
      */
-    private static function getVariantKeys($product)
+    private static function effectiveModelUrl(array $modelData): string
     {
-        $variant_keys = [];
+        return self::urlOf($modelData['bp3d_model_src'] ?? $modelData['bp3d_models']['0']['model_src'] ?? '');
+    }
 
-        if (!$product || !method_exists($product, 'get_available_variations')) {
-            return $variant_keys;
+    /**
+     * @param mixed $value  URL string or a media array with a 'url' key
+     */
+    private static function urlOf($value): string
+    {
+        if (is_array($value)) {
+            $value = $value['url'] ?? '';
         }
 
-        $variations = $product->get_available_variations();
-
-        if (!$variations) {
-            return $variant_keys;
-        }
-
-        $list = wp_list_pluck($variations, 'attributes');
-
-        if ($list && is_array($list[0])) {
-            $variant_keys = array_keys($list[0]);
-        }
-
-        return $variant_keys;
+        return is_string($value) ? $value : '';
     }
 
     /**

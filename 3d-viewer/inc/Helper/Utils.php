@@ -16,7 +16,39 @@ if (!defined('ABSPATH')) {
  */
 class Utils
 {
-    public static ?string $theme_name = null;
+    /**
+     * Stored option overlaid with only the declared field values, so keys another
+     * screen owns (e.g. Pro settings) survive a CSF/bfields save.
+     *
+     * @param  array<string, mixed> $data      Declared fields from the form
+     * @param  object|null          $instance  CSF options instance
+     * @return array<string, mixed>
+     */
+    public static function overlayDeclared(string $option, array $data, $instance): array
+    {
+        $stored = get_option($option, []);
+        if (!is_array($stored) || empty($stored)) {
+            return $data;
+        }
+
+        $declared = [];
+        foreach ((is_object($instance) && !empty($instance->pre_fields)) ? $instance->pre_fields : [] as $field) {
+            if (!empty($field['id'])) {
+                $declared[] = $field['id'];
+            }
+        }
+        if (!$declared) {
+            $declared = array_keys($data);
+        }
+
+        foreach ($declared as $key) {
+            if (array_key_exists($key, $data)) {
+                $stored[$key] = $data[$key];
+            }
+        }
+
+        return $stored;
+    }
 
     /**
      * Every 3D/HDR file format the plugin knows how to register for upload.
@@ -43,61 +75,33 @@ class Utils
         'usdz' => 'model/vnd.pixar.usd',
     ];
 
-    public function __construct()
-    {
-        self::$theme_name = wp_get_theme()->name;
-    }
+    /** Not model files: an environment image and an OBJ material. */
+    private const NON_MODEL_EXTENSIONS = ['hdr', 'mtl'];
 
     /**
-     * Safely get a value from an array by key.
+     * Media-library `type` filter for model pickers; mirrors src/utils/modelMediaTypes.ts.
+     * `model` covers model/*; subtypes are listed too because Codestar checks the pick against type or subtype.
      *
-     * @param  array<string, mixed>  $array
-     * @param  string                $key
-     * @param  mixed                 $default
-     * @return mixed
+     * @return string[]
      */
-    public static function isset($array, $key, $default = false)
+    public static function modelLibraryTypes(): array
     {
-        return $array[$key] ?? $default;
-    }
-
-    /**
-     * Safely get a nested value from a two-level array.
-     *
-     * @param  array<string, mixed>  $array
-     * @param  string                $key1
-     * @param  string                $key2
-     * @param  mixed                 $default
-     * @return mixed
-     */
-    public static function isset2($array, $key1, $key2, $default = false)
-    {
-        return $array[$key1][$key2] ?? $default;
-    }
-
-    /**
-     * Convert a hex color string to an RGB array.
-     *
-     * @param  string      $hex    Hex color (with or without #)
-     * @param  float|false $alpha  Optional alpha value
-     * @return array{r: int, g: int, b: int, a?: float}
-     */
-    public static function hexToRGB($hex, $alpha = false)
-    {
-        $hex = str_replace('#', '', $hex);
-        $length = strlen($hex);
-
-        $rgb = [
-            'r' => hexdec($length === 6 ? substr($hex, 0, 2) : ($length === 3 ? str_repeat(substr($hex, 0, 1), 2) : '0')),
-            'g' => hexdec($length === 6 ? substr($hex, 2, 2) : ($length === 3 ? str_repeat(substr($hex, 1, 1), 2) : '0')),
-            'b' => hexdec($length === 6 ? substr($hex, 4, 2) : ($length === 3 ? str_repeat(substr($hex, 2, 1), 2) : '0')),
-        ];
-
-        if ($alpha !== false) {
-            $rgb['a'] = $alpha;
+        $types = ['model'];
+        foreach (self::SUPPORTED_MIME_TYPES as $ext => $mime) {
+            if (in_array($ext, self::NON_MODEL_EXTENSIONS, true) || 0 === strpos($mime, 'model/')) {
+                continue;
+            }
+            $types[] = $mime;
+            $types[] = substr($mime, strpos($mime, '/') + 1);
         }
 
-        return $rgb;
+        return array_values(array_unique($types));
+    }
+
+    /** @return string[] Extensions a model picker's uploader accepts. */
+    public static function modelExtensions(): array
+    {
+        return array_values(array_diff(array_keys(self::SUPPORTED_MIME_TYPES), self::NON_MODEL_EXTENSIONS));
     }
 
     /**
@@ -271,6 +275,23 @@ class Utils
         return is_array($allowed) ? $allowed : [];
     }
 
+    /** The formats note under a model picker once any format is switched off; '' while all are on. */
+    public static function enabledFormatsNote(): string
+    {
+        $supported = self::getSupportedMimeTypes();
+        $enabled = array_values(array_intersect($supported, self::getAllowedMimeTypes()));
+        if (count($enabled) === count($supported)) {
+            return '';
+        }
+
+        return sprintf(
+            /* translators: 1: comma-separated file extensions, 2: URL to the settings page. */
+            __('Enabled for upload: %1$s. You can change this in the <a href="%2$s" target="_blank">3D Viewer Settings</a>.', '3d-viewer'),
+            esc_html(strtoupper(implode(', ', $enabled))),
+            esc_url(admin_url('edit.php?post_type=bp3d-model-viewer&page=3dviewer-settings'))
+        );
+    }
+
     /**
      * Collapse the preset + custom-URL pair used by the Elementor widget and
      * the shortcode generator onto the single value the block stores: '' for
@@ -299,6 +320,55 @@ class Utils
     }
 
     /**
+     * The viewer's model URL. Pro saves a pasted URL in bp_3d_src_link with bp_3d_src_type 'link';
+     * rows without a type are uploads. Always a string, so esc_url() never gets an array.
+     */
+    public static function viewerModelSrc(\Closure $meta): string
+    {
+        $cycle = self::firstCycleModel($meta);
+        if ($cycle) {
+            return $cycle['model_link'];
+        }
+
+        $upload = $meta('bp_3d_src', '', false, 'url');
+        $upload = is_string($upload) ? $upload : '';
+        if (($meta('bp_3d_src_type') ?: 'upload') === 'upload') {
+            return $upload;
+        }
+
+        $link = $meta('bp_3d_src_link', '');
+
+        return self::isWebUrl($link) ? $link : $upload;
+    }
+
+    /** Pro's Cycle (multi-model) viewer: free shows its first model, as unlicensed Pro does. */
+    public static function firstCycleModel(\Closure $meta): array
+    {
+        $models = $meta('bp_3d_model_type', 'msimple') !== 'msimple' ? $meta('bp_3d_models', []) : [];
+        $first = is_array($models) ? reset($models) : false;
+
+        return is_array($first) && self::isWebUrl($first['model_link'] ?? null) ? $first : [];
+    }
+
+    /** Pro's cloud storage saves paths like "dropbox:/model.glb" that only Pro can sign; free can't load those. */
+    private static function isWebUrl($url): bool
+    {
+        return is_string($url) && preg_match('#^(https?:)?//|^/#i', trim($url)) === 1;
+    }
+
+    /** The viewer's poster URL; a Cycle viewer uses its first model's, else the viewer's own. */
+    public static function viewerPoster(\Closure $meta): string
+    {
+        $cycle = self::firstCycleModel($meta);
+        $poster = $cycle['poster_src'] ?? '';
+        if (!is_string($poster) || trim($poster) === '') {
+            $poster = $meta('bp_3d_poster', '', false, 'url');
+        }
+
+        return is_string($poster) ? $poster : '';
+    }
+
+    /**
      * Build the full viewer attributes array from a meta accessor.
      *
      * Shared between the frontend renderer (shortcode/block) and the
@@ -310,10 +380,12 @@ class Utils
      */
     public static function buildViewerAttributes(\Closure $meta, $id): array
     {
+        $modelUrl = self::viewerModelSrc($meta);
+
         return [
             'model' => [
-                'modelUrl' => $meta('bp_3d_src', [], false, 'url'),
-                'poster' => $meta('bp_3d_poster', [], false, 'url'),
+                'modelUrl' => $modelUrl,
+                'poster' => self::viewerPoster($meta),
                 'skyboxImage' => $meta('bp_3d_skybox_image'),
                 'arEnabled' => $meta('bp_3d_enable_ar', '0', true),
                 'arMode' => $meta('ar_mode', 'webxr scene-viewer quick-look'),

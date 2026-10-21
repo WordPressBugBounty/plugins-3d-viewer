@@ -36,6 +36,8 @@ class Init
     public static function get_services()
     {
         return [
+            // First: it adds the bfields type map before any screen is built.
+            Base\AdminUi::class,
             Base\EnqueueAssets::class,
             Base\Import::class,
             Shortcode\Shortcode::class,
@@ -45,8 +47,6 @@ class Init
             Field\Viewer::class,
             Field\Settings::class,
             Woocommerce\SingleProduct::class,
-            Helper\Utils::class,
-            Helper\Block::class,
             Addons\Blocks::class,
             Addons\Addons::class,
             Addons\Controls\Controls::class
@@ -71,6 +71,7 @@ class Init
     public static function register_post_type()
     {
         self::instantiate('BP3D\\Base\\PostTypeModelViewer')->register();
+        self::instantiate('BP3D\\Base\\ViewerListModern')->register();
 
     }
 

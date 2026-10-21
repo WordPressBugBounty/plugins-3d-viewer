@@ -39,18 +39,9 @@ class Shortcode
     {
         $atts = shortcode_atts([
             'id' => '',
-            'src' => '',
-            'alt' => '',
-            'width' => '100%',
-            'height' => 'auto',
-            'auto_rotate' => 'auto-rotate',
-            'camera_controls' => 'camera-controls',
-            'zooming_3d' => '',
-            'loading' => '',
-            'poster' => '',
         ], $atts);
 
-        $id = $atts['id'];
+        $id = absint($atts['id']);
 
         if (!$id) {
             return false;
@@ -63,7 +54,7 @@ class Shortcode
             $isGutenberg = get_post_meta($id, 'isGutenberg', true);
         }
 
-        if (!in_array($post_type, ['bp3d-model-viewer', 'product'], true)) {
+        if (!in_array($post_type, ['bp3d-model-viewer', 'product'], true) || !self::isViewable((int) $id)) {
             return false;
         }
 
@@ -91,7 +82,6 @@ class Shortcode
 
         <?php
         wp_enqueue_script('bp3d-public');
-        // wp_enqueue_style('bp3d-custom-style');
         wp_enqueue_style('bp3d-frontend');
 
         if ($meta('currentViewer') === 'O3DViewer') {
@@ -104,6 +94,26 @@ class Shortcode
     }
 
     /**
+     * Visitors see published posts only. Drafts, scheduled and private posts show to users who may read them
+     * (their editors), and trashed ones to no one. A password-protected one shows only to its editors, as a viewer
+     * has no page to enter the password on.
+     */
+    public static function isViewable(int $id): bool
+    {
+        $status = get_post_status($id);
+
+        if (post_password_required($id) && !current_user_can('edit_post', $id)) {
+            return false;
+        }
+
+        if ('publish' === $status) {
+            return true;
+        }
+
+        return $status && 'trash' !== $status && current_user_can('read_post', $id);
+    }
+
+    /**
      * Render the shortcode.
      *
      * @param  array<string, string>|string $attrs  Shortcode attributes
@@ -113,58 +123,21 @@ class Shortcode
     {
         $attrs = shortcode_atts([
             'id' => (string) get_the_ID(),
-            'width' => '100%',
-            'late_initialize' => 'false',
         ], $attrs);
 
-        $post_type = get_post_type($attrs['id']);
+        $id = absint($attrs['id']);
 
-        if ($post_type !== 'product') {
+        if (get_post_type($id) !== 'product' || !function_exists('wc_get_product')) {
             return false;
         }
 
-        return Product::instance()->get_3d_model_html(true, 'shortcode');
-    }
+        // The model comes from the product named by id, not from the page the shortcode sits on.
+        global $product;
+        $current = $product;
+        $product = wc_get_product($id);
+        $html = Product::instance()->get_3d_model_html(true, 'shortcode');
+        $product = $current;
 
-    /**
-     * Build the common attributes array shared between classic and modern renderers.
-     *
-     * @param  \Closure    $meta  Meta accessor closure
-     * @param  string|int  $id    Post ID
-     * @return array<string, mixed>
-     */
-    public function getCommonAttributes(\Closure $meta, $id)
-    {
-        return [
-            'align' => $meta('bp_3d_align', 'center'),
-            'uniqueId' => 'model' . $id,
-            'currentViewer' => $meta('currentViewer', 'modelViewer'),
-            'O3DVSettings' => [
-                'isFullscreen' => $meta('bp_3d_fullscreen', '1', true),
-                'camera' => null,
-                'mouseControl' => $meta('bp_camera_control', '1', true),
-                'zoom' => $meta('bp_3d_zooming', '1', true),
-            ],
-            'lazyLoad' => $meta('bp_3d_loading', 'lazy') === 'lazy',
-            'loading' => $meta('bp_3d_loading'),
-            'zoom' => $meta('bp_3d_zooming', '1', true),
-            'preload' => 'auto',
-            'mouseControl' => $meta('bp_camera_control', '1', true),
-            'fullscreen' => $meta('bp_3d_fullscreen', '1', true),
-            'zoomInOutBtn' => $meta('bp_3d_zoom_in_out_btn', '0', true),
-            'cameraBtn' => $meta('bp_3d_camera_btn', '0', true),
-            'downloadBtn' => $meta('bp_3d_download_btn', '0', true),
-            'loadingPercentage' => $meta('bp_model_progress_percent', '0', true),
-            'progressBar' => $meta('bp_3d_progressbar', '0', true),
-            'exposure' => $meta('3d_exposure', '1'),
-            'shadow' => (float) $meta('3d_shadow_intensity', '1', false),
-            'woo' => false,
-            'placement' => 'shortcode',
-            'styles' => [
-                'width' => $meta('bp_3d_width', '100', false, 'width') . $meta('bp_3d_width', '%', false, 'unit'),
-                'height' => $meta('bp_3d_height', '100', false, 'height') . $meta('bp_3d_height', '%', false, 'unit'),
-                'bgColor' => $meta('bp_model_bg'),
-            ],
-        ];
+        return $html;
     }
 }

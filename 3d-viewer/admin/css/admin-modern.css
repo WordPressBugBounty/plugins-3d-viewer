@@ -1,0 +1,244 @@
+/* Modern interface only (bfields). Values are bfields' tokens, which are declared on .bfields-app and so do not reach core boxes. */
+
+/* Publish box (plan D2, decision 5): restyled, nothing hidden or moved out of the box. */
+.post-type-bp3d-model-viewer #submitdiv {
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  box-shadow: none;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.post-type-bp3d-model-viewer #submitdiv .postbox-header {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.post-type-bp3d-model-viewer #submitdiv .postbox-header h2 {
+  padding: 14px 16px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #24242b;
+}
+
+.post-type-bp3d-model-viewer #submitdiv .inside {
+  margin: 0;
+  padding: 0;
+}
+
+.post-type-bp3d-model-viewer #submitdiv #major-publishing-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  border-top: 0;
+  background: #fff;
+}
+
+.post-type-bp3d-model-viewer #submitdiv #major-publishing-actions .clear {
+  display: none;
+}
+
+.post-type-bp3d-model-viewer #submitdiv #major-publishing-actions .bp3d-admin-ui-row {
+  flex: 1 0 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0 0 12px;
+  border-bottom: 1px solid #f1f3f5;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #6b7280;
+}
+
+.post-type-bp3d-model-viewer #submitdiv .bp3d-admin-ui-row strong {
+  font-weight: 600;
+  color: #24242b;
+}
+
+.post-type-bp3d-model-viewer #submitdiv .bp3d-admin-ui-row a,
+.post-type-bp3d-model-viewer #submitdiv .bp3d-admin-ui-row a:hover {
+  color: #1b5cf0;
+  font-weight: 500;
+}
+
+.post-type-bp3d-model-viewer #submitdiv #publishing-action {
+  order: 1;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 8px;
+  flex: 1 0 100%;
+  float: none;
+  text-align: initial;
+  line-height: normal;
+}
+
+.post-type-bp3d-model-viewer #submitdiv #publishing-action .spinner {
+  float: none;
+  margin: 0;
+}
+
+.post-type-bp3d-model-viewer #submitdiv #publishing-action .button-primary {
+  flex: 1 1 auto;
+  height: 45px;
+  min-height: 45px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 8px;
+  background: #1b5cf0;
+  box-shadow: none;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 45px;
+  text-shadow: none;
+  transition: background-color 0.15s ease;
+}
+
+.post-type-bp3d-model-viewer #submitdiv #publishing-action .button-primary:hover:not(:disabled) {
+  background: #1450d8;
+}
+
+.post-type-bp3d-model-viewer #submitdiv #publishing-action .button-primary:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+.post-type-bp3d-model-viewer #submitdiv #publishing-action .button-primary:focus-visible {
+  outline: 2px solid #1b5cf0;
+  outline-offset: 1px;
+}
+
+.post-type-bp3d-model-viewer #submitdiv #publishing-action .button-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.post-type-bp3d-model-viewer #submitdiv #delete-action {
+  order: 2;
+  float: none;
+  line-height: normal;
+}
+
+.post-type-bp3d-model-viewer #submitdiv #delete-action .submitdelete {
+  font-size: 13px;
+  color: #ef4444;
+  text-decoration: none;
+}
+
+.post-type-bp3d-model-viewer #submitdiv #delete-action .submitdelete:hover {
+  text-decoration: underline;
+}
+
+/* Viewer page editor (bfields `'frame' => 'page'`): the side card and the Preview tab's stage, src/admin/preview/. */
+.bfields-app .bp3d-side-preview__stage {
+  display: block;
+}
+
+/* bfields' gray placeholder stays for the empty state only; a viewer shows its own Background, or none. */
+.bfields-app .bp3d-side-preview__stage:not(:has(> .bp3d-side-preview__empty)) {
+  background: none;
+}
+
+/* Pinned to the stage: a percentage height let the Advanced viewer's canvas
+   grow the box past the stage, which clipped the thumbnail strip. */
+.bfields-app .bp3d-side-preview__stage > :not(.bp3d-side-preview__empty) {
+  position: absolute;
+  inset: 0;
+  width: auto;
+  height: auto;
+}
+
+/* bfields' stage sets white text for its own placeholder, which control labels would inherit in fullscreen. */
+.bfields-app .bp3d-side-preview__stage > .modelViewerBlock {
+  color: var(--bfields-row-title);
+}
+
+.bfields-app .bp3d-side-preview__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 100%;
+  padding: 0 32px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #475569;
+}
+
+.bfields-app .bp3d-side-preview__empty svg {
+  width: 40px;
+  height: 40px;
+}
+
+.bfields-app .bp3d-model-preview--bare {
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+
+/* The Preview tab: the viewer sits straight in bfields' 408px stage at its saved size, centred; a taller one grows the stage. */
+.bfields-app .bp3d-model-preview--bare .bp3d-model-preview__body {
+  max-height: none;
+}
+
+.bfields-app .bp3d-model-preview--bare .bp3d-model-preview__stage {
+  min-height: 408px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+}
+
+/* The interface switch, copied out of the hidden #submitdiv by src/admin/preview/. */
+.bfields-app .bfields-side__slot .bp3d-admin-ui-row--side {
+  margin: 10px 0 0;
+  padding: 0 4px;
+  border: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--bfields-row-desc);
+}
+
+.bfields-app .bfields-side__slot .bp3d-admin-ui-row--side strong {
+  font-weight: 600;
+  color: var(--bfields-row-title);
+}
+
+.bfields-app .bfields-side__slot .bp3d-admin-ui-row--side a {
+  color: var(--bfields-primary);
+  font-weight: 500;
+}
+
+/* WP footer on the Settings page and the viewer editor: lined up with the column (48px gutter), over a rule. */
+body:is(.bfields-screen, .bfields-page-editor) #wpfooter {
+  padding: 24px 48px;
+  background: linear-gradient(#e5e7eb, #e5e7eb) 48px 0 / calc(100% - 96px) 1px no-repeat;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 12px;
+  line-height: 16px;
+  color: #6b7280;
+}
+
+body:is(.bfields-screen, .bfields-page-editor) #wpfooter p {
+  font-size: inherit;
+  line-height: inherit;
+}
+
+body:is(.bfields-screen, .bfields-page-editor) #wpfooter #footer-left,
+body:is(.bfields-screen, .bfields-page-editor) #wpfooter #footer-thankyou {
+  font-style: normal;
+}
+
+body:is(.bfields-screen, .bfields-page-editor) #wpfooter #footer-left :is(a, strong) {
+  font-weight: 600;
+  color: #111827;
+}
+
+body:is(.bfields-screen, .bfields-page-editor) #wpfooter #footer-left a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}

@@ -13,11 +13,8 @@ if (!defined('WP_UNINSTALL_PLUGIN')) {
     exit;
 }
 
-if (!function_exists('is_plugin_active')) {
-    require_once ABSPATH . 'wp-admin/includes/plugin.php';
-}
-
-if (is_plugin_active('3d-viewer-premium/3d-viewer-premium.php')) {
+// Premium shares this data, so keep it while premium is installed, even inactive.
+if (file_exists(WP_PLUGIN_DIR . '/3d-viewer-premium/3d-viewer-premium.php')) {
     return;
 }
 
@@ -51,6 +48,7 @@ $bp3d_option_keys = [
     'bp3d_onboarding_redirect',   // Guided setup one-time redirect flag
     'bp3d_imported',              // Import migration flag
     'bp3d_mime_defaults_widened', // One-time upload whitelist widening flag
+    'bp3d_elementor_css_ver',     // One-time Elementor CSS regeneration flag
     'model_viewer_import_ver',    // Import version tracker
 ];
 
