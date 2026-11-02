@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: 3D Viewer – Turn Product Pages into Interactive 3D Experiences 2.0.0\n"
+"Project-Id-Version: 3D Viewer – Turn Product Pages into Interactive 3D Experiences 2.1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/3d-viewer\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-19T08:51:06+00:00\n"
+"POT-Creation-Date: 2026-11-02T02:53:42+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: 3d-viewer\n"
@@ -58,13 +58,13 @@ msgstr ""
 
 #: inc/Addons/BP3DProductModel.php:102
 #: inc/Addons/ModelViewer.php:387
-#: inc/Field/Viewer.php:556
+#: inc/Field/Viewer.php:557
 msgid "Width"
 msgstr ""
 
 #: inc/Addons/BP3DProductModel.php:117
 #: inc/Addons/ModelViewer.php:404
-#: inc/Field/Viewer.php:568
+#: inc/Field/Viewer.php:569
 msgid "Height"
 msgstr ""
 
@@ -78,6 +78,8 @@ msgid "Choose File"
 msgstr ""
 
 #: inc/Addons/Controls/b-select-file.php:123
+#: inc/Integrations/Dokan/ClassicForm.php:225
+#: build/dokan-vendor.js:1
 msgid "Replace"
 msgstr ""
 
@@ -94,7 +96,7 @@ msgstr ""
 #. translators: %s: URL to the settings page.
 #: inc/Addons/ModelViewer.php:110
 #: inc/Field/Viewer.php:194
-#: inc/Woocommerce/ProductMeta.php:89
+#: inc/Woocommerce/ProductMeta.php:100
 #, php-format
 msgid "<strong>Notice:</strong> All 3D file formats are currently disabled for upload. Please enable the formats you need in the <a href=\"%s\" target=\"_blank\">3D Viewer Settings</a>."
 msgstr ""
@@ -110,6 +112,7 @@ msgstr ""
 #: inc/Base/ViewerListModern.php:154
 #: inc/Field/Viewer.php:236
 #: build/dashboard.js:1
+#: build/fluentcart-admin.js:1
 msgid "Viewer"
 msgstr ""
 
@@ -138,7 +141,8 @@ msgstr ""
 
 #: inc/Addons/ModelViewer.php:154
 #: inc/Field/Viewer.php:267
-#: inc/Woocommerce/ProductMeta.php:164
+#: inc/Integrations/Dokan/VendorPolicy.php:130
+#: inc/Woocommerce/ProductMeta.php:194
 msgid "None"
 msgstr ""
 
@@ -302,7 +306,9 @@ msgstr ""
 
 #: inc/Addons/ModelViewer.php:324
 #: inc/Field/Viewer.php:498
+#: inc/Woocommerce/ProductMeta.php:177
 #: build/blocks/3d-viewer/index.js:1
+#: build/dokan-vendor.js:1
 msgid "Enable AR"
 msgstr ""
 
@@ -316,7 +322,7 @@ msgid "Paste USDZ Model URL"
 msgstr ""
 
 #: inc/Addons/ModelViewer.php:344
-#: inc/Field/Viewer.php:519
+#: inc/Field/Viewer.php:520
 #: build/blocks/3d-viewer/index.js:1
 msgid "AR Placement"
 msgstr ""
@@ -330,7 +336,7 @@ msgid "Wall"
 msgstr ""
 
 #: inc/Addons/ModelViewer.php:358
-#: inc/Field/Viewer.php:532
+#: inc/Field/Viewer.php:533
 #: build/blocks/3d-viewer/index.js:1
 msgid "AR Mode"
 msgstr ""
@@ -348,7 +354,7 @@ msgid "Quick Look"
 msgstr ""
 
 #: inc/Addons/ModelViewer.php:420
-#: inc/Field/Viewer.php:595
+#: inc/Field/Viewer.php:596
 #: build/blocks/3d-viewer/index.js:1
 msgid "Background Color"
 msgstr ""
@@ -473,6 +479,11 @@ msgstr ""
 msgid "The 3D Viewer settings on this page were not saved: the admin interface was switched while the page was open. Make those changes again."
 msgstr ""
 
+#: inc/Base/EnqueueAssets.php:104
+#: inc/Base/PostTypeModelViewer.php:311
+msgid "Copy and paste this shortcode into your posts, pages and widget"
+msgstr ""
+
 #: inc/Base/ExtendMimeType.php:34
 msgid "3D models"
 msgstr ""
@@ -560,19 +571,53 @@ msgstr ""
 msgid "3D Viewer Options."
 msgstr ""
 
-#: inc/Base/PostTypeModelViewer.php:311
-#: inc/Helper/Registrar.php:84
-msgid "Copy and paste this shortcode into your posts, pages and widget"
-msgstr ""
-
 #: inc/Base/PostTypeModelViewer.php:347
 #: build/admin-preview.js:1
 msgid "Live Preview"
 msgstr ""
 
+#: inc/Base/VendorUploadGuard.php:70
+#: inc/Base/VendorUploadGuard.php:291
+msgid "This file type is not allowed for vendors."
+msgstr ""
+
+#: inc/Base/VendorUploadGuard.php:74
+#: inc/Base/VendorUploadGuard.php:79
+#: inc/Base/VendorUploadGuard.php:261
+#: inc/Base/VendorUploadGuard.php:267
+msgid "The uploaded file could not be read."
+msgstr ""
+
+#: inc/Base/VendorUploadGuard.php:88
+msgid "This file contains HTML or script content and cannot be uploaded."
+msgstr ""
+
+#: inc/Base/VendorUploadGuard.php:95
+msgid "This file is not a valid USDZ model."
+msgstr ""
+
+#: inc/Base/VendorUploadGuard.php:109
+msgid "This file is not a valid GLB model."
+msgstr ""
+
+#: inc/Base/VendorUploadGuard.php:129
+msgid "The GLB model header is too large to check."
+msgstr ""
+
+#: inc/Base/VendorUploadGuard.php:169
+msgid "This GLB model links to external files. Upload a self-contained GLB instead."
+msgstr ""
+
+#. translators: %s: maximum file size in megabytes
+#: inc/Base/VendorUploadGuard.php:304
+#, php-format
+msgid "This file is larger than the %s MB limit for vendor uploads."
+msgstr ""
+
 #: inc/Base/ViewerListModern.php:150
-#: inc/Field/Viewer.php:607
+#: inc/Field/Viewer.php:608
 #: build/dashboard.js:1
+#: build/fluentcart-admin.js:1
 msgid "Preview"
 msgstr ""
 
@@ -635,6 +680,9 @@ msgstr ""
 #: inc/Field/Viewer.php:447
 #: inc/Field/Viewer.php:460
 #: inc/Field/Viewer.php:487
+#: inc/Integrations/Dokan/Settings.php:108
+#: inc/Integrations/Dokan/Settings.php:141
+#: inc/Integrations/FluentCart/Settings.php:39
 msgid "Yes"
 msgstr ""
 
@@ -647,6 +695,9 @@ msgstr ""
 #: inc/Field/Viewer.php:448
 #: inc/Field/Viewer.php:461
 #: inc/Field/Viewer.php:488
+#: inc/Integrations/Dokan/Settings.php:109
+#: inc/Integrations/Dokan/Settings.php:142
+#: inc/Integrations/FluentCart/Settings.php:40
 msgid "No"
 msgstr ""
 
@@ -777,7 +828,7 @@ msgstr ""
 
 #. translators: 1: 3D file extension, 2: URL to the settings page.
 #: inc/Field/Viewer.php:204
-#: inc/Woocommerce/ProductMeta.php:99
+#: inc/Woocommerce/ProductMeta.php:110
 #, php-format
 msgid "<strong>Warning:</strong> The uploaded 3D model format (.%1$s) is currently disabled. Please enable it in the <a href=\"%2$s\" target=\"_blank\">3D Viewer Settings</a> to ensure it loads properly."
 msgstr ""
@@ -796,7 +847,7 @@ msgid "Upload Source"
 msgstr ""
 
 #: inc/Field/Viewer.php:254
-#: inc/Woocommerce/ProductMeta.php:139
+#: inc/Woocommerce/ProductMeta.php:152
 msgid "3D Source"
 msgstr ""
 
@@ -866,6 +917,7 @@ msgstr ""
 #: inc/Field/Viewer.php:321
 #: inc/Field/Viewer.php:331
 #: 3d-viewer-block/build/index.js:1
+#: build/dokan-vendor.js:1
 msgid "Upload"
 msgstr ""
 
@@ -984,7 +1036,7 @@ msgid "Enables AR (Augmented Reality) so visitors can view the 3D model in their
 msgstr ""
 
 #: inc/Field/Viewer.php:510
-#: inc/Woocommerce/ProductMeta.php:140
+#: inc/Woocommerce/ProductMeta.php:153
 msgid "Upload Model Or Input Valid Model url"
 msgstr ""
 
@@ -992,40 +1044,40 @@ msgstr ""
 msgid "Specifies the iOS-specific model file (.usdz) used for viewing the 3D model in AR on Apple devices."
 msgstr ""
 
-#: inc/Field/Viewer.php:520
+#: inc/Field/Viewer.php:521
 msgid "Defines how the model is placed in AR. Choose 'floor' to place the model on the ground or 'wall' to attach it to a vertical surface."
 msgstr ""
 
-#: inc/Field/Viewer.php:533
+#: inc/Field/Viewer.php:534
 msgid "Selects the AR viewing mode. 'Quick Look' is used for iOS devices, while other modes enable AR on supported Android devices."
 msgstr ""
 
-#: inc/Field/Viewer.php:549
+#: inc/Field/Viewer.php:550
 #: build/blocks/3d-viewer/index.js:1
 msgid "Style"
 msgstr ""
 
-#: inc/Field/Viewer.php:557
+#: inc/Field/Viewer.php:558
 msgid "Sets the width of the 3D viewer. You can use values like %, px, or vw for responsive layouts."
 msgstr ""
 
-#: inc/Field/Viewer.php:569
+#: inc/Field/Viewer.php:570
 msgid "Sets the height of the 3D viewer. Adjust this to control how much vertical space the model occupies."
 msgstr ""
 
-#: inc/Field/Viewer.php:581
+#: inc/Field/Viewer.php:582
 msgid "Align"
 msgstr ""
 
-#: inc/Field/Viewer.php:582
+#: inc/Field/Viewer.php:583
 msgid "Controls the alignment of the 3D viewer within its container, such as left, center, or right."
 msgstr ""
 
-#: inc/Field/Viewer.php:596
+#: inc/Field/Viewer.php:597
 msgid "Set Background Color For 3d Model.If You don't need just leave blank. Default : 'transparent color'"
 msgstr ""
 
-#: inc/Field/Viewer.php:597
+#: inc/Field/Viewer.php:598
 msgid "Sets the background color of the 3D viewer. Use transparent or any valid CSS color value."
 msgstr ""
 
@@ -1035,81 +1087,472 @@ msgstr ""
 msgid "Enabled for upload: %1$s. You can change this in the <a href=\"%2$s\" target=\"_blank\">3D Viewer Settings</a>."
 msgstr ""
 
-#: inc/Woocommerce/ProductMeta.php:43
+#: inc/Integrations/Dokan/ClassicForm.php:54
+#: inc/Integrations/Dokan/ProductEditor.php:84
+#: inc/Integrations/Dokan/VendorModel.php:633
+#: inc/Integrations/FluentCart/AdminPage.php:52
+#: build/fluentcart-admin.js:1
+msgid "3D Model"
+msgstr ""
+
+#: inc/Integrations/Dokan/ClassicForm.php:55
+#: inc/Integrations/Dokan/ProductEditor.php:85
+msgid "Show an interactive 3D model on the product page."
+msgstr ""
+
+#: inc/Integrations/Dokan/ClassicForm.php:79
+msgid "Enable AR (view in your space)"
+msgstr ""
+
+#: inc/Integrations/Dokan/ClassicForm.php:166
+msgid "3D model (GLB)"
+msgstr ""
+
+#: inc/Integrations/Dokan/ClassicForm.php:167
+msgid "Upload / select GLB"
+msgstr ""
+
+#: inc/Integrations/Dokan/ClassicForm.php:168
+msgid "A .glb file. It is shown in an interactive viewer on the product page."
+msgstr ""
+
+#: inc/Integrations/Dokan/ClassicForm.php:174
+#: inc/Integrations/Dokan/Settings.php:211
+#: inc/Integrations/Dokan/VendorModel.php:630
+#: build/dokan-vendor.js:1
+#: build/fluentcart-admin.js:1
+msgid "Poster image"
+msgstr ""
+
+#: inc/Integrations/Dokan/ClassicForm.php:175
+msgid "Upload / select image"
+msgstr ""
+
+#: inc/Integrations/Dokan/ClassicForm.php:176
+msgid "Shown while the 3D model loads."
+msgstr ""
+
+#: inc/Integrations/Dokan/ClassicForm.php:182
+#: inc/Woocommerce/ProductMeta.php:185
+#: build/dokan-vendor.js:1
+msgid "USDZ model (iOS AR)"
+msgstr ""
+
+#: inc/Integrations/Dokan/ClassicForm.php:183
+msgid "Upload / select USDZ"
+msgstr ""
+
+#: inc/Integrations/Dokan/ClassicForm.php:184
+#: build/dokan-vendor.js:1
+msgid "Optional. Used for AR on iPhone and iPad."
+msgstr ""
+
+#. translators: %s: maximum file size in MB.
+#: inc/Integrations/Dokan/ClassicForm.php:207
+#, php-format
+msgid "(max %s MB)"
+msgstr ""
+
+#. translators: %s: file field label, e.g. "Poster image".
+#: inc/Integrations/Dokan/ClassicForm.php:224
+#: build/dokan-vendor.js:1
+#, php-format,js-format
+msgid "Replace %s"
+msgstr ""
+
+#. translators: %s: file field label, e.g. "Poster image".
+#: inc/Integrations/Dokan/ClassicForm.php:228
+#: build/dokan-vendor.js:1
+#, php-format,js-format
+msgid "Remove %s"
+msgstr ""
+
+#: inc/Integrations/Dokan/ClassicForm.php:248
+#: inc/Integrations/Dokan/Settings.php:214
+#: build/dokan-vendor.js:1
+msgid "Viewer position"
+msgstr ""
+
+#: inc/Integrations/Dokan/ClassicForm.php:250
+#: inc/Integrations/Dokan/ClassicForm.php:275
+#: build/dokan-vendor.js:1
+msgid "Set by the marketplace admin"
+msgstr ""
+
+#: inc/Integrations/Dokan/ClassicForm.php:273
+#: inc/Integrations/Dokan/Settings.php:215
+#: inc/Woocommerce/ProductMeta.php:227
+#: build/dokan-vendor.js:1
+#: build/fluentcart-admin.js:1
+msgid "Background"
+msgstr ""
+
+#: inc/Integrations/Dokan/ClassicForm.php:281
+#: build/dokan-vendor.js:1
+msgid "Transparent"
+msgstr ""
+
+#: inc/Integrations/Dokan/ClassicForm.php:284
+#: build/dokan-vendor.js:1
+msgid "Shown behind the 3D model."
+msgstr ""
+
+#: inc/Integrations/Dokan/ProductEditor.php:94
+msgid "Model files"
+msgstr ""
+
+#: inc/Integrations/Dokan/Settings.php:54
+msgid "Marketplace (Dokan)"
+msgstr ""
+
+#: inc/Integrations/Dokan/Settings.php:61
+msgid "3D Viewer for Dokan marketplaces"
+msgstr ""
+
+#: inc/Integrations/Dokan/Settings.php:72
+msgid "Vendors"
+msgstr ""
+
+#: inc/Integrations/Dokan/Settings.php:105
+msgid "Allow vendors to add 3D models"
+msgstr ""
+
+#: inc/Integrations/Dokan/Settings.php:107
+msgid "Vendors can add a GLB model, a poster image, an optional USDZ file for iOS AR, a viewer position and a background color to their own products in the Dokan dashboard. Off by default."
+msgstr ""
+
+#: inc/Integrations/Dokan/Settings.php:114
+msgid "GLB and USDZ files only."
+msgstr ""
+
+#. translators: %s: size in MB.
+#: inc/Integrations/Dokan/Settings.php:116
+#, php-format
+msgid "Maximum file size: %s MB."
+msgstr ""
+
+#: inc/Integrations/Dokan/Settings.php:117
+msgid "Vendors can only use files they uploaded themselves."
+msgstr ""
+
+#: inc/Integrations/Dokan/Settings.php:118
+msgid "One 3D model per product."
+msgstr ""
+
+#: inc/Integrations/Dokan/Settings.php:119
+msgid "Products with advanced 3D settings stay read-only for vendors."
+msgstr ""
+
+#: inc/Integrations/Dokan/Settings.php:124
+msgid "Safety limits"
+msgstr ""
+
+#: inc/Integrations/Dokan/Settings.php:132
+msgid "Saved restrictions"
+msgstr ""
+
+#: inc/Integrations/Dokan/Settings.php:133
+msgid "These vendor restrictions were saved earlier and still apply:"
+msgstr ""
+
+#: inc/Integrations/Dokan/Settings.php:139
+msgid "Use free defaults"
+msgstr ""
+
+#: inc/Integrations/Dokan/Settings.php:140
+msgid "Ignore the saved restrictions above and use the free defaults for every enabled vendor. This deletes nothing."
+msgstr ""
+
+#: inc/Integrations/Dokan/Settings.php:149
+msgid "More vendor controls are available in 3D Viewer Pro."
+msgstr ""
+
+#. translators: %s: file types, e.g. "GLB, USDZ".
+#: inc/Integrations/Dokan/Settings.php:171
+#, php-format
+msgid "%s uploads are turned off in 3D Viewer Settings (Allowed Mime Types), so vendors cannot upload them."
+msgstr ""
+
+#. translators: %s: Dokan version number.
+#: inc/Integrations/Dokan/Settings.php:184
+#, php-format
+msgid "The 3D Model field needs Dokan %s or newer in the new product editor. Vendors can still use it in the classic editor."
+msgstr ""
+
+#: inc/Integrations/Dokan/Settings.php:195
+msgid "Dokan did not show the 3D Model field in its new product editor recently. Vendors can still use the classic editor. Updating 3D Viewer and Dokan usually fixes this."
+msgstr ""
+
+#: inc/Integrations/Dokan/Settings.php:210
+#: inc/Integrations/Dokan/VendorModel.php:629
+#: build/dokan-vendor.js:1
+msgid "3D model"
+msgstr ""
+
+#: inc/Integrations/Dokan/Settings.php:212
+#: inc/Integrations/Dokan/VendorModel.php:631
+msgid "USDZ model"
+msgstr ""
+
+#: inc/Integrations/Dokan/Settings.php:213
+msgid "AR"
+msgstr ""
+
+#. translators: %d: number of vendors.
+#: inc/Integrations/Dokan/Settings.php:222
+#, php-format
+msgid "Only %d selected vendor may add 3D models."
+msgid_plural "Only %d selected vendors may add 3D models."
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/Integrations/Dokan/Settings.php:224
+msgid "Vendor access uses a rule this version cannot apply, so no vendor can add 3D models."
+msgstr ""
+
+#. translators: %s: comma-separated field names.
+#: inc/Integrations/Dokan/Settings.php:234
+#, php-format
+msgid "Vendors may edit only: %s."
+msgstr ""
+
+#: inc/Integrations/Dokan/Settings.php:235
+msgid "Vendors may not edit any 3D field."
+msgstr ""
+
+#. translators: %s: size in MB.
+#: inc/Integrations/Dokan/Settings.php:241
+#, php-format
+msgid "Lower maximum file size: %s MB."
+msgstr ""
+
+#. translators: %s: size in MB.
+#: inc/Integrations/Dokan/Settings.php:246
+#, php-format
+msgid "Storage limit per vendor: %s MB."
+msgstr ""
+
+#: inc/Integrations/Dokan/Settings.php:250
+msgid "Published products are read-only for vendors."
+msgstr ""
+
+#. translators: %s: viewer position name.
+#: inc/Integrations/Dokan/Settings.php:261
+#, php-format
+msgid "Default viewer position for a first model: %s."
+msgstr ""
+
+#: inc/Integrations/Dokan/Settings.php:265
+msgid "Free defaults are on, so these restrictions are currently ignored."
+msgstr ""
+
+#: inc/Integrations/Dokan/VendorModel.php:271
+msgid "3D Model: this viewer position is not available."
+msgstr ""
+
+#: inc/Integrations/Dokan/VendorModel.php:280
+msgid "3D Model: please choose a valid background color."
+msgstr ""
+
+#: inc/Integrations/Dokan/VendorModel.php:496
+msgid "3D Model: these 3D settings are too large to save."
+msgstr ""
+
+#: inc/Integrations/Dokan/VendorModel.php:601
+msgid "An earlier change is awaiting review."
+msgstr ""
+
+#: inc/Integrations/Dokan/VendorModel.php:603
+msgid "The 3D settings of published products are managed by the marketplace admin."
+msgstr ""
+
+#: inc/Integrations/Dokan/VendorModel.php:605
+msgid "This product's 3D settings are managed by the marketplace admin."
+msgstr ""
+
+#. translators: 1: field name, e.g. "3D model", 2: reason.
+#: inc/Integrations/Dokan/VendorModel.php:636
+#, php-format
+msgid "%1$s: %2$s"
+msgstr ""
+
+#: inc/Integrations/Dokan/VendorModel.php:640
+msgid "this file is not one of your uploads."
+msgstr ""
+
+#: inc/Integrations/Dokan/VendorModel.php:645
+#: inc/Integrations/Dokan/VendorModel.php:683
+msgid "the file could not be found."
+msgstr ""
+
+#: inc/Integrations/Dokan/VendorModel.php:652
+msgid "please choose a JPG, PNG, WebP or GIF image."
+msgstr ""
+
+#. translators: %s: file extension, e.g. GLB.
+#: inc/Integrations/Dokan/VendorModel.php:657
+#, php-format
+msgid "please choose a .%s file."
+msgstr ""
+
+#. translators: %s: size in MB.
+#: inc/Integrations/Dokan/VendorModel.php:672
+#, php-format
+msgid "the file is larger than %s MB."
+msgstr ""
+
+#: inc/Integrations/Dokan/VendorModel.php:677
+msgid "your storage space for 3D files is full."
+msgstr ""
+
+#: inc/Integrations/Dokan/VendorModel.php:832
+msgid "This 3D model has extra settings from the marketplace admin, so only the admin can remove it."
+msgstr ""
+
+#: inc/Integrations/Dokan/VendorPolicy.php:131
+#: inc/Woocommerce/ProductMeta.php:195
+msgid "Top of the product image"
+msgstr ""
+
+#: inc/Integrations/Dokan/VendorPolicy.php:132
+#: inc/Woocommerce/ProductMeta.php:196
+msgid "Bottom of the product image"
+msgstr ""
+
+#: inc/Integrations/Dokan/VendorPolicy.php:133
+msgid "Replace the product image with 3D"
+msgstr ""
+
+#: inc/Integrations/Dokan/VendorPolicy.php:134
+msgid "Show 3D on the first gallery image"
+msgstr ""
+
+#: inc/Integrations/FluentCart/ProductModel.php:102
+msgid "In the gallery, as a thumbnail (recommended)"
+msgstr ""
+
+#: inc/Integrations/FluentCart/ProductModel.php:103
+msgid "Above the gallery"
+msgstr ""
+
+#: inc/Integrations/FluentCart/ProductModel.php:104
+msgid "Below the gallery"
+msgstr ""
+
+#: inc/Integrations/FluentCart/ProductModel.php:105
+msgid "Instead of the gallery"
+msgstr ""
+
+#: inc/Integrations/FluentCart/ProductModel.php:106
+msgid "Nowhere (shortcode only)"
+msgstr ""
+
+#: inc/Integrations/FluentCart/Rest.php:48
+msgid "That is not a FluentCart product."
+msgstr ""
+
+#: inc/Integrations/FluentCart/Rest.php:51
+msgid "You are not allowed to edit this product."
+msgstr ""
+
+#: inc/Integrations/FluentCart/Rest.php:76
+msgid "Choose a 3D model file, for example a .glb."
+msgstr ""
+
+#: inc/Integrations/FluentCart/Settings.php:32
+#: inc/Integrations/FluentCart/Settings.php:38
+msgid "FluentCart"
+msgstr ""
+
+#: inc/Integrations/FluentCart/Settings.php:41
+msgid "Show 3D models on FluentCart product pages."
+msgstr ""
+
+#: inc/Integrations/FluentCart/Settings.php:42
+msgid "Each product picks its model under 3D Model in the FluentCart product editor. Default is Enable."
+msgstr ""
+
+#: inc/Integrations/FluentCart/Storefront.php:182
+msgid "View the 3D model"
+msgstr ""
+
+#: inc/Woocommerce/ProductMeta.php:46
 msgid "3D Product Settings"
 msgstr ""
 
 #. translators: %s: URL to the settings page.
-#: inc/Woocommerce/ProductMeta.php:118
+#: inc/Woocommerce/ProductMeta.php:129
 #, php-format
 msgid "Uploading 3D files (GLB, GLTF, OBJ, STL, FBX, HDR, etc.) is allowed by default. You can turn any format off in the <a href=\"%s\" target=\"_blank\">3D Viewer Settings</a>."
 msgstr ""
 
-#: inc/Woocommerce/ProductMeta.php:129
+#: inc/Woocommerce/ProductMeta.php:141
 msgid "Support"
 msgstr ""
 
-#: inc/Woocommerce/ProductMeta.php:130
+#: inc/Woocommerce/ProductMeta.php:142
 msgid "Please leave a message if you encounter any issues on the product page."
 msgstr ""
 
-#: inc/Woocommerce/ProductMeta.php:131
+#: inc/Woocommerce/ProductMeta.php:143
 msgid "Support Center"
 msgstr ""
 
-#: inc/Woocommerce/ProductMeta.php:132
+#: inc/Woocommerce/ProductMeta.php:144
 msgid "The free product viewer displays GLB and GLTF models. Premium adds OBJ, STL, 3DM, 3DS, 3MF, AMF, BIM, BREP, DAE, FBX, FCSTD, IFC, IGES, STEP, OFF, PLY and WRL."
 msgstr ""
 
-#: inc/Woocommerce/ProductMeta.php:141
+#: inc/Woocommerce/ProductMeta.php:154
 msgid "Upload or paste a model URL. GLB and GLTF are supported; other formats need Premium."
 msgstr ""
 
-#: inc/Woocommerce/ProductMeta.php:142
+#: inc/Woocommerce/ProductMeta.php:155
 msgid "You Can Paste here Model url"
 msgstr ""
 
-#: inc/Woocommerce/ProductMeta.php:148
+#: inc/Woocommerce/ProductMeta.php:162
 msgid "3D Poster"
 msgstr ""
 
-#: inc/Woocommerce/ProductMeta.php:149
+#: inc/Woocommerce/ProductMeta.php:163
 msgid "Upload Poster Or Input Valid poster/image url"
 msgstr ""
 
-#: inc/Woocommerce/ProductMeta.php:151
+#: inc/Woocommerce/ProductMeta.php:165
 msgid "This image will display until the model is either loaded or fails to load."
 msgstr ""
 
-#: inc/Woocommerce/ProductMeta.php:161
-msgid "3D Viewer Position"
+#: inc/Woocommerce/ProductMeta.php:178
+msgid "Let visitors view the model in their own space on supported devices."
 msgstr ""
 
-#: inc/Woocommerce/ProductMeta.php:162
-msgid "Select the position of the viewer"
+#: inc/Woocommerce/ProductMeta.php:186
+msgid "Optional .usdz file used for AR on iPhone and iPad."
 msgstr ""
 
-#: inc/Woocommerce/ProductMeta.php:165
-msgid "Top of the product image"
-msgstr ""
-
-#: inc/Woocommerce/ProductMeta.php:166
-msgid "Bottom of the product image"
-msgstr ""
-
-#: inc/Woocommerce/ProductMeta.php:167
+#: inc/Woocommerce/ProductMeta.php:197
 msgid "Replace Product Image with 3D"
 msgstr ""
 
-#: inc/Woocommerce/ProductMeta.php:168
+#: inc/Woocommerce/ProductMeta.php:198
 msgid "Show 3D on First Image of Woocommerce Gallery"
 msgstr ""
 
-#: inc/Woocommerce/ProductMeta.php:178
-msgid "Background"
+#. translators: %s: stored viewer position key.
+#: inc/Woocommerce/ProductMeta.php:205
+#, php-format
+msgid "%s (Premium)"
 msgstr ""
 
-#: inc/Woocommerce/ProductMeta.php:179
+#: inc/Woocommerce/ProductMeta.php:214
+msgid "3D Viewer Position"
+msgstr ""
+
+#: inc/Woocommerce/ProductMeta.php:215
+msgid "Select the position of the viewer"
+msgstr ""
+
+#: inc/Woocommerce/ProductMeta.php:228
 msgid "Set Background color"
 msgstr ""
 
@@ -1210,6 +1653,20 @@ msgstr ""
 #: build/blocks/3d-viewer/index.js:1
 #: build/blocks/3d-viewer/view.js:1
 #: build/frontend.js:1
+msgid "View in AR"
+msgstr ""
+
+#: build/admin-preview.js:1
+#: build/blocks/3d-viewer/index.js:1
+#: build/blocks/3d-viewer/view.js:1
+#: build/frontend.js:1
+msgid "Close QR code"
+msgstr ""
+
+#: build/admin-preview.js:1
+#: build/blocks/3d-viewer/index.js:1
+#: build/blocks/3d-viewer/view.js:1
+#: build/frontend.js:1
 msgid "QR Code"
 msgstr ""
 
@@ -1225,20 +1682,6 @@ msgstr ""
 #: build/blocks/3d-viewer/view.js:1
 #: build/frontend.js:1
 msgid "QR code to view in AR"
-msgstr ""
-
-#: build/admin-preview.js:1
-#: build/blocks/3d-viewer/index.js:1
-#: build/blocks/3d-viewer/view.js:1
-#: build/frontend.js:1
-msgid "View in AR"
-msgstr ""
-
-#: build/admin-preview.js:1
-#: build/blocks/3d-viewer/index.js:1
-#: build/blocks/3d-viewer/view.js:1
-#: build/frontend.js:1
-msgid "Close QR code"
 msgstr ""
 
 #: build/admin-preview.js:1
@@ -1284,11 +1727,13 @@ msgid "Download 3D model"
 msgstr ""
 
 #: build/admin-preview.js:1
+#: build/fluentcart-admin.js:1
 #, js-format
 msgid "The Lite viewer opens only .glb and .gltf files, not %s."
 msgstr ""
 
 #: build/admin-preview.js:1
+#: build/fluentcart-admin.js:1
 msgid "Switch the 3D Viewer to Advanced."
 msgstr ""
 
@@ -1358,6 +1803,15 @@ msgstr ""
 
 #: build/admin-preview.js:1
 msgid "Model Live Preview"
+msgstr ""
+
+#: build/admin-preview.js:1
+msgid "Copy shortcode"
+msgstr ""
+
+#: build/admin-preview.js:1
+#: build/blocks/3d-viewer/index.js:1
+msgid "Copied"
 msgstr ""
 
 #: build/admin-preview.js:1
@@ -1492,10 +1946,6 @@ msgstr ""
 
 #: build/blocks/3d-viewer/index.js:1
 msgid "Mouse control does not work in Editor (Backend)."
-msgstr ""
-
-#: build/blocks/3d-viewer/index.js:1
-msgid "Copied"
 msgstr ""
 
 #: build/blocks/3d-viewer/index.js:1
@@ -2904,6 +3354,14 @@ msgid "Paste the shortcode into any post, page, or widget, then update to view y
 msgstr ""
 
 #: build/dashboard.js:1
+msgid "FluentCart integration: show 3D models on FluentCart product pages"
+msgstr ""
+
+#: build/dashboard.js:1
+msgid "Dokan integration: vendors can add 3D models to their own products"
+msgstr ""
+
+#: build/dashboard.js:1
 msgid "New admin interface, with a switch back to Classic in Settings"
 msgstr ""
 
@@ -2929,6 +3387,192 @@ msgstr ""
 
 #: build/dashboard.js:1
 msgid "A 3D model for each WooCommerce variation"
+msgstr ""
+
+#: build/dokan-vendor.js:1
+#, js-format
+msgid "%1$s is larger than %2$s MB, the maximum size for 3D files."
+msgstr ""
+
+#: build/dokan-vendor.js:1
+#, js-format
+msgid "Maximum upload file size: %s MB."
+msgstr ""
+
+#: build/dokan-vendor.js:1
+#, js-format
+msgid "Only %s files can be used here."
+msgstr ""
+
+#: build/dokan-vendor.js:1
+msgid "Select a 3D model (GLB)"
+msgstr ""
+
+#: build/dokan-vendor.js:1
+msgid "Select a poster image"
+msgstr ""
+
+#: build/dokan-vendor.js:1
+msgid "Select a USDZ model for iOS AR"
+msgstr ""
+
+#: build/dokan-vendor.js:1
+#: build/fluentcart-admin.js:1
+msgid "Use this file"
+msgstr ""
+
+#: build/dokan-vendor.js:1
+msgid "The media library is not available on this page. Please reload and try again."
+msgstr ""
+
+#: build/dokan-vendor.js:1
+#, js-format
+msgid "Please choose a %s file."
+msgstr ""
+
+#: build/dokan-vendor.js:1
+#, js-format
+msgid "This file is %1$s MB. The maximum size is %2$s MB."
+msgstr ""
+
+#: build/dokan-vendor.js:1
+msgid "The 3D settings of this product are managed by the marketplace admin."
+msgstr ""
+
+#: build/dokan-vendor.js:1
+#, js-format
+msgid "Upload %s"
+msgstr ""
+
+#: build/dokan-vendor.js:1
+#, js-format
+msgid "GLB file, up to %s MB."
+msgstr ""
+
+#: build/dokan-vendor.js:1
+msgid "GLB file."
+msgstr ""
+
+#: build/dokan-vendor.js:1
+msgid "Add a 3D model first."
+msgstr ""
+
+#: build/dokan-vendor.js:1
+msgid "Shown while the model loads."
+msgstr ""
+
+#: build/dokan-vendor.js:1
+msgid "Let shoppers view the model in their space."
+msgstr ""
+
+#: build/fluentcart-admin.js:1
+msgid "Loading the 3D settings…"
+msgstr ""
+
+#: build/fluentcart-admin.js:1
+msgid "Unsaved Changes"
+msgstr ""
+
+#: build/fluentcart-admin.js:1
+msgid "Discard"
+msgstr ""
+
+#: build/fluentcart-admin.js:1
+msgid "Updating…"
+msgstr ""
+
+#: build/fluentcart-admin.js:1
+msgid "Update"
+msgstr ""
+
+#: build/fluentcart-admin.js:1
+msgid "Choose a 3D model"
+msgstr ""
+
+#: build/fluentcart-admin.js:1
+msgid "Choose a poster image"
+msgstr ""
+
+#: build/fluentcart-admin.js:1
+msgid "The Advanced viewer has no preview here. Save, then open the product page."
+msgstr ""
+
+#: build/fluentcart-admin.js:1
+msgid "Pick a model file to see it here."
+msgstr ""
+
+#: build/fluentcart-admin.js:1
+#, js-format
+msgid "Request failed (HTTP %d)."
+msgstr ""
+
+#: build/fluentcart-admin.js:1
+#, js-format
+msgid "This does not look like a 3D model file. Accepted: %s."
+msgstr ""
+
+#: build/fluentcart-admin.js:1
+msgid "Saved."
+msgstr ""
+
+#: build/fluentcart-admin.js:1
+msgid "Lite viewer (GLB, glTF)"
+msgstr ""
+
+#: build/fluentcart-admin.js:1
+msgid "Advanced viewer (OBJ, STL, FBX and more)"
+msgstr ""
+
+#: build/fluentcart-admin.js:1
+msgid "Model file"
+msgstr ""
+
+#: build/fluentcart-admin.js:1
+msgid "A link to the file, or pick one from the Media Library."
+msgstr ""
+
+#: build/fluentcart-admin.js:1
+msgid "Media Library"
+msgstr ""
+
+#: build/fluentcart-admin.js:1
+msgid "Shown while the model loads, and as the gallery thumbnail."
+msgstr ""
+
+#: build/fluentcart-admin.js:1
+msgid "Shown as the gallery thumbnail."
+msgstr ""
+
+#: build/fluentcart-admin.js:1
+msgid "Position"
+msgstr ""
+
+#: build/fluentcart-admin.js:1
+msgid "Where the viewer sits on the product page."
+msgstr ""
+
+#: build/fluentcart-admin.js:1
+msgid "Open on the 3D model"
+msgstr ""
+
+#: build/fluentcart-admin.js:1
+msgid "The model shows first; the product photos stay one thumbnail away."
+msgstr ""
+
+#: build/fluentcart-admin.js:1
+msgid "transparent, a hex colour such as #f4f4f4, or rgb()."
+msgstr ""
+
+#: build/fluentcart-admin.js:1
+msgid "Height (px)"
+msgstr ""
+
+#: build/fluentcart-admin.js:1
+msgid "Above, below or instead of the gallery. The thumbnail slot fills the gallery box."
+msgstr ""
+
+#: build/fluentcart-admin.js:1
+msgid "You have unsaved changes. Leave anyway?"
 msgstr ""
 
 #: build/onboarding.js:1
